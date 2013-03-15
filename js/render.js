@@ -2,6 +2,6 @@
 
 var dharma = dharma || {};
 
-dharma.render = (function (hogan, templates) {
+dharma.render = (function (document, hogan, templates) {
 	"use strict";
-}(parent.hogan, dharma.templates));
+}(parent.document, parent.Hogan, dharma.templates));

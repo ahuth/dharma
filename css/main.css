@@ -4,16 +4,12 @@ body {
 	font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;	
 }
 
-ul {
-	list-style: none;	
-}
-
 .downarrow {
 	width: 0; 
 	height: 0; 
-	border-left: 15px solid transparent;
-	border-right: 15px solid transparent;
-	border-top: 15px solid white;
+	border-left: 7px solid transparent;
+	border-right: 7px solid transparent;
+	border-top: 10px solid white;
 }
 
 .uparrow {

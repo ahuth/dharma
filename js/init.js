@@ -2,6 +2,6 @@
 
 var dharma = dharma || {};
 
-dharma.init = (function () {
+dharma.init = (function (render) {
 	"use strict";
-}());
+}(dharma.render));
