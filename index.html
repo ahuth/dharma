@@ -13,28 +13,75 @@
 	</head>
 	<body>
         <div id="top">
-            <ul id="nav">
-                <li>Nuts<ul>
-                    <li>Dept1</li>
-                    <li>Dept2</li>
-                    <li>Dept3</li>
-                    <li>Dept4</li>
-                </ul></li>
-                <li>Bolts<ul>
-                    <li>Dept1</li>
-                    <li>Dept2</li>
-                    <li>Dept3</li>
-                    <li>Dept4</li>
-                </ul></li>
-                <li>Batch + Quality<ul>
-                    <li>4411</li>
-                    <li>4420</li>
-                    <li>4422</li>
-                    <li>6850</li>
-                    <li>6855</li>
-                    <li>6860</li>
-                </ul></li>
-            </ul>
+            <div id="current-selection">Jenkintown<span class="downarrow"></span></div>
+            <table id="nav">
+                <tr>
+                    <th colspan="1"><span class="nav-label">Jenkintown</span></th>
+                    <th colspan="3"><span class="nav-label">Nuts</span></th>
+                    <th colspan="3"><span class="nav-label">Bolts</span></th>
+                    <th colspan="2"><span class="nav-label">Batch+Quality</span></th>
+                </tr>
+                <tr>
+                    <!-- Empty column -->
+                    <td></td>
+                    <!-- Nuts -->
+                    <td>Dept1</td>
+                    <td>Dept5</td>
+                    <td>Dept8</td>
+                    <!-- Bolts -->
+                    <td>Dept1</td>
+                    <td>Dept5</td>
+                    <td>Dept8</td>
+                    <!-- Batch -->
+                    <td>4411</td>
+                    <td>6855</td>
+                </tr>
+                <tr>
+                    <!-- Empty column -->
+                    <td></td>
+                    <!-- Nuts -->
+                    <td>Dept2</td>
+                    <td>Dept6</td>
+                    <td>Dept10</td>
+                    <!-- Bolts -->
+                    <td>Dept2</td>
+                    <td>Dept6</td>
+                    <td>Dept10</td>
+                    <!-- Batch -->
+                    <td>4420</td>
+                    <td>6860</td>
+                </tr>
+                <tr>
+                    <!-- Empty column -->
+                    <td></td>
+                    <!-- Nuts -->
+                    <td>Dept3</td>
+                    <td>Dept7</td>
+                    <td>Dept11</td>
+                    <!-- Bolts -->
+                    <td>Dept3</td>
+                    <td>Dept7</td>
+                    <td>Dept11</td>
+                    <!-- Batch -->
+                    <td>4422</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <!-- Empty column -->
+                    <td></td>
+                    <!-- Nuts -->
+                    <td>Dept4</td>
+                    <td>Dept8</td>
+                    <td>Dept12</td>
+                    <!-- Bolts -->
+                    <td>Dept4</td>
+                    <td>Dept8</td>
+                    <td>Dept12</td>
+                    <!-- Batch -->
+                    <td>6850</td>
+                    <td></td>
+                </tr>
+            </table>
         </div>
         <div id="content"></div>
 		<script src="js/libs/raphael-min.js"></script>

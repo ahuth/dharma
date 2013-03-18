@@ -1,0 +1,22 @@
+#nav {
+    border: 3px solid #b5b5b5;
+    position: absolute;
+    left: -9999px;
+}
+
+#nav th {
+    text-align: left;
+    border-bottom: 1px solid white;
+}
+
+#nav .nav-label:hover {
+    cursor: pointer;
+}
+
+#nav td, #nav th {
+    padding: 0.5em 1em 0.5em 1em;
+}
+
+#current-selection:hover+#nav, #nav:hover {
+    left: 0px;
+}

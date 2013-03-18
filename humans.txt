@@ -1,5 +1,0 @@
-# TECHNOLOGY COLOPHON
-
-    HTML5, Raphaël
-    RSVP.js, normalize.css
-	Hogan
