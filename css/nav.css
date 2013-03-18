@@ -1,7 +1,9 @@
 #nav {
     border: 3px solid #b5b5b5;
     position: absolute;
-    left: -9999px;
+    left: -740px;
+    z-index: 9999;
+    transition: left 0.5s;
 }
 
 #nav th {
@@ -9,14 +11,20 @@
     border-bottom: 1px solid white;
 }
 
-#nav .nav-label:hover {
+#nav a {
     cursor: pointer;
+    text-decoration: none;
+    color: white;
 }
 
 #nav td, #nav th {
     padding: 0.5em 1em 0.5em 1em;
 }
 
+#current-selection {
+    width: 50px;
+}
+
 #current-selection:hover+#nav, #nav:hover {
-    left: 0px;
+    left: -3px;
 }
