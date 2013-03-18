@@ -21,6 +21,10 @@
     padding: 0.5em 1em 0.5em 1em;
 }
 
+#nav .even-col {
+    background-color: #363636;
+}
+
 #current-selection {
     width: 50px;
 }

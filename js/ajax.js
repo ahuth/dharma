@@ -33,9 +33,37 @@ dharma.ajax = (function (XMLHttpRequest, RSVP) {
         return promise;
     }
     
+    // Send a get request and return a promise object.
+    function get(url, parameters) {
+        
+        if (typeof parameters === 'string') {
+            url += "?" + parameters;
+        }
+        
+        var XHR = new XMLHttpRequest(),
+            promise = new RSVP.Promise();
+        
+        XHR.open('get', url, true);
+        XHR.setRequestHeader('content-type', 'application/x-www-form-urlencoded');
+        XHR.setRequestHeader('X-Requested-With', 'XMLHttpRequest');
+        XHR.onreadystatechange = function () {
+            if (XHR.readyState === done) {
+				if (XHR.status === ok) {
+					promise.resolve(XHR.responseText);
+				} else {
+					promise.reject(XHR);
+				}
+            }
+        };
+        XHR.send();
+        
+        return promise;
+    }
+    
     // API of this module.
     return {
-        post: post
+        post: post,
+        get: get
     };
 
 }(parent.XMLHttpRequest, parent.RSVP));
