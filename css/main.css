@@ -43,7 +43,7 @@ body {
     cursor: pointer;
 }
 
-.widget .w-title, .w-info, .w-subinfo {
+.widget .w-title, .widget .w-info, .widget .w-subinfo {
     margin: 0;
     position: relative;
     text-align: center;
