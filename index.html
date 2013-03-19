@@ -10,6 +10,14 @@
 		<link rel="stylesheet" href="css/normalize.css">
         <link rel="stylesheet" href="css/main.css">
         <link rel="stylesheet" href="css/nav.css">
+        
+        <script type="template/mustache" id="karma-template">
+            <div class="widget" id="karma">
+                <p class="w-title">Karma</p>
+                <p class="w-info" id="karma-value">{{karma-value}}</p>
+                <p class="w-subinfo">{{karma-change}}</p>
+            </div>
+        </script>
 	</head>
 	<body>
         <div id="top">
@@ -87,13 +95,7 @@
                 </tr>
             </table>
         </div>
-        <div id="content">
-            <div class="widget" id="karma">
-                <p class="w-title">Karma</p>
-                <p class="w-info" id="karma-value">87</p>
-                <p class="w-subinfo">-5%</p>
-            </div>
-        </div>
+        <div id="content"></div>
 		<script src="js/libs/raphael-min.js"></script>
 		<script src="js/libs/g.raphael-min.js"></script>
 		<script src="js/libs/g.line-min.js"></script>

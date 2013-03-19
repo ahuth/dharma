@@ -2,6 +2,15 @@
 
 var dharma = dharma || {};
 
-dharma.render = (function (document, hogan, templates) {
+dharma.render = (function (document, templates) {
 	"use strict";
-}(parent.document, parent.Hogan, dharma.templates));
+    
+    function renderTo() {
+        document.getElementById("content").innerHTML = templates.karma.render({"karma-value": "87", "karma-change": "-5%"});
+    }
+    
+    return {
+        renderTo: renderTo
+    };
+    
+}(parent.document, dharma.templates));
