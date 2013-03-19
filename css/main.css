@@ -1,8 +1,13 @@
+/* General HTML elements */
+
 body {
 	background-color: #222222;
 	color: white;
-	font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;	
+	font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+	padding: 1em 1em;
 }
+
+/* Special classes */
 
 .downarrow {
 	width: 0; 
@@ -20,6 +25,51 @@ body {
     border-bottom: 10px solid white;
 }
 
+/* General Dharma sections */
+
 #top {
     height: 2em;
+}
+
+#content {
+    padding-top: 1em;
+    width: 1000px;
+    height: 500px;
+}
+
+/* Generic widgets */
+
+.widget {
+    cursor: pointer;
+}
+
+.widget .w-title, .w-info, .w-subinfo {
+    margin: 0;
+    position: relative;
+    text-align: center;
+}
+
+.widget .w-title {
+    opacity: 0.7;
+    top: 40px;
+    font-size: 30px;
+    font-weight: 200;
+}
+
+.widget .w-info {
+    top: 60px;
+    font-size: 44px;
+}
+
+.widget .w-subinfo {
+    top: 80px;
+    font-size: 20px;
+}
+
+/* Karma widget */
+
+#karma {
+    width: 25%;
+    height: 50%;
+    background-color: #47bbb3;
 }

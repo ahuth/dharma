@@ -1,8 +1,12 @@
+/* Navigation table */
+
 #nav {
     border: 3px solid #b5b5b5;
     position: absolute;
     left: -740px;
     z-index: 9999;
+	-moz-transition: left 0.5s;
+	-webkit-transition: left 0.5s;
     transition: left 0.5s;
 }
 
@@ -21,14 +25,23 @@
     padding: 0.5em 1em 0.5em 1em;
 }
 
-#nav .even-col {
+#nav colgroup {
+    background-color: #222222;
+}
+
+#nav colgroup.even-col {
     background-color: #363636;
 }
 
+/* Main navigation label */
+
 #current-selection {
     width: 50px;
+	font-size: 1.5em;
 }
 
+/* Hover over main navigation label */
+
 #current-selection:hover+#nav, #nav:hover {
-    left: -3px;
+    left: -5px;
 }
