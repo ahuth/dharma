@@ -2,9 +2,9 @@
 
 var dharma = dharma || {};
 
-dharma.init = (function (render) {
+dharma.init = (function (hotswap) {
 	"use strict";
     
-    render.renderTo();
+    hotswap.showMain("jenkintown");
     
-}(dharma.render));
+}(dharma.hotswap));

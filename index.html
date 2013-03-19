@@ -14,24 +14,45 @@
         <script type="template/mustache" id="karma-template">
             <div class="widget" id="karma">
                 <p class="w-title">Karma</p>
-                <p class="w-info" id="karma-value">{{karma-value}}</p>
-                <p class="w-subinfo">{{karma-change}}</p>
+                <p class="w-center-big">87</p>
+                <p class="w-center-small">-5%</p>
             </div>
         </script>
+		
+		<script type="template/mustache" id="quality-template">
+			<div class="widget" id="quality">
+				<p class="w-title">Quality</p>
+				<p class="w-info">Turnbacks</p>
+				<p class="w-info">Scrap</p>
+			</div>
+		</script>
+		
+		<script type="template/mustache" id="spending-template">
+			<div class="widget" id="spending">
+				<p class="w-title">Spending</p>
+			</div>
+		</script>
+		
+		<script type="template/mustache" id="production-template">
+			<div class="widget" id="production">
+				<p class="w-title">Production</p>
+			</div>
+		</script>
+		
 	</head>
 	<body>
-        <div id="top">
+        <header id="top">
             <div id="current-selection">Jenkintown</div>
             <table id="nav">
                 <colgroup span="1"></colgroup>
                 <colgroup span="3" class="even-col"></colgroup>
                 <colgroup span="3"></colgroup>
-                <colgroup span="2" class="even-col"></colgroup>
+                <colgroup span="3" class="even-col"></colgroup>
                 <tr>
                     <th colspan="1"><a href="#jenkintown">Jenkintown</a></th>
                     <th colspan="3"><a href="#nuts">Nuts</a></th>
                     <th colspan="3"><a href="#bolts">Bolts</a></th>
-                    <th colspan="2"><a href="#batch">Batch+Quality</a></th>
+                    <th colspan="3"><a href="#batch">Batch+Quality</a></th>
                 </tr>
                 <tr>
                     <!-- Empty column -->
@@ -47,6 +68,7 @@
                     <!-- Batch -->
                     <td><a href="#4411">4411</a></td>
                     <td><a href="#6855">6855</a></td>
+					<td></td>
                 </tr>
                 <tr>
                     <!-- Empty column -->
@@ -62,6 +84,7 @@
                     <!-- Batch -->
                     <td><a href="#4420">4420</a></td>
                     <td><a href="#6860">6860</a></td>
+					<td></td>
                 </tr>
                 <tr>
                     <!-- Empty column -->
@@ -77,6 +100,7 @@
                     <!-- Batch -->
                     <td><a href="#4422">4422</a></td>
                     <td></td>
+					<td></td>
                 </tr>
                 <tr>
                     <!-- Empty column -->
@@ -92,9 +116,10 @@
                     <!-- Batch -->
                     <td><a href="#6850">6850</a></td>
                     <td></td>
+					<td></td>
                 </tr>
             </table>
-        </div>
+        </header>
         <div id="content"></div>
 		<script src="js/libs/raphael-min.js"></script>
 		<script src="js/libs/g.raphael-min.js"></script>

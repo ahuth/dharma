@@ -2,15 +2,35 @@
 
 var dharma = dharma || {};
 
-dharma.render = (function (document, templates) {
+// render contains low-level (interacts directly with the DOM) functions that
+// add or clear HTML elements from the page.
+dharma.render = (function (document, console) {
 	"use strict";
+	
+	// clearInner removes all child elements from an HTML node.
+	function clearInner(id) {
+		document.getElementById(id).innerHTML = "";
+	}
+	
+	// renderInto takes a hogan template and data, and appends the rendered HTML
+	// to the provided element (id).
+	function renderInto(template, id, data) {
+		
+		// Since variables don't have types, make sure that the "template" has
+		// a 'render' function.
+		if (typeof template.render !== "function") {
+			console.log("render module (renderInto): invalid template");
+			return;
+		}
+		
+		var content = document.getElementById(id);
+		content.innerHTML += template.render(data);
+	}
     
-    function renderTo() {
-        document.getElementById("content").innerHTML = templates.karma.render({"karma-value": "87", "karma-change": "-5%"});
-    }
-    
+	// Module API.
     return {
-        renderTo: renderTo
+		clearInner: clearInner,
+		renderInto: renderInto
     };
     
-}(parent.document, dharma.templates));
+}(parent.document, parent.console));
