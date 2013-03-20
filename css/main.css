@@ -32,13 +32,7 @@ body {
 }
 
 #content {
-	/*position: relative;*/
-	display: -webkit-flex;
-	display: -moz-flex;
-	display: flex;
-	-webkit-flex-flow: row;
-	-moz-flex-flow: row;
-	flex-flow: row;
+	position: relative;
 	margin-top: 0.5em;
 }
 
@@ -52,25 +46,15 @@ body {
 
 #karma {
     background-color: #47bbb3;
-	-webkit-flex: 1;
-	-moz-flex: 1;
-	flex: 1;
 	min-width: 200px;
 }
 
 #quality {
 	background-color: #ff8001;
-	-webkit-flex: 2;
-	-moz-flex: 2;
-	flex: 2;
-	margin: 0 8px;
 	min-width: 300px;
 }
 
 #spending {
 	background-color: #634fff;
-	-webkit-flex: 1;
-	-moz-flex: 1;
-	flex: 1;
 	min-width: 200px;
 }
