@@ -4,7 +4,7 @@ var dharma = dharma || {};
 
 // render contains low-level (interacts directly with the DOM) functions that
 // add or clear HTML elements from the page.
-dharma.render = (function (document, console) {
+dharma.render = (function (document, console, templates) {
 	"use strict";
 	
 	// clearInner removes all child elements from an HTML node.
@@ -14,17 +14,17 @@ dharma.render = (function (document, console) {
 	
 	// renderInto takes a hogan template and data, and appends the rendered HTML
 	// to the provided element (id).
-	function renderInto(template, id, data) {
+	function renderInto(templateName, id, data) {
 		
-		// Since variables don't have types, make sure that the "template" has
-		// a 'render' function.
-		if (typeof template.render !== "function") {
-			console.log("render module (renderInto): invalid template");
+		// Make sure that the template name provided to this function actually
+        // exists.
+		if (!templates.hasOwnProperty(templateName)) {
+			console.log("render module (renderInto): invalid template name");
 			return;
 		}
 		
 		var content = document.getElementById(id);
-		content.innerHTML += template.render(data);
+		content.innerHTML += templates[templateName].render(data);
 	}
     
 	// Module API.
@@ -33,4 +33,4 @@ dharma.render = (function (document, console) {
 		renderInto: renderInto
     };
     
-}(parent.document, parent.console));
+}(parent.document, parent.console, dharma.templates));
