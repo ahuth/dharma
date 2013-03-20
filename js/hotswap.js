@@ -4,7 +4,7 @@ var dharma = dharma || {};
 
 // hotswap swaps out the entired contents of our "content" node.  It also makes
 // any required ajax requests.
-dharma.hotswap = (function (ajax, render) {
+dharma.hotswap = (function (ajax, clientservice, render) {
 	"use strict";
 	
 	function showMain(level) {
@@ -12,11 +12,11 @@ dharma.hotswap = (function (ajax, render) {
 		render.renderInto("karma", "content", {});
 		render.renderInto("quality", "content", {});
 		render.renderInto("spending", "content", {});
-		//render.renderInto("production", "content", {});
+		render.renderInto("production", "content", {});
 	}
 	
 	return {
 		showMain: showMain
 	};
 	
-}(dharma.ajax, dharma.render));
+}(dharma.ajax, dharma.clientservice, dharma.render));

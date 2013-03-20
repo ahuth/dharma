@@ -13,7 +13,7 @@ dharma.render = (function (document, console, templates) {
 	}
 	
 	// renderInto takes a hogan template and data, and appends the rendered HTML
-	// to the provided element (id).
+	// to the provided element.
 	function renderInto(templateName, id, data) {
 		
 		// Make sure that the template name provided to this function actually

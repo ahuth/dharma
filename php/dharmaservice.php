@@ -1,7 +1,7 @@
 <?php
 
-if (!empty($_POST['group']) {
-	$group = sanitizeString($_POST['group']);
+if (!empty($_GET['group']) {
+	$group = sanitizeString($_GET['group']);
 }
 
 // Render a string safe.

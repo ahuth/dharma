@@ -4,7 +4,8 @@ body {
 	background-color: #222222;
 	color: white;
 	font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
-	padding: 1em 1em;
+	width: 96%;
+	margin: 1em auto;
 }
 
 /* Special classes */
@@ -32,7 +33,7 @@ body {
 }
 
 #content {
-	position: relative;
+	position: static;
 	margin-top: 0.5em;
 }
 
@@ -40,6 +41,8 @@ body {
 
 .widget {
     cursor: pointer;
+	position: relative;
+	display: inline-block;
 }
 
 /* Specific widgets */
@@ -57,4 +60,9 @@ body {
 #spending {
 	background-color: #634fff;
 	min-width: 200px;
+}
+
+#production {
+	background-color: #ff7676;
+	min-width: 500px;
 }
