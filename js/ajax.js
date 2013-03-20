@@ -33,7 +33,8 @@ dharma.ajax = (function (XMLHttpRequest, RSVP) {
         return promise;
     }
     
-    // Send a get request and return a promise object.
+    // Send a get request and return a promise object.  This promise object will
+    // **eventually** hold the response text.
     function get(url, parameters) {
         
         if (typeof parameters === 'string') {

@@ -7,33 +7,12 @@ var dharma = dharma || {};
 dharma.hotswap = (function (ajax, templates, render) {
 	"use strict";
 	
-	var sections = {};
-	
-	sections.main = {
-		karma: {
-			template: templates.karma
-		},
-		quality: {
-			template: templates.quality
-		},
-		spending: {
-			template: templates.spending
-		},
-		production: {
-			template: templates.production
-		}
-	};
-	
 	function showMain(level) {
-		
-		var section = sections.main,
-			widget;
-		
 		render.clearInner("content");
-		render.renderInto(section.karma.template, "content", {});
-		render.renderInto(section.quality.template, "content", {});
-		render.renderInto(section.spending.template, "content", {});
-		//render.renderInto(section.production.template, "content", {});
+		render.renderInto(templates.karma, "content", {});
+		render.renderInto(templates.quality, "content", {});
+		render.renderInto(templates.spending, "content", {});
+		//render.renderInto(templates.production, "content", {});
 	}
 	
 	return {
