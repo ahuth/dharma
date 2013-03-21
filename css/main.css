@@ -8,6 +8,14 @@ body {
 	margin: 1em auto;
 }
 
+header {
+    height: 2em;
+}
+
+header h1 {
+    font-size: 1.5em;
+}
+
 /* Special classes */
 
 .downarrow {
@@ -28,10 +36,6 @@ body {
 
 /* General Dharma sections */
 
-#top {
-    height: 2em;
-}
-
 #content {
 	position: static;
 	margin-top: 0.5em;
@@ -42,7 +46,6 @@ body {
 .widget {
     cursor: pointer;
 	position: relative;
-	display: inline-block;
 }
 
 /* Specific widgets */

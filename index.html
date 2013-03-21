@@ -37,87 +37,80 @@
 		
 	</head>
 	<body>
-        <header id="top">
+        <header>
             <h1 id="current-selection">Jenkintown</h1>
-            <table id="nav">
-                <colgroup span="1"></colgroup>
-                <colgroup span="3" class="even-col"></colgroup>
-                <colgroup span="3"></colgroup>
-                <colgroup span="3" class="even-col"></colgroup>
-                <tr>
-                    <th colspan="1"><a href="#jenkintown">Jenkintown</a></th>
-                    <th colspan="3"><a href="#nuts">Nuts</a></th>
-                    <th colspan="3"><a href="#bolts">Bolts</a></th>
-                    <th colspan="3"><a href="#batch">Batch+Quality</a></th>
-                </tr>
-                <tr>
-                    <!-- Empty column -->
-                    <td></td>
-                    <!-- Nuts -->
-                    <td><a href="#6211">6211</a></td>
-                    <td><a href="#6221">6221</a></td>
-                    <td><a href="#6280">6280</a></td>
-                    <!-- Bolts -->
-                    <td><a href="#6265">6265</a></td>
-                    <td><a href="#6630">6630</a></td>
-                    <td><a href="#6662">6662</a></td>
-                    <!-- Batch -->
-                    <td><a href="#4411">4411</a></td>
-                    <td><a href="#6855">6855</a></td>
-					<td></td>
-                </tr>
-                <tr>
-                    <!-- Empty column -->
-                    <td></td>
-                    <!-- Nuts -->
-                    <td><a href="#6216">6216</a></td>
-                    <td><a href="#6222">6222</a></td>
-                    <td><a href="#6290">6290</a></td>
-                    <!-- Bolts -->
-                    <td><a href="#6614">6614</a></td>
-                    <td><a href="#6640">6640</a></td>
-                    <td><a href="#6670">6670</a></td>
-                    <!-- Batch -->
-                    <td><a href="#4420">4420</a></td>
-                    <td><a href="#6860">6860</a></td>
-					<td></td>
-                </tr>
-                <tr>
-                    <!-- Empty column -->
-                    <td></td>
-                    <!-- Nuts -->
-                    <td><a href="#6219">6219</a></td>
-                    <td><a href="#6242">6242</a></td>
-                    <td><a href="#6291">6291</a></td>
-                    <!-- Bolts -->
-                    <td><a href="#6620">6620</a></td>
-                    <td><a href="#6651">6651</a></td>
-                    <td><a href="#6840">6840</a></td>
-                    <!-- Batch -->
-                    <td><a href="#4422">4422</a></td>
-                    <td></td>
-					<td></td>
-                </tr>
-                <tr>
-                    <!-- Empty column -->
-                    <td></td>
-                    <!-- Nuts -->
-                    <td><a href="#6220">6220</a></td>
-                    <td><a href="#6260">6260</a></td>
-                    <td><a href="#6830">6830</a></td>
-                    <!-- Bolts -->
-                    <td><a href="#6629">6629</a></td>
-                    <td><a href="#6652">6652</a></td>
-                    <td></td>
-                    <!-- Batch -->
-                    <td><a href="#6850">6850</a></td>
-                    <td></td>
-					<td></td>
-                </tr>
-            </table>
+            <nav>
+                <ul>
+                    <li id="jenk">
+                        <h3><a href="#jenkintown">Jenkintown</a></h3>
+                    </li>
+                    <li class="even">
+                        <h3><a href="#nuts">Nuts</a></h3>
+                        <div class="row">
+                            <a href="#">6211</a>
+                            <a href="#">6221</a>
+                            <a href="#">6280</a>
+                        </div>
+                        <div class="row">
+                            <a href="#">6216</a>
+                            <a href="#">6222</a>
+                            <a href="#">6290</a>
+                        </div>
+                        <div class="row">
+                            <a href="#">6219</a>
+                            <a href="#">6242</a>
+                            <a href="#">6291</a>
+                        </div>
+                        <div class="row">
+                            <a href="#">6220</a>
+                            <a href="#">6260</a>
+                            <a href="#">6830</a>
+                        </div>
+                    </li>
+                    <li>
+                        <h3><a href="#bolts">Bolts</a></h3>
+                        <div class="row">
+                            <a href="#">6265</a>
+                            <a href="#">6630</a>
+                            <a href="#">6662</a>
+                        </div>
+                        <div class="row">
+                            <a href="#">6614</a>
+                            <a href="#">6640</a>
+                            <a href="#">6670</a>
+                        </div>
+                        <div class="row">
+                            <a href="#">6620</a>
+                            <a href="#">6651</a>
+                            <a href="#">6840</a>
+                        </div>
+                        <div class="row">
+                            <a href="#">6629</a>
+                            <a href="#">6652</a>
+                        </div>
+                    </li>
+                    <li class="even">
+                        <h3><a href="#batch">Batch+Quality</a></h3>
+                        <div class="row">
+                            <a href="#">4411</a>
+                            <a href="#">6855</a>
+                        </div>
+                        <div class="row">
+                            <a href="#">4420</a>
+                            <a href="#">6860</a>
+                        </div>
+                        <div class="row">
+                            <a href="#">4422</a>
+                        </div>
+                        <div class="row">
+                            <a href="#">6850</a>
+                        </div>
+                    </li>
+                </ul>
+            </nav>
         </header>
         <div id="content"></div>
-		<script src="js/libs/chart-min.js"></script>
+		<script src="js/libs/Chart.min.js"></script>
 		<script src="js/libs/rsvp.min.js"></script>
 		<script src="js/libs/hogan.min.js"></script>
 		<script src="js/templates.js"></script>
