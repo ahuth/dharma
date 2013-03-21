@@ -22,12 +22,6 @@ nav th {
     border-bottom: 1px solid white;
 }
 
-nav a {
-    cursor: pointer;
-    text-decoration: none;
-    color: white;
-}
-
 nav td, nav th {
     padding: 0.5em 1em 0.5em 1em;
 }
