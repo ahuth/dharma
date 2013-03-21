@@ -4,7 +4,7 @@ nav {
     border: 3px solid #b5b5b5;
     position: absolute;
     background-color: #222222;
-    /*left: -740px;*/
+    left: -740px;
     z-index: 9999;
 	-moz-transition: left 0.5s;
 	-webkit-transition: left 0.5s;
@@ -17,39 +17,31 @@ nav a {
     color: inherit;
 }
 
-nav ul {
-    /*width: 1000px;*/
+nav th {
+    text-align: left;
+    border-bottom: 1px solid white;
 }
 
-nav ul li {
-    display: inline-table;
-    border-spacing: 1em;
+nav a {
+    cursor: pointer;
+    text-decoration: none;
+    color: white;
 }
 
-nav ul li.even {
+nav td, nav th {
+    padding: 0.5em 1em 0.5em 1em;
+}
+
+nav colgroup {
+    background-color: #222222;
+}
+
+nav colgroup.even-col {
     background-color: #363636;
-}
-
-nav ul li#jenk {
-    display: inline-block;
-    width: 6em;
-    vertical-align: top;
-}
-
-nav ul li h3 {
-    display: table-caption;
-}
-
-nav ul li .row {
-    display: table-row;
-}
-
-nav ul li .row > a {
-    display: table-cell;
 }
 
 /* Hover over main navigation label */
 
-/*#current-selection:hover+nav, nav:hover {
-    left: -5px;
-}*/
+#current-selection:hover+nav, nav:hover {
+    left: 0px;
+}
