@@ -1,6 +1,8 @@
 /* General HTML elements */
 
 html {
+    /* I put this height style in because there was always vertical scroll bars...
+    even when the content didn't warrant it.*/
 	height: 42em;
 }
 
@@ -8,7 +10,7 @@ body {
 	background-color: #222222;
 	color: white;
 	font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
-	width: 73em;
+	width: 96%;
 	margin: 1em auto;
 }
 
@@ -42,48 +44,58 @@ header h1 {
 /* General Dharma sections */
 
 #content {
-	/* Make this positon: relative so that each child can be positioned absolute
-	to its boundaries.*/
-	position: relative;
-}
-
-/* Generic widgets */
-
-.widget {
-    cursor: pointer;
-	position: absolute;
+    /* Putting a min-width on our content div and on each widget below ensures
+    that the browser window becoming super small won't mess up our layout. */
+    min-width: 58em;
 }
 
 /* Top-level widgets */
 
+.widget {
+    cursor: pointer;
+    /* position: relative will allow us to move the 'production' widget up to
+    where we want it.*/
+	position: relative;
+    float: left;
+}
+
 #karma {
     background-color: #47bbb3;
-	width: 18em;
+	width: 24%;
 	height: 20em;
-	top: 0em;
-	left: 0em;
+    min-width: 14em;
+    margin-right: 0.5em;
 }
 
 #quality {
 	background-color: #ff8001;
-	width: 36em;
+	width: 48%;
 	height: 20em;
-	top: 0em;
-	left: 18.5em;
+    min-width: 28em;
+    margin-right: 0.5em;
 }
 
 #spending {
 	background-color: #634fff;
-	width: 18em;
+	width: 24%;
 	height: 40.5em;
-	top: 0em;
-	left: 55em;
+    min-width: 14em;
+    /* clear: right ensures that the next widget will always be below this one.*/
+    clear: right;
 }
 
 #production {
 	background-color: #ff7676;
-	width: 54.5em;
+    /* All of these calc(% + em)'s allow us to have a flexible layout with a
+    fixed margin between the widgets, and still line everything up properly.*/
+	width: -webkit-calc(72% + 0.5em);
+    width: -moz-calc(72% + 0.5em);
+    width: -o-calc(72% + 0.5em);
+    width: -ms-calc(72% + 0.5em);
+    width: calc(72% + 0.5em);
 	height: 20em;
-	top: 20.5em;
-	left: 0em;
+    min-width: 42.5em;
+    /* This widget has a negative top value, which slides it up to where we want
+    it to be.*/
+    top: -20em;
 }
