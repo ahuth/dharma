@@ -4,10 +4,12 @@ nav {
     border: 3px solid #b5b5b5;
     position: absolute;
     background-color: #222222;
-    left: -740px;
+    left: -47em;
     z-index: 9999;
 	-moz-transition: left 0.5s;
 	-webkit-transition: left 0.5s;
+	-o-transition: left 0.5s;
+	-ms-transition: left 0.5s;
     transition: left 0.5s;
 }
 
@@ -19,6 +21,7 @@ nav a {
 
 nav th {
     text-align: left;
+	font-weight: bold;
     border-bottom: 1px solid white;
 }
 
@@ -30,7 +33,7 @@ nav colgroup {
     background-color: #222222;
 }
 
-nav colgroup.even-col {
+nav colgroup:nth-child(even) {
     background-color: #363636;
 }
 

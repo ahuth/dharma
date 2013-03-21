@@ -1,10 +1,14 @@
 /* General HTML elements */
 
+html {
+	height: 42em;
+}
+
 body {
 	background-color: #222222;
 	color: white;
 	font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
-	width: 96%;
+	width: 73em;
 	margin: 1em auto;
 }
 
@@ -38,35 +42,48 @@ header h1 {
 /* General Dharma sections */
 
 #content {
-	position: static;
-	margin-top: 0.5em;
+	/* Make this positon: relative so that each child can be positioned absolute
+	to its boundaries.*/
+	position: relative;
 }
 
 /* Generic widgets */
 
 .widget {
     cursor: pointer;
-	position: relative;
+	position: absolute;
 }
 
-/* Specific widgets */
+/* Top-level widgets */
 
 #karma {
     background-color: #47bbb3;
-	min-width: 200px;
+	width: 18em;
+	height: 20em;
+	top: 0em;
+	left: 0em;
 }
 
 #quality {
 	background-color: #ff8001;
-	min-width: 300px;
+	width: 36em;
+	height: 20em;
+	top: 0em;
+	left: 18.5em;
 }
 
 #spending {
 	background-color: #634fff;
-	min-width: 200px;
+	width: 18em;
+	height: 40.5em;
+	top: 0em;
+	left: 55em;
 }
 
 #production {
 	background-color: #ff7676;
-	min-width: 500px;
+	width: 54.5em;
+	height: 20em;
+	top: 20.5em;
+	left: 0em;
 }
