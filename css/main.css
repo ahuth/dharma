@@ -99,3 +99,14 @@ header h1 {
     it to be.*/
     top: -20em;
 }
+
+/* Widget parts */
+
+.widget > h2 {
+    position: relative;
+    margin: 0 auto;
+    top: 2em;
+    font-size: 1.5em;
+    text-align: center;
+    color: rgba(255, 255, 255, 0.7);
+}
