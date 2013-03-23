@@ -9,21 +9,23 @@ dharma.hotswap = (function (ajax, render) {
 	
 	function showMain(level) {
 		render.clearInner("content");
-		/*render.renderInto("karma", "content", {});
-		render.renderInto("quality", "content", {});
-		render.renderInto("spending", "content", {});
-		render.renderInto("production", "content", {});*/
 		
 		ajax.get("php/dharmaservice.php", "type=overview&what=karma&group=jenkintown").then(function (value) {
-            
-			var response = JSON.parse(value),
-				data = {
-					"karma-value": response.karma.value,
-					"karma-change": response.karma.change
-				};
-			
-			render.renderInto("karma", "content", data);
+			var response = JSON.parse(value);
+			render.renderIntoInOrder("karma", "content", {"value": response.karma.value, "change": response.karma.change});
 		});
+        
+        ajax.get("php/dharmaservice.php", "type=overview&what=quality&group=jenkintown").then(function (value) {
+            render.renderIntoInOrder("quality", "content", {});
+        });
+        
+        ajax.get("php/dharmaservice.php", "type=overview&what=spending&group=jenkintown").then(function (value) {
+            render.renderIntoInOrder("spending", "content", {});
+        });
+        
+        ajax.get("php/dharmaservice.php", "type=overview&what=production&group=jenkintown").then(function (value) {
+            render.renderIntoInOrder("production", "content", {});
+        });
 	}
 	
 	return {
