@@ -52,7 +52,7 @@ dharma.render = (function (document, console, templates) {
 		content.innerHTML += templates[templateName].render(data);
 	}
     
-    // renderIntoInOrder appends a hogan template as a child to the given element,
+    // renderIntoOrdered appends a hogan template as a child to the given element,
     // in a specified order.  We need to do this if we want a specific order AND
     // we're making asynchronous requests.  The order is specified as a 'data-order' 
     // attribute on the html element.
@@ -61,7 +61,7 @@ dharma.render = (function (document, console, templates) {
         // Make sure that the template name provided to this function actually
         // exists.
 		if (!templates.hasOwnProperty(templateName)) {
-			console.log("render module (renderIntoInOrder): invalid template name");
+			console.log("render module (renderIntoOrdered): invalid template name");
 			return;
 		}
         
