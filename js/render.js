@@ -56,7 +56,7 @@ dharma.render = (function (document, console, templates) {
     // in a specified order.  We need to do this if we want a specific order AND
     // we're making asynchronous requests.  The order is specified as a 'data-order' 
     // attribute on the html element.
-    function renderIntoInOrder(templateName, id, data) {
+    function renderIntoOrdered(templateName, id, data) {
         
         // Make sure that the template name provided to this function actually
         // exists.
@@ -92,7 +92,7 @@ dharma.render = (function (document, console, templates) {
     return {
 		clearInner: clearInner,
 		renderInto: renderInto,
-        renderIntoInOrder: renderIntoInOrder
+        renderIntoOrdered: renderIntoOrdered
     };
     
 }(parent.document, parent.console, dharma.templates));

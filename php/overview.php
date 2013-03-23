@@ -1,4 +1,5 @@
 <?php
+
 namespace overview {
 	
 	function getOverviewData($what, $group) {
