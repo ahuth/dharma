@@ -4,7 +4,7 @@ var dharma = dharma || {};
 
 // render contains low-level (interacts directly with the DOM) functions that
 // add or clear HTML elements from the page.
-dharma.render = (function (document, console, templates) {
+dharma.render = (function (document, errors, templates) {
 	"use strict";
     
     // helper is a div node that helps us convert an html string to an actual
@@ -42,7 +42,7 @@ dharma.render = (function (document, console, templates) {
 	function renderInto(templateName, id, data) {
 		
 		if (!templates.hasOwnProperty(templateName)) {
-			console.log("render module (renderInto): invalid template name");
+			errors.log("render", "renderInto", "Invalid template name");
 			return;
 		}
 		
@@ -57,7 +57,7 @@ dharma.render = (function (document, console, templates) {
     function renderIntoOrdered(templateName, id, data) {
         
 		if (!templates.hasOwnProperty(templateName)) {
-			console.log("render module (renderIntoOrdered): invalid template name");
+			errors.log("render", "renderIntoOrdered", "Invalid template name");
 			return;
 		}
         
@@ -91,4 +91,4 @@ dharma.render = (function (document, console, templates) {
         renderIntoOrdered: renderIntoOrdered
     };
     
-}(parent.document, parent.console, dharma.templates));
+}(parent.document, dharma.errors, dharma.templates));
