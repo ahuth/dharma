@@ -10,8 +10,8 @@ body {
 	background-color: #222222;
 	color: white;
 	font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    margin: 1em auto;
 	width: 96%;
-	margin: 1em auto;
 }
 
 header {
@@ -53,10 +53,10 @@ header h1 {
 
 .widget {
     cursor: pointer;
+    float: left;
     /* position: relative will allow us to move the 'production' widget up to
     where we want it.*/
 	position: relative;
-    float: left;
 }
 
 #karma {
@@ -103,19 +103,15 @@ header h1 {
 /* Widget parts */
 
 .widget h2 {
-    position: relative;
-    top: 2em;
     font-size: 1.5em;
+    margin-top: 2em;
     text-align: center;
     color: rgba(255, 255, 255, 0.7);
 }
 
 .widget > p {
     text-align: center;
-    margin-top: 1.6em;
-    /* Make the width 100% of the parent (.widget) so that we can center the
-    text. */
-    width: 100%;
+    margin-top: 18%;
     font-size: 1.5em;
 }
 
@@ -126,11 +122,11 @@ header h1 {
 
 .widget.fail h1 {
     text-align: center;
+    margin-top: 0.8em;
     font-size: 6em;
-    line-height: 2.3em;
 }
 
-.widget.fail p {
-    text-align: center;
+.widget.fail > p {
+    margin-top: 1em;
     color: rgba(255, 255, 255, 0.7);
 }
