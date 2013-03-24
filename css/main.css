@@ -47,6 +47,9 @@ header h1 {
     /* Putting a min-width on our content div and on each widget below ensures
     that the browser window becoming super small won't mess up our layout. */
     min-width: 58em;
+    /* Setting position: relative lets us use absolute positioning for all
+    children elements with respect to this container's boundaries.*/
+    position: relative;
 }
 
 /* Top-level widgets */
@@ -54,9 +57,7 @@ header h1 {
 .widget {
     cursor: pointer;
     float: left;
-    /* position: relative will allow us to move the 'production' widget up to
-    where we want it.*/
-	position: relative;
+    position: absolute;
 }
 
 #karma {
@@ -64,7 +65,8 @@ header h1 {
 	width: 24%;
 	height: 20em;
     min-width: 14em;
-    margin-right: 0.5em;
+    top: 0;
+    left: 0;
 }
 
 #quality {
@@ -72,7 +74,12 @@ header h1 {
 	width: 48%;
 	height: 20em;
     min-width: 28em;
-    margin-right: 0.5em;
+    top: 0;
+    left: -webkit-calc(24% + 0.5em);
+    left: -moz-calc(24% + 0.5em);
+    left: -o-calc(24% + 0.5em);
+    left: -ms-calc(24% + 0.5em);
+    left: calc(24% + 0.5em);
 }
 
 #spending {
@@ -80,8 +87,12 @@ header h1 {
 	width: 24%;
 	height: 40.5em;
     min-width: 14em;
-    /* clear: right ensures that the next widget will always be below this one.*/
-    clear: right;
+    top: 0;
+    left: -webkit-calc(72% + 1em);
+    left: -moz-calc(72% + 1em);
+    left: -o-calc(72% + 1em);
+    left: -ms-calc(72% + 1em);
+    left: calc(72% + 1em);
 }
 
 #production {
@@ -95,9 +106,8 @@ header h1 {
     width: calc(72% + 0.5em);
 	height: 20em;
     min-width: 42.5em;
-    /* This widget has a negative top value, which slides it up to where we want
-    it to be.*/
-    top: -20em;
+    top: 20.5em;
+    left: 0;
 }
 
 /* Widget parts */
