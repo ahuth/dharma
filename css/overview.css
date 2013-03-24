@@ -124,3 +124,14 @@
 #quality .table .row {
     height: 2em;
 }
+
+#spending .table {
+    position: relative;
+    top: 4em;
+    margin: 0 auto;
+    width: 90%;
+}
+
+#spending .table .row {
+    height: 2.4em;
+}

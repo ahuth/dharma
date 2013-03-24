@@ -23,30 +23,12 @@ header h1 {
     width: 5em;
 }
 
-/* Special classes */
-
-.downarrow {
-	width: 0; 
-	height: 0; 
-	border-left: 7px solid transparent;
-	border-right: 7px solid transparent;
-	border-top: 10px solid white;
-}
-
-.uparrow {
-    width: 0;
-    height: 0;
-    border-left: 7px solid transparent;
-    border-right: 7px solid transparent;
-    border-bottom: 10px solid white;
-}
-
 /* General Dharma sections */
 
 #content {
     /* Putting a min-width here ensures that the window getting really small
     won't mess up our layout.*/
-    min-width: 58em;
+    min-width: 60em;
     /* Setting position: relative lets us use absolute positioning for all
     children elements with respect to this container's boundaries.*/
     position: relative;

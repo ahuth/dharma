@@ -40,7 +40,18 @@ dharma.hotswap = (function (ajax, render) {
         // executed if the request is successful.  The second is executed if the
         // request fails.
         ajax.get("php/dharmaservice.php", "type=overview&what=spending&group=jenkintown").then(function (value) {
-            render.renderInto("spending", "content", {});
+            var response = JSON.parse(value),
+                data = {
+                    yesterday: response.spending.yesterday,
+                    qtd: response.spending.qtd,
+                    people: response.spending.people,
+                    supplies: response.spending.supplies,
+                    tools: response.spending.tools,
+                    utilities: response.spending.utilities,
+                    maintenance: response.spending.maintenance,
+                    other: response.spending.other
+                };
+            render.renderInto("spending", "content", data);
         }, function (value) {
             render.renderInto("fail", "content", {id: "spending"});
         });
