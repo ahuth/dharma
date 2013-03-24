@@ -12,14 +12,16 @@ dharma.templates = (function (document, hogan) {
     var karma      = hogan.compile(document.getElementById("karma-template").innerHTML),
 		quality    = hogan.compile(document.getElementById("quality-template").innerHTML),
 		spending   = hogan.compile(document.getElementById("spending-template").innerHTML),
-		production = hogan.compile(document.getElementById("production-template").innerHTML);
+		production = hogan.compile(document.getElementById("production-template").innerHTML),
+        fail       = hogan.compile(document.getElementById("fail-template").innerHTML);
     
 	// Module API.
     return {
         karma: karma,
 		quality: quality,
 		spending: spending,
-		production: production
+		production: production,
+        fail: fail
     };
     
 }(parent.document, parent.Hogan));

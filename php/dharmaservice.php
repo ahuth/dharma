@@ -11,6 +11,7 @@ if (empty($_GET['type']) || empty($_GET['what']) || empty($_GET['group'])) {
 $type  = sanitizeString($_GET['type']);
 $what  = sanitizeString($_GET['what']);
 $group = sanitizeString($_GET['group']);
+$output = [];
 	
 if ($type == 'overview') {
 	$output = overview\getOverviewData($what, $group);

@@ -15,7 +15,7 @@
         <script type="template/mustache" id="karma-template">
             <section class="widget" id="karma" data-order="1">
                 <h2>Karma</h2>
-                <p>{{value}}</p>
+                <p class="big center">{{value}}</p>
             </section>
         </script>
 		
@@ -36,6 +36,13 @@
 				<h2>Production</h2>
 			</section>
 		</script>
+        
+        <script type="template/mustache" id="fail-template">
+            <section class="widget fail" id="{{id}}" data-order="{{order}}">
+                <h1>:-(</h1>
+                <p>Something went wrong</p>
+            </section>
+        </script>
 		
 	</head>
 	<body>
