@@ -2,7 +2,7 @@
 
 var dharma = dharma || {};
 
-dharma.ajax = (function (XMLHttpRequest, RSVP) {
+dharma.ajax = (function (window, XMLHttpRequest, RSVP) {
     "use strict";
     
     var done = 4, ok = 200;
@@ -16,7 +16,8 @@ dharma.ajax = (function (XMLHttpRequest, RSVP) {
         }
         
         var XHR = new XMLHttpRequest(),
-            promise = new RSVP.Promise();
+            promise = new RSVP.Promise(),
+            timeout;
         
         XHR.open("get", url, true);
         XHR.setRequestHeader("content-type", "application/x-www-form-urlencoded");
@@ -24,12 +25,21 @@ dharma.ajax = (function (XMLHttpRequest, RSVP) {
         XHR.onreadystatechange = function () {
             if (XHR.readyState === done) {
 				if (XHR.status === ok) {
+                    window.clearTimeout(timeout);
 					promise.resolve(XHR.responseText);
 				} else {
 					promise.reject(XHR);
 				}
             }
         };
+        
+        // If we don't get a response back in 4 seconds, abort the request and
+        // reject the promise object.
+        timeout = setTimeout(function () {
+            XHR.abort();
+            promise.reject(XHR);
+        }, 4000);
+        
         XHR.send();
 
         return promise;
@@ -40,4 +50,4 @@ dharma.ajax = (function (XMLHttpRequest, RSVP) {
         get: get
     };
 
-}(parent.XMLHttpRequest, parent.RSVP));
+}(parent.window, parent.XMLHttpRequest, parent.RSVP));
