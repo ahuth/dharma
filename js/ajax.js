@@ -26,7 +26,11 @@ dharma.ajax = (function (window, XMLHttpRequest, RSVP) {
             if (XHR.readyState === done) {
 				if (XHR.status === ok) {
                     window.clearTimeout(timeout);
-					promise.resolve(XHR.responseText);
+                    if (XHR.responseText === null || XHR.responseText === 'null') {
+                        promise.reject(XHR);
+                    } else {
+                        promise.resolve(XHR.responseText);
+                    }
 				} else {
 					promise.reject(XHR);
 				}
