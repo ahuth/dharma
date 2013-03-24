@@ -10,10 +10,12 @@ namespace overview {
 	}
 
 	function getKarmaData($group) {
-		$value = '87';
-		$change = '-5%';
-		return array('value'  => $value,
-					 'change' => $change);
+        if ($group == 'jenkintown') {
+            $value = '87';
+            $change = '-5%';
+            return array('value'  => $value,
+                         'change' => $change);
+        }
 	}
 
 	function getQualityData($group) {

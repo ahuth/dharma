@@ -15,7 +15,7 @@ body {
 }
 
 header {
-    height: 2em;
+    height: 2.4em;
 }
 
 header h1 {
@@ -104,11 +104,24 @@ header h1 {
 
 .widget h2 {
     position: relative;
-    margin: 0 auto;
     top: 2em;
     font-size: 1.5em;
     text-align: center;
     color: rgba(255, 255, 255, 0.7);
+}
+
+.widget > p {
+    text-align: center;
+    margin-top: 1.6em;
+    /* Make the width 100% of the parent (.widget) so that we can center the
+    text. */
+    width: 100%;
+    font-size: 1.5em;
+}
+
+.widget > p.main {
+    /* Increase the font of the main detail of a widget.*/
+    font-size: 4em;
 }
 
 .widget.fail h1 {
