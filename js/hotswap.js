@@ -19,9 +19,9 @@ dharma.hotswap = (function (ajax, render) {
         // request fails.
 		ajax.get("php/dharmaservice.php", "type=overview&what=karma&group=jenkintown").then(function (value) {
 			var response = JSON.parse(value);
-			render.renderIntoOrdered("karma", "content", {"value": response.karma.value, "change": response.karma.change});
+			render.renderInto("karma", "content", {"value": response.karma.value, "change": response.karma.change});
 		}, function (value) {
-            render.renderIntoOrdered("fail", "content", {id: "karma", order: "1"});
+            render.renderInto("fail", "content", {id: "karma"});
         });
         
         // Request the quality data.  The first function passed to 'then' is
@@ -31,27 +31,27 @@ dharma.hotswap = (function (ajax, render) {
             var response = JSON.parse(value),
                 turnbacks = response.quality.turnbacks,
                 scrap = response.quality.scrap;
-            render.renderIntoOrdered("quality", "content", {"turnbacks": turnbacks, "scrap": scrap});
+            render.renderInto("quality", "content", {"turnbacks": turnbacks, "scrap": scrap});
         }, function (value) {
-            render.renderIntoOrdered("fail", "content", {id: "quality", order: "2"});
+            render.renderInto("fail", "content", {id: "quality"});
         });
         
         // Request the spending data.  The first function passed to 'then' is
         // executed if the request is successful.  The second is executed if the
         // request fails.
         ajax.get("php/dharmaservice.php", "type=overview&what=spending&group=jenkintown").then(function (value) {
-            render.renderIntoOrdered("spending", "content", {});
+            render.renderInto("spending", "content", {});
         }, function (value) {
-            render.renderIntoOrdered("fail", "content", {id: "spending", order: "3"});
+            render.renderInto("fail", "content", {id: "spending"});
         });
         
         // Request the production data.  The first function passed to 'then' is
         // executed if the request is successful.  The second is executed if the
         // request fails.
         ajax.get("php/dharmaservice.php", "type=overview&what=production&group=jenkintown").then(function (value) {
-            render.renderIntoOrdered("production", "content", {});
+            render.renderInto("production", "content", {});
         }, function (value) {
-            render.renderIntoOrdered("fail", "content", {id: "production", order: "4"});
+            render.renderInto("fail", "content", {id: "production"});
         });
 	}
 	
