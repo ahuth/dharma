@@ -44,99 +44,10 @@ header h1 {
 /* General Dharma sections */
 
 #content {
-    /* Putting a min-width on our content div and on each widget below ensures
-    that the browser window becoming super small won't mess up our layout. */
+    /* Putting a min-width here ensures that the window getting really small
+    won't mess up our layout.*/
     min-width: 58em;
     /* Setting position: relative lets us use absolute positioning for all
     children elements with respect to this container's boundaries.*/
     position: relative;
-}
-
-/* Top-level widgets */
-
-.widget {
-    cursor: pointer;
-    float: left;
-    position: absolute;
-}
-
-#karma {
-    background-color: #47bbb3;
-	width: 24%;
-	height: 20em;
-    min-width: 14em;
-    top: 0;
-    left: 0;
-}
-
-#quality {
-	background-color: #ff8001;
-	width: 48%;
-	height: 20em;
-    min-width: 28em;
-    top: 0;
-    left: -webkit-calc(24% + 0.5em);
-    left: -moz-calc(24% + 0.5em);
-    left: -o-calc(24% + 0.5em);
-    left: -ms-calc(24% + 0.5em);
-    left: calc(24% + 0.5em);
-}
-
-#spending {
-	background-color: #634fff;
-	width: 24%;
-	height: 40.5em;
-    min-width: 14em;
-    top: 0;
-    left: -webkit-calc(72% + 1em);
-    left: -moz-calc(72% + 1em);
-    left: -o-calc(72% + 1em);
-    left: -ms-calc(72% + 1em);
-    left: calc(72% + 1em);
-}
-
-#production {
-	background-color: #ff7676;
-    /* All of these calc(% + em)'s allow us to have a flexible layout with a
-    fixed margin between the widgets, and still line everything up properly.*/
-	width: -webkit-calc(72% + 0.5em);
-    width: -moz-calc(72% + 0.5em);
-    width: -o-calc(72% + 0.5em);
-    width: -ms-calc(72% + 0.5em);
-    width: calc(72% + 0.5em);
-	height: 20em;
-    min-width: 42.5em;
-    top: 20.5em;
-    left: 0;
-}
-
-/* Widget parts */
-
-.widget h2 {
-    font-size: 1.5em;
-    margin-top: 2em;
-    text-align: center;
-    color: rgba(255, 255, 255, 0.7);
-}
-
-.widget > p {
-    text-align: center;
-    margin-top: 18%;
-    font-size: 1.5em;
-}
-
-.widget > p.main {
-    /* Increase the font of the main detail of a widget.*/
-    font-size: 4em;
-}
-
-.widget.fail h1 {
-    text-align: center;
-    margin-top: 0.8em;
-    font-size: 6em;
-}
-
-.widget.fail > p {
-    margin-top: 1em;
-    color: rgba(255, 255, 255, 0.7);
 }

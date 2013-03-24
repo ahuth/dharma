@@ -10,6 +10,7 @@
 		<link rel="stylesheet" href="css/reset.css">
         <link rel="stylesheet" href="css/main.css">
         <link rel="stylesheet" href="css/nav.css">
+        <link rel="stylesheet" href="css/overview.css">
         <link rel="stylesheet" href="css/art.css">
         
         <script type="template/mustache" id="karma-template">
@@ -23,6 +24,16 @@
 		<script type="template/mustache" id="quality-template">
 			<section class="widget" id="quality" data-order="2">
 				<h2>Quality</h2>
+                <div class="table">
+                    <div class="row">
+                        <p>Turnbacks</p>
+                        <p class="right">{{turnbacks}}</p>
+                    </div>
+                    <div class="row">
+                        <p>Scrap</p>
+                        <p class="right">{{scrap}}</p>
+                    </div>
+                </div>
 			</section>
 		</script>
 		

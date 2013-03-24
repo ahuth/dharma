@@ -22,7 +22,10 @@ dharma.hotswap = (function (ajax, render) {
         });
         
         ajax.get("php/dharmaservice.php", "type=overview&what=quality&group=jenkintown").then(function (value) {
-            render.renderIntoOrdered("quality", "content", {});
+            var response = JSON.parse(value),
+                turnbacks = response.quality.turnbacks,
+                scrap = response.quality.scrap;
+            render.renderIntoOrdered("quality", "content", {"turnbacks": turnbacks, "scrap": scrap});
         }, function (value) {
             render.renderIntoOrdered("fail", "content", {id: "quality", order: "2"});
         });
