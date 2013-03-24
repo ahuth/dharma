@@ -7,7 +7,11 @@ var dharma = dharma || {};
 dharma.hotswap = (function (ajax, render) {
 	"use strict";
 	
+    // showMain clears the contents of #content, then makes an ajax request for
+    // each widget we want on the page.  I make each request seperately, so that
+    // if one (or more) of them fails, the rest will still load correctly.
 	function showMain(level) {
+        
 		render.clearInner("content");
 		
 		ajax.get("php/dharmaservice.php", "type=overview&what=karma&group=jenkintown").then(function (value) {

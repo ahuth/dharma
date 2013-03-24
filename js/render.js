@@ -41,8 +41,6 @@ dharma.render = (function (document, console, templates) {
 	// to the provided element.
 	function renderInto(templateName, id, data) {
 		
-		// Make sure that the template name provided to this function actually
-        // exists.
 		if (!templates.hasOwnProperty(templateName)) {
 			console.log("render module (renderInto): invalid template name");
 			return;
@@ -58,8 +56,6 @@ dharma.render = (function (document, console, templates) {
     // attribute on the html element.
     function renderIntoOrdered(templateName, id, data) {
         
-        // Make sure that the template name provided to this function actually
-        // exists.
 		if (!templates.hasOwnProperty(templateName)) {
 			console.log("render module (renderIntoOrdered): invalid template name");
 			return;
