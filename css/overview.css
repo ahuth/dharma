@@ -100,7 +100,27 @@
 
 /* Specific widget parts */
 
+#karma > p {
+    position: absolute;
+    width: 100%;
+    text-align: center;
+    top: 10em;
+}
+
 #karma > p.main {
     /* Increase the font of the main detail of the widget.*/
     font-size: 4em;
+    top: 2em;
+}
+
+#quality .table {
+    position: relative;
+    top: 3.2em;
+    margin: 0 auto;
+    width: 60%;
+    font-size: 1.2em;
+}
+
+#quality .table .row {
+    height: 2em;
 }
