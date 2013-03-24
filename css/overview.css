@@ -2,7 +2,6 @@
 
 .widget {
     cursor: pointer;
-    float: left;
     position: absolute;
 }
 
