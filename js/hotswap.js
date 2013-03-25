@@ -18,8 +18,12 @@ dharma.hotswap = (function (ajax, render) {
         // executed if the request is successful.  The second is executed if the
         // request fails.
 		ajax.get("php/dharmaservice.php", "type=overview&what=karma&group=jenkintown").then(function (value) {
-			var response = JSON.parse(value);
-			render.renderInto("karma", "content", {"value": response.karma.value, "change": response.karma.change});
+			var response = JSON.parse(value),
+                data = {
+                    value: response.karma.value,
+                    change: response.karma.change
+                };
+			render.renderInto("karma", "content", data);
 		}, function (value) {
             render.renderInto("fail", "content", {id: "karma"});
         });
@@ -29,9 +33,11 @@ dharma.hotswap = (function (ajax, render) {
         // request fails.
         ajax.get("php/dharmaservice.php", "type=overview&what=quality&group=jenkintown").then(function (value) {
             var response = JSON.parse(value),
-                turnbacks = response.quality.turnbacks,
-                scrap = response.quality.scrap;
-            render.renderInto("quality", "content", {"turnbacks": turnbacks, "scrap": scrap});
+                data = {
+                    turnbacks: response.quality.turnbacks,
+                    scrap: response.quality.scrap
+                };
+            render.renderInto("quality", "content", data);
         }, function (value) {
             render.renderInto("fail", "content", {id: "quality"});
         });
