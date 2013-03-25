@@ -57,83 +57,90 @@
 
 /* Generic widget parts */
 
+.widget h2, .widget p, .widget table {
+	position: absolute;
+}
+
 .widget > h2 {
     font-size: 1.5em;
-    margin-top: 2em;
     text-align: center;
     color: rgba(255, 255, 255, 0.7);
+	width: 100%;
+	top: 15%;
 }
 
 .widget p {
     font-size: 1.5em;
+	width: 100%;
+	text-align: center;
+}
+
+.widget table td {
+	height: 1.4em;
+}
+
+.widget table td:nth-child(even) {
+	text-align: right;
 }
 
 .widget.fail > h1 {
+	position: relative;
     text-align: center;
     margin-top: 0.8em;
     font-size: 6em;
 }
 
 .widget.fail > p {
+	position: relative;
     text-align: center;
     margin-top: 1em;
     color: rgba(255, 255, 255, 0.7);
 }
 
-/* Widget tables */
-
-.widget .table {
-    display: table;
-}
-
-.widget .table .row {
-    display: table-row;
-}
-
-.widget .table .row > p {
-    display: table-cell;
-}
-
-.widget .table .row > p.right {
-    text-align: right;
-}
-
 /* Specific widget parts */
 
-#karma > p.secondary {
-    position: absolute;
-    width: 100%;
-    text-align: center;
-    top: 10em;
+#karma p.main {
+	font-size: 4em;
+	top: -webkit-calc(50% - 0.5em);
+	top: -moz-calc(50% - 0.5em);
+	top: -o-calc(50% - 0.5em);
+	top: -ms-calc(50% - 0.5em);
+	top: calc(50% - 0.5em);
 }
 
-#karma > p.main {
-    font-size: 4em;
-    position: absolute;
-    width: 100%;
-    text-align: center;
-    top: 2em;
+#karma p.secondary {
+	bottom: 15%;
 }
 
-#quality .table {
-    position: relative;
-    top: 3.2em;
-    margin: 0 auto;
-    width: 60%;
-    font-size: 1.2em;
+#quality table {
+	font-size: 1.8em;
+	top: -webkit-calc(50% - 1em);
+	top: -moz-calc(50% - 1em);
+	top: -o-calc(50% - 1em);
+	top: -ms-calc(50% - 1em);
+	top: calc(50% - 1em);
+	width: 60%;
+	/* The table is 60% wide, which means that the remaining 40% must be split
+	between the left and ride sides of this table if we want to center it.  So,
+	we set left to 20% and the table is centered.*/
+	left: 20%;
 }
 
-#quality .table .row {
-    height: 2em;
+#spending > h2 {
+	/* The other widgets have their title at top=15%.  Spending is twice as
+	tall as the others, though, so put its title at 7.5%.*/
+	top: 7.5%;
 }
 
-#spending .table {
-    position: relative;
-    top: 4em;
-    margin: 0 auto;
-    width: 90%;
-}
-
-#spending .table .row {
-    height: 2.4em;
+#spending table {
+	font-size: 1.4em;
+	top: -webkit-calc(50% - 8.3em);
+	top: -moz-calc(50% - 8.3em);
+	top: -o-calc(50% - 8.3em);
+	top: -ms-calc(50% - 8.3em);
+	top: calc(50% - 8.3em);
+	width: 90%;
+	/* This table is 90% wide.  To center it, set 'left' to half the remaining
+	percentage, or 5%.*/
+	left: 5%;
 }

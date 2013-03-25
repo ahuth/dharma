@@ -3,15 +3,20 @@
 namespace overview {
 	
 	function getOverviewData($what, $group) {
-		if ($what == 'karma') {
-			$output['karma'] = getKarmaData($group);
-		} else if ($what == 'quality') {
-            $output['quality'] = getQualityData($group);
-        } else if ($what == 'spending') {
-            $output['spending'] = getSpendingData($group);
-        } else if ($what == 'production') {
-            $output['production'] = getProductionData($group);
-        }
+		switch ($what) {
+			case 'karma':
+				$output['karma'] = getKarmaData($group);
+				break;
+			case 'quality':
+				$output['quality'] = getQualityData($group);
+				break;
+			case 'spending':
+				$output['spending'] = getSpendingData($group);
+				break;
+			case 'production':
+				$output['production'] = getProductionData($group);
+				break;
+		}
 		return $output;
 	}
 
