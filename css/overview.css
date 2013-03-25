@@ -12,9 +12,6 @@
     top: 0;
     left: 0;
     width: -webkit-calc(25% - 0.25em);
-    width: -moz-calc(25% - 0.25em);
-    width: -o-calc(25% - 0.25em);
-    width: -ms-calc(25% - 0.25em);
     width: calc(25% - 0.25em);
 }
 
@@ -24,14 +21,8 @@
     min-width: 28em;
     top: 0;
     left: -webkit-calc(25% + 0.25em);
-    left: -moz-calc(25% + 0.25em);
-    left: -o-calc(25% + 0.25em);
-    left: -ms-calc(25% + 0.25em);
     left: calc(25% + 0.25em);
     width: -webkit-calc(50% - 0.5em);
-    width: -moz-calc(50% - 0.5em);
-    width: -o-calc(50% - 0.5em);
-    width: -ms-calc(50% - 0.5em);
     width: calc(50% - 0.5em);
 }
 
@@ -41,14 +32,8 @@
     min-width: 14em;
     top: 0;
     left: -webkit-calc(75% + .25em);
-    left: -moz-calc(75% + .25em);
-    left: -o-calc(75% + .25em);
-    left: -ms-calc(75% + .25em);
     left: calc(75% + .25em);
     width: -webkit-calc(25% - 0.25em);
-    width: -moz-calc(25% - 0.25em);
-    width: -o-calc(25% - 0.25em);
-    width: -ms-calc(25% - 0.25em);
     width: calc(25% - 0.25em);
 }
 
@@ -59,9 +44,6 @@
     top: 20.5em;
     left: 0;
     width: -webkit-calc(75% - 0.25em);
-    width: -moz-calc(75% - 0.25em);
-    width: -o-calc(75% - 0.25em);
-    width: -ms-calc(75% - 0.25em);
     width: calc(75% - 0.25em);
 }
 
@@ -112,9 +94,6 @@
 #karma p.main {
 	font-size: 4em;
 	top: -webkit-calc(50% - 0.5em);
-	top: -moz-calc(50% - 0.5em);
-	top: -o-calc(50% - 0.5em);
-	top: -ms-calc(50% - 0.5em);
 	top: calc(50% - 0.5em);
 }
 
@@ -125,9 +104,6 @@
 #quality table {
 	font-size: 1.8em;
 	top: -webkit-calc(50% - 1em);
-	top: -moz-calc(50% - 1em);
-	top: -o-calc(50% - 1em);
-	top: -ms-calc(50% - 1em);
 	top: calc(50% - 1em);
 	width: 60%;
 	/* The table is 60% wide, which means that the remaining 40% must be split
@@ -144,11 +120,8 @@
 
 #spending table {
 	font-size: 1.4em;
-	top: -webkit-calc(50% - 8.3em);
-	top: -moz-calc(50% - 8.3em);
-	top: -o-calc(50% - 8.3em);
-	top: -ms-calc(50% - 8.3em);
-	top: calc(50% - 8.3em);
+	top: -webkit-calc(50% - 8.4em);
+	top: calc(50% - 8.4em);
 	width: 90%;
 	/* This table is 90% wide.  To center it, set 'left' to half the remaining
 	percentage, or 5%.*/
