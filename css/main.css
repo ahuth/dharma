@@ -1,9 +1,8 @@
 /* General HTML elements */
 
 html {
-    /* I put this height style in because there was always vertical scroll bars...
-    even when the content didn't warrant it.*/
-	height: 42em;
+    width: 100%;
+    height: 100%;
 }
 
 body {

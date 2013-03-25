@@ -7,52 +7,62 @@
 
 #karma {
     background-color: #47bbb3;
-	width: 24%;
 	height: 20em;
     min-width: 14em;
     top: 0;
     left: 0;
+    width: -webkit-calc(25% - 0.25em);
+    width: -moz-calc(25% - 0.25em);
+    width: -o-calc(25% - 0.25em);
+    width: -ms-calc(25% - 0.25em);
+    width: calc(25% - 0.25em);
 }
 
 #quality {
 	background-color: #ff8001;
-	width: 48%;
 	height: 20em;
     min-width: 28em;
     top: 0;
-    left: -webkit-calc(24% + 0.5em);
-    left: -moz-calc(24% + 0.5em);
-    left: -o-calc(24% + 0.5em);
-    left: -ms-calc(24% + 0.5em);
-    left: calc(24% + 0.5em);
+    left: -webkit-calc(25% + 0.25em);
+    left: -moz-calc(25% + 0.25em);
+    left: -o-calc(25% + 0.25em);
+    left: -ms-calc(25% + 0.25em);
+    left: calc(25% + 0.25em);
+    width: -webkit-calc(50% - 0.5em);
+    width: -moz-calc(50% - 0.5em);
+    width: -o-calc(50% - 0.5em);
+    width: -ms-calc(50% - 0.5em);
+    width: calc(50% - 0.5em);
 }
 
 #spending {
 	background-color: #634fff;
-	width: 24%;
 	height: 40.5em;
     min-width: 14em;
     top: 0;
-    left: -webkit-calc(72% + 1em);
-    left: -moz-calc(72% + 1em);
-    left: -o-calc(72% + 1em);
-    left: -ms-calc(72% + 1em);
-    left: calc(72% + 1em);
+    left: -webkit-calc(75% + .25em);
+    left: -moz-calc(75% + .25em);
+    left: -o-calc(75% + .25em);
+    left: -ms-calc(75% + .25em);
+    left: calc(75% + .25em);
+    width: -webkit-calc(25% - 0.25em);
+    width: -moz-calc(25% - 0.25em);
+    width: -o-calc(25% - 0.25em);
+    width: -ms-calc(25% - 0.25em);
+    width: calc(25% - 0.25em);
 }
 
 #production {
 	background-color: #ff7676;
-    /* All of these calc(% + em)'s allow us to have a flexible layout with a
-    fixed margin between the widgets, and still line everything up properly.*/
-	width: -webkit-calc(72% + 0.5em);
-    width: -moz-calc(72% + 0.5em);
-    width: -o-calc(72% + 0.5em);
-    width: -ms-calc(72% + 0.5em);
-    width: calc(72% + 0.5em);
 	height: 20em;
     min-width: 42.5em;
     top: 20.5em;
     left: 0;
+    width: -webkit-calc(75% - 0.25em);
+    width: -moz-calc(75% - 0.25em);
+    width: -o-calc(75% - 0.25em);
+    width: -ms-calc(75% - 0.25em);
+    width: calc(75% - 0.25em);
 }
 
 /* Generic widget parts */
