@@ -100,7 +100,7 @@
 
 /* Specific widget parts */
 
-#karma > p {
+#karma > p.secondary {
     position: absolute;
     width: 100%;
     text-align: center;
@@ -110,6 +110,9 @@
 #karma > p.main {
     /* Increase the font of the main detail of the widget.*/
     font-size: 4em;
+    position: absolute;
+    width: 100%;
+    text-align: center;
     top: 2em;
 }
 
