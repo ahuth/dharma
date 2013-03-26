@@ -4,7 +4,7 @@ var dharma = dharma || {};
 
 // hotswap swaps out the entired contents of our "content" node.  It also makes
 // any required ajax requests.
-dharma.hotswap = (function (ajax, render) {
+dharma.hotswap = (function (ajax, render, svgcharts) {
     "use strict";
     
     // showMain clears the contents of #content, then makes an ajax request for
@@ -17,7 +17,7 @@ dharma.hotswap = (function (ajax, render) {
         // Request the karma data.  The first function passed to 'then' is
         // executed if the request is successful.  The second is executed if the
         // request fails.
-        ajax.get("php/dharmaservice.php", "type=overview&what=karma&group=jenkintown").then(function (value) {
+        ajax.get("php/dharmaservice.php", "type=overview&what=karma&group=" + level).then(function (value) {
             var response = JSON.parse(value),
                 data = {
                     value: response.karma.value,
@@ -28,10 +28,8 @@ dharma.hotswap = (function (ajax, render) {
             render.renderInto("fail", "content", {id: "karma"});
         });
         
-        // Request the quality data.  The first function passed to 'then' is
-        // executed if the request is successful.  The second is executed if the
-        // request fails.
-        ajax.get("php/dharmaservice.php", "type=overview&what=quality&group=jenkintown").then(function (value) {
+		// Request the quality data.
+        ajax.get("php/dharmaservice.php", "type=overview&what=quality&group=" + level).then(function (value) {
             var response = JSON.parse(value),
                 data = {
                     turnbacks: response.quality.turnbacks,
@@ -42,10 +40,8 @@ dharma.hotswap = (function (ajax, render) {
             render.renderInto("fail", "content", {id: "quality"});
         });
         
-        // Request the spending data.  The first function passed to 'then' is
-        // executed if the request is successful.  The second is executed if the
-        // request fails.
-        ajax.get("php/dharmaservice.php", "type=overview&what=spending&group=jenkintown").then(function (value) {
+		// Request the spending data.
+        ajax.get("php/dharmaservice.php", "type=overview&what=spending&group=" + level).then(function (value) {
             var response = JSON.parse(value),
                 data = {
                     yesterday: response.spending.yesterday,
@@ -62,10 +58,9 @@ dharma.hotswap = (function (ajax, render) {
             render.renderInto("fail", "content", {id: "spending"});
         });
         
-        // Request the production data.  The first function passed to 'then' is
-        // executed if the request is successful.  The second is executed if the
-        // request fails.
-        ajax.get("php/dharmaservice.php", "type=overview&what=production&group=jenkintown").then(function (value) {
+		// Request the production data.
+        ajax.get("php/dharmaservice.php", "type=overview&what=production&group=" + level).then(function (value) {
+			var response = JSON.parse(value);
             render.renderInto("production", "content", {});
         }, function (value) {
             render.renderInto("fail", "content", {id: "production"});
@@ -76,4 +71,4 @@ dharma.hotswap = (function (ajax, render) {
         showMain: showMain
     };
 
-}(dharma.ajax, dharma.render));
+}(dharma.ajax, dharma.render, dharma.svgcharts));

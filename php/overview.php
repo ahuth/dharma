@@ -14,7 +14,8 @@ namespace overview {
 				$output['spending'] = getSpendingData($group);
 				break;
 			case 'production':
-				$output['production'] = getProductionData($group);
+				//$output['production'] = getProductionData($group);
+				$output = null;
 				break;
 		}
 		return $output;
@@ -56,12 +57,5 @@ namespace overview {
 	}
 
 	function getProductionData($group) {
-        $data = [];
-		for ($i = 1; $i <= 31; $i++) {
-            $inner[0] = '2013-01-' . (string)$i;
-            $inner[1] = mt_rand(400000, 700000);
-            $data[] = $inner;
-        }
-        return $data;
 	}
 }
