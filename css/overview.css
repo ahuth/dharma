@@ -106,9 +106,8 @@
 	top: -webkit-calc(50% - 1em);
 	top: calc(50% - 1em);
 	width: 60%;
-	/* The table is 60% wide, which means that the remaining 40% must be split
-	between the left and ride sides of this table if we want to center it.  So,
-	we set left to 20% and the table is centered.*/
+	/* The table is 60% wide, which means we can center it by setting 'left' to
+    half of the remaining 40%.*/
 	left: 20%;
 }
 
@@ -123,7 +122,7 @@
 	top: -webkit-calc(50% - 8.4em);
 	top: calc(50% - 8.4em);
 	width: 90%;
-	/* This table is 90% wide.  To center it, set 'left' to half the remaining
-	percentage, or 5%.*/
+	/* This table is 90% wide, which means we can center it by setting 'left' to
+    half of the remaining 10%.*/
 	left: 5%;
 }
