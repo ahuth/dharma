@@ -15,5 +15,5 @@ dharma.errors = (function (console) {
     return {
         log: log
     };
-    
+
 }(parent.console));

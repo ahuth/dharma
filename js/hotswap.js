@@ -5,26 +5,26 @@ var dharma = dharma || {};
 // hotswap swaps out the entired contents of our "content" node.  It also makes
 // any required ajax requests.
 dharma.hotswap = (function (ajax, render) {
-	"use strict";
-	
+    "use strict";
+    
     // showMain clears the contents of #content, then makes an ajax request for
     // each widget we want on the page.  Each request is made seperately, so that
     // a failure of one won't cause the others to fail.
-	function showMain(level) {
+    function showMain(level) {
+    
+        render.clearInner("content");
         
-		render.clearInner("content");
-		
         // Request the karma data.  The first function passed to 'then' is
         // executed if the request is successful.  The second is executed if the
         // request fails.
-		ajax.get("php/dharmaservice.php", "type=overview&what=karma&group=jenkintown").then(function (value) {
-			var response = JSON.parse(value),
+        ajax.get("php/dharmaservice.php", "type=overview&what=karma&group=jenkintown").then(function (value) {
+            var response = JSON.parse(value),
                 data = {
                     value: response.karma.value,
                     change: response.karma.change
                 };
-			render.renderInto("karma", "content", data);
-		}, function (value) {
+            render.renderInto("karma", "content", data);
+        }, function (value) {
             render.renderInto("fail", "content", {id: "karma"});
         });
         
@@ -70,10 +70,10 @@ dharma.hotswap = (function (ajax, render) {
         }, function (value) {
             render.renderInto("fail", "content", {id: "production"});
         });
-	}
-	
-	return {
-		showMain: showMain
-	};
-	
+    }
+    
+    return {
+        showMain: showMain
+    };
+
 }(dharma.ajax, dharma.render));

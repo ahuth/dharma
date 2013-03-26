@@ -10,7 +10,7 @@ dharma.ajax = (function (window, XMLHttpRequest, RSVP, errors) {
     // Send a get request and return a promise object.  This promise object will
     // **eventually** hold the response text.
     function get(url, parameters) {
-        
+    
         if (typeof parameters === "string") {
             url += "?" + parameters;
         }
@@ -24,7 +24,7 @@ dharma.ajax = (function (window, XMLHttpRequest, RSVP, errors) {
         XHR.setRequestHeader("X-Requested-With", "XMLHttpRequest");
         XHR.onreadystatechange = function () {
             if (XHR.readyState === done) {
-				if (XHR.status === ok) {
+                if (XHR.status === ok) {
                     window.clearTimeout(timeout);
                     if (XHR.responseText === null || XHR.responseText === 'null') {
                         errors.log("ajax", "get", "Null XMLHttpRequest response");
@@ -32,10 +32,10 @@ dharma.ajax = (function (window, XMLHttpRequest, RSVP, errors) {
                     } else {
                         promise.resolve(XHR.responseText);
                     }
-				} else {
+                } else {
                     errors.log("ajax", "get", "XMLHttpRequest status = " + XHR.status);
-					promise.reject(XHR);
-				}
+                    promise.reject(XHR);
+                }
             }
         };
         
@@ -48,7 +48,7 @@ dharma.ajax = (function (window, XMLHttpRequest, RSVP, errors) {
         }, 4000);
         
         XHR.send();
-
+        
         return promise;
     }
     
