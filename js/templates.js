@@ -7,21 +7,21 @@ var dharma = dharma || {};
 // Because the browser doesn't recognize that type, it ignores them.  Despite that,
 // we can still retrieve everything within the <script> tags with innerHTML.
 dharma.templates = (function (document, hogan) {
-	"use strict";
+    "use strict";
     
     var karma      = hogan.compile(document.getElementById("karma-template").innerHTML),
-		quality    = hogan.compile(document.getElementById("quality-template").innerHTML),
-		spending   = hogan.compile(document.getElementById("spending-template").innerHTML),
-		production = hogan.compile(document.getElementById("production-template").innerHTML),
+        quality    = hogan.compile(document.getElementById("quality-template").innerHTML),
+        spending   = hogan.compile(document.getElementById("spending-template").innerHTML),
+        production = hogan.compile(document.getElementById("production-template").innerHTML),
         fail       = hogan.compile(document.getElementById("fail-template").innerHTML);
     
-	// Module API.
+    // Module API.
     return {
         karma: karma,
-		quality: quality,
-		spending: spending,
-		production: production,
+        quality: quality,
+        spending: spending,
+        production: production,
         fail: fail
     };
-    
+
 }(parent.document, parent.Hogan));
