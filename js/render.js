@@ -4,7 +4,7 @@ var dharma = dharma || {};
 
 // render contains low-level (interacts directly with the DOM) functions that
 // add or clear HTML elements from the page.
-dharma.render = (function (document, errors, templates) {
+dharma.render = (function (document, debug, templates) {
     "use strict";
     
     // clearInner removes all child elements from an HTML node.
@@ -17,7 +17,7 @@ dharma.render = (function (document, errors, templates) {
     function renderInto(templateName, id, data) {
     
         if (!templates.hasOwnProperty(templateName)) {
-            errors.log("render", "renderInto", "Invalid template name");
+            debug.log("render", "renderInto", "Invalid template name");
             return;
         }
         
@@ -31,4 +31,4 @@ dharma.render = (function (document, errors, templates) {
         renderInto: renderInto
     };
 
-}(parent.document, dharma.errors, dharma.templates));
+}(parent.document, dharma.debug, dharma.templates));

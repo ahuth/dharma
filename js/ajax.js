@@ -57,4 +57,4 @@ dharma.ajax = (function (window, XMLHttpRequest, RSVP, errors) {
         get: get
     };
 
-}(parent.window, parent.XMLHttpRequest, parent.RSVP, dharma.errors));
+}(parent.window, parent.XMLHttpRequest, parent.RSVP, dharma.debug));

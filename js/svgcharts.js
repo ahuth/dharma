@@ -2,29 +2,35 @@
 
 var dharma = dharma || {};
 
-dharma.svgcharts = (function (document, Charts, errors) {
+dharma.svgcharts = (function (document, Charts, debug) {
 	"use strict";
     
-    function drawBarChart(id, data) {
-        var node = document.getElementById(id),
+    function drawBarChart(destination, bars, chartOptions) {
+        var node = document.getElementById(destination),
             chart,
             item;
         
         if (node === null) {
-            errors.log("svgcharts", "drawBarChart", "Invalid id: " + id);
+            debug.log("svgcharts", "drawBarChart", "Invalid id: " + destination);
             return;
         }
+		
+		if (typeof bars !== "object") {
+			debug.log("svgcharts", "drawBarChart", "Invalid 'bars' for chart");
+			return;
+		}
+		
+		if (typeof chartOptions !== "object") {
+			chartOptions = {};
+		}
         
-        chart = new Charts.BarChart(node, {
-            bar_width: 20,
-            bar_spacing: 46
-        });
+        chart = new Charts.BarChart(node, chartOptions);
         
-        for (item in data) {
-            if (data.hasOwnProperty(item)) {
+        for (item in bars) {
+            if (bars.hasOwnProperty(item)) {
                 chart.add({
                     label: item,
-                    value: data[item]
+                    value: bars[item]
                 });
             }
         }
@@ -36,4 +42,4 @@ dharma.svgcharts = (function (document, Charts, errors) {
         drawBarChart: drawBarChart
     };
     
-}(parent.document, parent.Charts, dharma.errors));
+}(parent.document, parent.Charts, dharma.debug));
