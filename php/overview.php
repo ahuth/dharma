@@ -65,14 +65,14 @@ namespace overview {
         $bolts = $total - $nuts;
         $boltsPD = $totalPD - $nutsPD;
         $boltsEarly = $bolts - $boltsPD;
-        return array('total'        => $total,
-                     'totalPastDue' => $totalPD,
-                     'totalEarly'   => $totalEarly,
-                     'nuts'         => $nuts,
-                     'nutsPastDue'  => $nutsPD,
-                     'nutsEarly'    => $nutsEarly,
-                     'bolts'        => $bolts,
-                     'boltsPastDue' => $boltsPD,
-                     'boltsEarly'   => $boltsEarly);
+        return array('total' => array('total'        => $total,
+                                      'pastDue' => $totalPD,
+                                      'early'   => $totalEarly),
+                     'nuts'  => array('total'         => $nuts,
+                                      'pastDue'  => $nutsPD,
+                                      'early'    => $nutsEarly),
+                     'bolts' => array('total'        => $bolts,
+                                      'pastDue' => $boltsPD,
+                                      'early'   => $boltsEarly));
 	}
 }
