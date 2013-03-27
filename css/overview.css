@@ -126,3 +126,21 @@
     half of the remaining 10%.*/
 	left: 5%;
 }
+
+#production div {
+    position: absolute;
+    border: 1px solid black;
+    bottom: 10%;
+}
+
+#production div#total-prod-chart {
+    left: 5%;
+}
+
+#production div#nuts-prod-chart {
+    left: -webkit-calc(50% - 100px);
+}
+
+#production div#bolts-prod-chart {
+    right: 5%;
+}
