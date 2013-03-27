@@ -127,6 +127,14 @@
 	left: 5%;
 }
 
+#spending table td {
+    color: rgba(255, 255, 255, 0.7);
+}
+
+#spending table td:nth-child(even) {
+    color: rgba(255, 255, 255, 0.9);
+}
+
 #production div {
     position: absolute;
     bottom: 10%;
