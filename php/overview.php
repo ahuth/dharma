@@ -68,10 +68,10 @@ namespace overview {
         return array('total' => array('total'   => $total,
                                       'overdue' => $totalPD,
                                       'early'   => $totalEarly),
-                     'nuts'  => array('total'   => $nuts,
+                     'nuts'  => array('nuts'    => $nuts,
                                       'overdue' => $nutsPD,
                                       'early'   => $nutsEarly),
-                     'bolts' => array('total'   => $bolts,
+                     'bolts' => array('bolts'   => $bolts,
                                       'overdue' => $boltsPD,
                                       'early'   => $boltsEarly));
 	}
