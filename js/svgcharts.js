@@ -2,6 +2,6 @@
 
 var dharma = dharma || {};
 
-dharma.svgcharts = (function (Raphael, errors) {
+dharma.svgcharts = (function (Charts, errors) {
 	"use strict";
-}(parent.Raphael, dharma.errors));
+}(parent.Charts, dharma.errors));

@@ -14,8 +14,7 @@ namespace overview {
 				$output['spending'] = getSpendingData($group);
 				break;
 			case 'production':
-				//$output['production'] = getProductionData($group);
-				$output = null;
+				$output['production'] = getProductionData($group);
 				break;
 		}
 		return $output;
@@ -57,5 +56,23 @@ namespace overview {
 	}
 
 	function getProductionData($group) {
+        $total = mt_rand(400, 700);
+        $totalPD = mt_rand(200, 400);
+        $totalEarly = $total - $totalPD;
+        $nuts = mt_rand(200, 400);
+        $nutsPD = mt_rand(50, 200);
+        $nutsEarly = $nuts - $nutsPD;
+        $bolts = $total - $nuts;
+        $boltsPD = $totalPD - $nutsPD;
+        $boltsEarly = $bolts - $boltsPD;
+        return array('total'        => $total,
+                     'totalPastDue' => $totalPD,
+                     'totalEarly'   => $totalEarly,
+                     'nuts'         => $nuts,
+                     'nutsPastDue'  => $nutsPD,
+                     'nutsEarly'    => $nutsEarly,
+                     'bolts'        => $bolts,
+                     'boltsPastDue' => $boltsPD,
+                     'boltsEarly'   => $boltsEarly);
 	}
 }
