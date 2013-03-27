@@ -62,6 +62,9 @@ dharma.hotswap = (function (ajax, render, svgcharts) {
         ajax.get("php/dharmaservice.php", "type=overview&what=production&group=" + level).then(function (value) {
 			var response = JSON.parse(value);
             render.renderInto("production", "content", {});
+            svgcharts.drawBarChart('total-prod-chart', response.production.total);
+            svgcharts.drawBarChart('nuts-prod-chart', response.production.nuts);
+            svgcharts.drawBarChart('bolts-prod-chart', response.production.bolts);
         }, function (value) {
             render.renderInto("fail", "content", {id: "production"});
         });

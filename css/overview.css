@@ -129,7 +129,6 @@
 
 #production div {
     position: absolute;
-    border: 1px solid black;
     bottom: 10%;
 }
 
