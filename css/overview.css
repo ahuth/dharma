@@ -145,7 +145,10 @@
 }
 
 #production div#nuts-prod-chart {
+    /* To center this div in its container, set the left to 50% minus half of
+    its width.*/
     left: -webkit-calc(50% - 100px);
+    left: calc(50% - 100px);
 }
 
 #production div#bolts-prod-chart {
