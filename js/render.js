@@ -3,7 +3,8 @@
 
 dharma.render = (function (document, hogan, core) {
 	"use strict";
-	
+    var me = "render";
+    
 	var templates = {
 		karma      : hogan.compile(document.getElementById("karma-template").innerHTML),
 		quality    : hogan.compile(document.getElementById("quality-template").innerHTML),

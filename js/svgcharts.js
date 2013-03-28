@@ -3,4 +3,5 @@
 
 dharma.svgcharts = (function (charts, core) {
 	"use strict";
+    var me = "svgcharts";
 }(parent.Charts, dharma.core));

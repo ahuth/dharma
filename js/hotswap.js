@@ -3,4 +3,5 @@
 
 dharma.hotswap = (function (core) {
 	"use strict";
+    var me = "hotswap";
 }(dharma.core));
