@@ -1,9 +1,8 @@
 /*jslint vars: true, browser: true */
 /*global dharma */
 
-dharma.render = (function (document, hogan, core) {
+dharma.render = (function (me, document, hogan, core) {
 	"use strict";
-    var me = "render";
     
 	var templates = {
 		karma      : hogan.compile(document.getElementById("karma-template").innerHTML),
@@ -13,4 +12,4 @@ dharma.render = (function (document, hogan, core) {
 		fail       : hogan.compile(document.getElementById("fail-template").innerHTML)
 	};
 	
-}(parent.document, parent.Hogan, dharma.core));
+}("render", parent.document, parent.Hogan, dharma.core));

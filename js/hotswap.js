@@ -1,7 +1,6 @@
 /*jslint vars: true, browser: true */
 /*global dharma */
 
-dharma.hotswap = (function (core) {
+dharma.hotswap = (function (me, core) {
 	"use strict";
-    var me = "hotswap";
-}(dharma.core));
+}("hotswap", dharma.core));

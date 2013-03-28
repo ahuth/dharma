@@ -1,7 +1,6 @@
 /*jslint vars: true, browser: true */
 /*global dharma */
 
-dharma.ajax = (function (rsvp, core) {
+dharma.ajax = (function (me, rsvp, core) {
 	"use strict";
-    var me = "ajax";
-}(parent.RSVP, dharma.core));
+}("ajax", parent.RSVP, dharma.core));
