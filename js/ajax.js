@@ -2,7 +2,7 @@
 
 var dharma = dharma || {};
 
-dharma.ajax = (function (window, XMLHttpRequest, RSVP, errors) {
+dharma.ajax = (function (window, XMLHttpRequest, RSVP, debug) {
     "use strict";
     
     var done = 4, ok = 200;
@@ -27,13 +27,13 @@ dharma.ajax = (function (window, XMLHttpRequest, RSVP, errors) {
                 if (XHR.status === ok) {
                     window.clearTimeout(timeout);
                     if (XHR.responseText === null || XHR.responseText === 'null') {
-                        errors.log("ajax", "get", "Null XMLHttpRequest response");
+                        debug.log("ajax", "get", "Null XMLHttpRequest response");
                         promise.reject(XHR);
                     } else {
                         promise.resolve(XHR.responseText);
                     }
                 } else {
-                    errors.log("ajax", "get", "XMLHttpRequest status = " + XHR.status);
+                    debug.log("ajax", "get", "XMLHttpRequest status = " + XHR.status);
                     promise.reject(XHR);
                 }
             }
@@ -43,7 +43,7 @@ dharma.ajax = (function (window, XMLHttpRequest, RSVP, errors) {
         // reject the promise object.
         timeout = setTimeout(function () {
             XHR.abort();
-            errors.log("ajax", "get", "XMLHttpRequest timed out");
+            debug.log("ajax", "get", "XMLHttpRequest timed out");
             promise.reject(XHR);
         }, 4000);
         
