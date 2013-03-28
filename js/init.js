@@ -1,10 +1,10 @@
 /*jslint vars: true, browser: true */
+/*global dharma */
 
-var dharma = dharma || {};
-
-dharma.init = (function (hotswap) {
-    "use strict";
-
-    hotswap.showMain("jenkintown");
-
-}(dharma.hotswap));
+dharma.init = (function (core) {
+	"use strict";
+	core.subscribe("test", function () {
+		alert("Test");
+	});
+	core.publish("test", {});
+}(dharma.core));

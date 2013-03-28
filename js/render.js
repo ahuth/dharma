@@ -1,34 +1,15 @@
 /*jslint vars: true, browser: true */
+/*global dharma */
 
-var dharma = dharma || {};
-
-// render contains low-level (interacts directly with the DOM) functions that
-// add or clear HTML elements from the page.
-dharma.render = (function (document, debug, templates) {
-    "use strict";
-    
-    // clearInner removes all child elements from an HTML node.
-    function clearInner(id) {
-        document.getElementById(id).innerHTML = "";
-    }
-    
-    // renderInto takes a hogan template and data, and appends the rendered HTML
-    // to the provided element.
-    function renderInto(templateName, id, data) {
-    
-        if (!templates.hasOwnProperty(templateName)) {
-            debug.log("render", "renderInto", "Invalid template name");
-            return;
-        }
-        
-        var content = document.getElementById(id);
-        content.innerHTML += templates[templateName].render(data);
-    }
-    
-    // Module API.
-    return {
-        clearInner: clearInner,
-        renderInto: renderInto
-    };
-
-}(parent.document, dharma.debug, dharma.templates));
+dharma.render = (function (document, hogan, core) {
+	"use strict";
+	
+	var templates = {
+		karma      : hogan.compile(document.getElementById("karma-template").innerHTML),
+		quality    : hogan.compile(document.getElementById("quality-template").innerHTML),
+		spending   : hogan.compile(document.getElementById("spending-template").innerHTML),
+		production : hogan.compile(document.getElementById("production-template").innerHTML),
+		fail       : hogan.compile(document.getElementById("fail-template").innerHTML)
+	};
+	
+}(parent.document, parent.Hogan, dharma.core));
