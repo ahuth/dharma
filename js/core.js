@@ -31,8 +31,8 @@ dharma.core = (function () {
         return size;
     }
 	
-	// subscribe creates a new channel (if necessary) and adds a function its
-	// array.
+	// subscribe creates a new channel (if necessary), adds the caller to the
+    // object (if necessary), and makes the function the caller's value.
 	function subscribe(topic, caller, fn) {
 		if (!channels.hasOwnProperty(topic)) {
 			channels[topic] = {};
@@ -40,8 +40,8 @@ dharma.core = (function () {
 		channels[topic][caller] = fn;
 	}
 	
-	// unsubscribe removes a function from a channels array, and (if necessary)
-	// removes the channel itself.
+	// unsubscribe removes a function/caller from the list of channels, and (if
+	// necessary) removes the channel if no one is listening for it.
 	function unsubscribe(topic, victim) {
 		var item;
 		if (!channels.hasOwnProperty(topic)) {
@@ -72,6 +72,7 @@ dharma.core = (function () {
 		}
 	}
 	
+    // Core module API.
 	return {
 		subscribe: subscribe,
 		unsubscribe: unsubscribe,
