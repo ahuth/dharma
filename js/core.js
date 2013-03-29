@@ -7,7 +7,8 @@ var dharma = {};
 
 // core implemenets a mediator allowing modules to communicate indirectly.
 // They do this by subscribing to channels, reacting to messages published on
-// channels, or publishing messages to channels.
+// channels, or publishing messages to channels.  Doing this means modules don't
+// have to know anything about any others.
 dharma.core = (function () {
 	"use strict";
 
@@ -31,8 +32,8 @@ dharma.core = (function () {
         return size;
     }
 	
-	// subscribe creates a new channel (if necessary), adds the caller to the
-    // object (if necessary), and makes the function the caller's value.
+	// subscribe creates a new channel (if necessary), adds the caller as a key
+	// in the channels[topic] object, and sets the function to that key's value.
 	function subscribe(topic, caller, fn) {
 		if (!channels.hasOwnProperty(topic)) {
 			channels[topic] = {};
@@ -60,13 +61,15 @@ dharma.core = (function () {
         }
 	}
 	
-	// publish calls all the functions stored for a particular channel.
-	function publish(topic, msgs) {
-		var item;
+	// publish calls all the functions stored for a particular topic.  Any
+	// arguments provided beyond 'topic' are passed along to the store function
+	// as parameters.
+	function publish(topic) {
+		var item, args = [].slice.call(arguments, 1);
 		if (channels.hasOwnProperty(topic)) {
 			for (item in channels[topic]) {
                 if (channels[topic].hasOwnProperty(item)) {
-                    channels[topic][item](msgs);
+					channels[topic][item].apply(null, args);
                 }
             }
 		}
