@@ -35,6 +35,8 @@ dharma.core = (function () {
     // enqueue takes a function and adds it to the end of the event stack.
     // Doing so will allow anything that's been waiting to run to execute.
     function enqueue(fn, args) {
+        // Wrap our function call (fn.apply) in a function.  Otherwise, it will
+        // get executed immediately and won't be put on the event stack.
         setTimeout(function () {
             fn.apply(null, args);
         }, 1);

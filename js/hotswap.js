@@ -19,10 +19,9 @@ dharma.hotswap = (function (me, core) {
     
     core.subscribe("show-overview", me, function (_group) {
         // Keep track of which widgets have been rendered.
-        var rendered = {karma: false, quality: false, spending: false, production: false};
+        /*var rendered = {karma: false, quality: false, spending: false, production: false};
         // Subscribe to data response channels.
         core.subscribe("request-data-complete", me, function (args, response) {
-            core.publish("data-ready", response);
             rendered[args.what] = true;
             if (allTrue(rendered)) {
                 core.unsubscribe("request-data-complete", me);
@@ -30,13 +29,12 @@ dharma.hotswap = (function (me, core) {
             }
         });
         core.subscribe("request-data-failed", me, function (args) {
-            core.publish("data-failed", args.what);
             rendered[args.what] = true;
             if (allTrue(rendered)) {
                 core.unsubscribe("request-data-complete", me);
                 core.unsubscribe("request-data-failed", me);
             }
-        });
+        });*/
         // Ask for data.
         core.publish("request-data", {type: "overview", what: "karma", group: _group});
         core.publish("request-data", {type: "overview", what: "quality", group: _group});

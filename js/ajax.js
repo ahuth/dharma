@@ -48,9 +48,9 @@ dharma.ajax = (function (me, window, rsvp, core) {
     }
 	
 	// Listen for any requests for ajax.  If we get one, make the request and
-	// respond with a completion or failure message.  For both of these, we
-	// include the args we originally got, so that requesting modules can
-	// identifiy if it was their request that failed/suceeded.
+	// respond with a completion or failure message.  If it has failed, send
+    // the original args with the notification so we can identify which one
+    // failed.
 	core.subscribe("request-data", me, function (args) {
 		var item, parameters = "";
 		for (item in args) {
@@ -60,7 +60,7 @@ dharma.ajax = (function (me, window, rsvp, core) {
 		}
 		get("php/dharmaservice.php", parameters).then(function (value) {
 			var response = JSON.parse(value);
-			core.publish("request-data-complete", args, response);
+			core.publish("request-data-complete", response);
 		}, function () {
 			core.publish("request-data-failed", args);
 		});
