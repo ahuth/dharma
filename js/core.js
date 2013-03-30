@@ -31,6 +31,14 @@ dharma.core = (function () {
         }
         return size;
     }
+    
+    // enqueue takes a function and adds it to the end of the event stack.
+    // Doing so will allow anything that's been waiting to run to execute.
+    function enqueue(fn, args) {
+        setTimeout(function () {
+            fn.apply(null, args);
+        }, 1);
+    }
 	
 	// subscribe creates a new channel (if necessary), adds the caller as a key
 	// in the channels[topic] object, and sets the function to that key's value.
@@ -60,12 +68,6 @@ dharma.core = (function () {
             }
         }
 	}
-    
-    // enqueue takes a function and adds it to the end of the event stack.
-    // Doing so will allow anything that's been waiting to run to run.
-    function enqueue(fn, args) {
-        setTimeout(fn.apply(null, args), 1);
-    }
 	
 	// publish calls all the functions stored for a particular topic.  Any
 	// arguments provided beyond 'topic' are passed along to the store function
@@ -75,8 +77,7 @@ dharma.core = (function () {
 		if (channels.hasOwnProperty(topic)) {
 			for (item in channels[topic]) {
                 if (channels[topic].hasOwnProperty(item)) {
-                    // Add the current function (or item) to the end of the event
-                    // loop.
+                    // Add the current function to the end of the event loop.
                     enqueue(channels[topic][item], args);
                 }
             }
