@@ -29,6 +29,10 @@ dharma.render = (function (me, document, hogan, core) {
         }
     }
     
+    core.subscribe("clear-content", me, function () {
+        content.innerHTML = "";
+    });
+    
     core.subscribe("request-data-complete", me, function (data) {
         var item = getOnlyKey(data);
         if (!item) {
