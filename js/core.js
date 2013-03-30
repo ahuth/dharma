@@ -60,6 +60,15 @@ dharma.core = (function () {
             }
         }
 	}
+    
+    // enqueue pulls a function out of the channels object in a format that we
+    // can use with setTimeout.  This allows us to add it to the end of the event
+    // stack and NOT block anything that needs to happen in the mean time.
+    function enqueue(topic, item, args) {
+        return function () {
+            channels[topic][item].apply(null, args);
+        };
+    }
 	
 	// publish calls all the functions stored for a particular topic.  Any
 	// arguments provided beyond 'topic' are passed along to the store function
@@ -69,7 +78,7 @@ dharma.core = (function () {
 		if (channels.hasOwnProperty(topic)) {
 			for (item in channels[topic]) {
                 if (channels[topic].hasOwnProperty(item)) {
-					channels[topic][item].apply(null, args);
+                    setTimeout(enqueue(topic, item, args), 1);
                 }
             }
 		}

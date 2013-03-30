@@ -47,11 +47,11 @@ dharma.ajax = (function (me, window, rsvp, core) {
         return promise;
     }
 	
-	// Listen for any "request-ajax" messages.  If we get one, make the request
-	// and respond with a completion or failure message.  For both of these, we
+	// Listen for any requests for ajax.  If we get one, make the request and
+	// respond with a completion or failure message.  For both of these, we
 	// include the args we originally got, so that requesting modules can
 	// identifiy if it was their request that failed/suceeded.
-	core.subscribe("request-ajax", me, function (args) {
+	core.subscribe("request-data", me, function (args) {
 		var item, parameters = "";
 		for (item in args) {
 			if (args.hasOwnProperty(item)) {
@@ -60,9 +60,9 @@ dharma.ajax = (function (me, window, rsvp, core) {
 		}
 		get("php/dharmaservice.php", parameters).then(function (value) {
 			var response = JSON.parse(value);
-			core.publish("ajax-complete", args, response);
+			core.publish("request-data-complete", args, response);
 		}, function () {
-			core.publish("ajax-failed", args);
+			core.publish("request-data-failed", args);
 		});
 	});
     
