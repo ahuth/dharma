@@ -34,9 +34,14 @@ dharma.render = (function (me, document, hogan, core) {
     });
     
     core.subscribe("request-data-complete", me, function (data) {
+        // item holds the first key in the data object.  There should only be
+        // one key.  Assume the key is the name of the template to use, and its
+        // data is the data to render the template with.
         var item = getOnlyKey(data);
         if (!item) {
             return;
+        } else if (item === "production") {
+            core.publish("need-chart", item, data);
         }
         content.innerHTML += templates[item].render(data[item]);
         core.publish("template-rendered", item);
