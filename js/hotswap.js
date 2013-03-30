@@ -4,19 +4,6 @@
 dharma.hotswap = (function (me, core) {
 	"use strict";
     
-    // allTrue checks an object to see if all of its values are true.
-    function allTrue(obj) {
-        var item;
-        for (item in obj) {
-            if (obj.hasOwnProperty(item)) {
-                if (obj[item] !== true) {
-                    return false;
-                }
-            }
-        }
-        return true;
-    }
-    
     core.subscribe("show-overview", me, function (_group) {
         core.publish("clear-content");
         // Ask for data.
