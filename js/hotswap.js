@@ -9,7 +9,7 @@ dharma.hotswap = (function (me, core) {
         var item;
         for (item in obj) {
             if (obj.hasOwnProperty(item)) {
-                if (obj[item] === false) {
+                if (obj[item] !== true) {
                     return false;
                 }
             }
