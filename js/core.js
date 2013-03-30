@@ -72,7 +72,7 @@ dharma.core = (function () {
 	}
 	
 	// publish calls all the functions stored for a particular topic.  Any
-	// arguments provided beyond 'topic' are passed along to the store function
+	// arguments provided beyond 'topic' are passed along to the stored function
 	// as parameters.
 	function publish(topic) {
 		var item, args = [].slice.call(arguments, 1);

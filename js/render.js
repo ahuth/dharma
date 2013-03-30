@@ -41,5 +41,10 @@ dharma.render = (function (me, document, hogan, core) {
         content.innerHTML += templates[item].render(data[item]);
         core.publish("template-rendered", item);
     });
+    
+    core.subscribe("request-data-failed", me, function (args) {
+        var group = args.what;
+        content.innerHTML += templates.fail.render({id: group});
+    });
 	
 }("render", parent.document, parent.Hogan, dharma.core));
