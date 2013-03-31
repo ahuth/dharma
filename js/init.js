@@ -3,5 +3,6 @@
 
 dharma.init = (function (me, core) {
 	"use strict";
-	core.publish("show-overview", "jenkintown");
+    core.publish("clear-content");
+    core.publish("show-overview", "jenkintown");
 }("init", dharma.core));

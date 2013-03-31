@@ -1,24 +1,28 @@
 /*jslint vars: true, browser: true */
 /*global dharma */
 
-// ajax handles all ajax requests.  Args are provided to this module as an object,
-// but this module provides the url.  We do that so that requesting modules don't
-// need to know anything about where the data is coming from or how.
-dharma.ajax = (function (me, window, rsvp, core) {
-	"use strict";
+dharma.ajax = (function (window, XMLHttpRequest, RSVP) {
+    "use strict";
+    
+    var done = 4, ok = 200;
+    
+    function makeGetString(args) {
+        var item, parameters = "";
+        for (item in args) {
+            if (args.hasOwnProperty(item)) {
+                parameters += (parameters === "" ? "?" + item + "=" + args[item] : "&" + item + "=" + args[item]);
+            }
+        }
+        return parameters;
+    }
     
     // Send a get request and return a promise object.  This promise object will
     // **eventually** hold the response text.
-    function get(url, parameters) {
-        
-        var done = 4, ok = 200;
-    
-        if (typeof parameters === "string") {
-            url += "?" + parameters;
-        }
+    function get(args) {
         
         var XHR = new XMLHttpRequest(),
-            promise = new rsvp.Promise(),
+            promise = new RSVP.Promise(),
+            url = "php/dharmaservice.php" + makeGetString(args),
             timeout;
         
         XHR.open("get", url, true);
@@ -27,10 +31,10 @@ dharma.ajax = (function (me, window, rsvp, core) {
         XHR.onreadystatechange = function () {
             if (XHR.readyState === done) {
                 window.clearTimeout(timeout);
-                if (XHR.status === ok && XHR.response !== null) {
-					promise.resolve(XHR.responseText);
+                if (XHR.status === ok && XHR.responseText !== null) {
+                    promise.resolve(JSON.parse(XHR.responseText));
                 } else {
-                    promise.reject(XHR);
+                    promise.reject(args);
                 }
             }
         };
@@ -39,31 +43,17 @@ dharma.ajax = (function (me, window, rsvp, core) {
         // reject the promise object.
         timeout = setTimeout(function () {
             XHR.abort();
-            promise.reject(XHR);
+            promise.reject(args);
         }, 4000);
         
         XHR.send();
         
         return promise;
     }
-	
-	// Listen for any requests for ajax.  If we get one, make the request and
-	// respond with a completion or failure message.  If it has failed, send
-    // the original args with the notification so we can identify which one
-    // failed.
-	core.subscribe("request-data", me, function (args) {
-		var item, parameters = "";
-		for (item in args) {
-			if (args.hasOwnProperty(item)) {
-				parameters = parameters === "" ? item + "=" + args[item] : parameters + "&" + item + "=" + args[item];
-			}
-		}
-		get("php/dharmaservice.php", parameters).then(function (value) {
-			var response = JSON.parse(value);
-			core.publish("request-data-complete", response);
-		}, function () {
-			core.publish("request-data-failed", args);
-		});
-	});
     
-}("ajax", parent.window, parent.RSVP, dharma.core));
+    // API of this module.
+    return {
+        get: get
+    };
+
+}(parent.window, parent.XMLHttpRequest, parent.RSVP));
