@@ -10,8 +10,8 @@ dharma.widget = (function (document, hogan) {
     var helper;
     
     // elementizeString creates an HTML element from a string, which allows us
-    // to use appendChild().  Using .innerHTML is faster, easier, and better,
-    // but will erase any event handlers for items already there.
+    // to use appendChild() too add things to the page.  Using .innerHTML is
+    // easier, but it will remove event handlers of items already there.
     function elementizeString(htmlString) {
         var elementNode = 1,
             firstNode;
@@ -29,7 +29,7 @@ dharma.widget = (function (document, hogan) {
     // widgets.
     return function (name, successTemplate, failTemplate) {
         this.name = name;
-        // Reference will refer to the actual HTML element.  Once we have it,
+        // reference will refer to the actual HTML element.  Once we have it,
         // we can remove the widget from the page without knowing where it is.
         var reference = null;
         // Templates stores pre-compiled mustache templates.  We pull these out
@@ -46,7 +46,7 @@ dharma.widget = (function (document, hogan) {
             }
             // If the widget has already been rendered, remove the previous one.
             if (reference) {
-                this.removeMe();
+                this.remove();
             }
             node.appendChild(elementizeString(templates.success.render(data)));
             reference = document.getElementById(this.name);
@@ -57,11 +57,15 @@ dharma.widget = (function (document, hogan) {
             if (!node) {
                 return false;
             }
+            // If the widget has already been rendered, remove the previous one.
+            if (reference) {
+                this.remove();
+            }
             node.appendChild(elementizeString(templates.fail.render({id: this.name})));
             reference = document.getElementById(this.name);
         };
         // removeMe removes the widget from the DOM.
-        this.removeMe = function () {
+        this.remove = function () {
             if (!reference) {
                 return false;
             }
