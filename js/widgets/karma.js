@@ -24,6 +24,7 @@ dharma.karma = (function (me, document, hogan, ajax, core) {
     }
     
     core.subscribe("clear-content", me, function () {
+        // TODO - remove event listeners.
         removeFrom(content);
     });
     
@@ -34,6 +35,7 @@ dharma.karma = (function (me, document, hogan, ajax, core) {
                 return;
             }
             renderInto(templates.success, content, value[me]);
+            // TODO - add event listeners.
         }, function () {
             renderInto(templates.failure, content, {id: me});
         });

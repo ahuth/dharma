@@ -1,7 +1,7 @@
 /*jslint vars: true, browser: true, nomen: true */
 /*global dharma */
 
-dharma.quality = (function (me, document, hogan, ajax, core) {
+dharma.quality = (function (me, document, accounting, hogan, ajax, core) {
     "use strict";
     
     var templates = {
@@ -29,14 +29,19 @@ dharma.quality = (function (me, document, hogan, ajax, core) {
     
     core.subscribe("show-overview", me, function (_group) {
         ajax.get({type: "overview", what: me, group: _group}).then(function (value) {
+            var data;
             if (!value.hasOwnProperty(me)) {
                 renderInto(templates.failure, content, {id: me});
                 return;
             }
-            renderInto(templates.success, content, value[me]);
+            data = {
+                turnbacks: value[me].turnbacks,
+                scrap: (value[me].scrap === 0 ? "none" : accounting.formatMoney(value[me].scrap, "$", 0))
+            };
+            renderInto(templates.success, content, data);
         }, function () {
             renderInto(templates.failure, content, {id: me});
         });
     });
     
-}("quality", parent.document, parent.Hogan, dharma.ajax, dharma.core));
+}("quality", parent.document, parent.accounting, parent.Hogan, dharma.ajax, dharma.core));

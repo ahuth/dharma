@@ -31,7 +31,6 @@ namespace overview {
 	function getQualityData($group) {
 		$turnbacks = mt_rand(0, 6);
         $scrap     = mt_rand(0, 50000);
-        $scrap = $scrap < 10000 ? 'none' : '$' . number_format($scrap, 0, '.', ',');
         return array('turnbacks' => $turnbacks,
                      'scrap' => $scrap);
 	}
@@ -45,14 +44,14 @@ namespace overview {
         $maintenance = mt_rand(0, 10000);
         $other       = mt_rand(5000, 10000);
         $yesterday   = $people + $supplies + $tools + $utilities + $maintenance + $other;
-        return array('yesterday'   => '$' . number_format($yesterday, 0, '.', ','),
-                     'qtd'         => '$' . number_format($QTD, 0, '.', ','),
-                     'people'      => '$' . number_format($people, 0, '.', ','),
-                     'supplies'    => '$' . number_format($supplies, 0, '.', ','),
-                     'tools'       => '$' . number_format($tools, 0, '.', ','),
-                     'utilities'   => '$' . number_format($utilities, 0, '.', ','),
-                     'maintenance' => '$' . number_format($maintenance, 0, '.', ','),
-                     'other'       => '$' . number_format($other, 0, '.', ','));
+        return array('yesterday'   => $yesterday,
+                     'qtd'         => $QTD,
+                     'people'      => $people,
+                     'supplies'    => $supplies,
+                     'tools'       => $tools,
+                     'utilities'   => $utilities,
+                     'maintenance' => $maintenance,
+                     'other'       => $other);
 	}
 
 	function getProductionData($group) {
