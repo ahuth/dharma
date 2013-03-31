@@ -4,11 +4,16 @@
 dharma.karma = (function (me, document, hogan, ajax, core) {
     "use strict";
     
+    // Hogan templates are stored in the DOM under script tags with type = "text/
+    // mustache".  The browser doesn't recognize that, so ignores it.  We pull them
+    // out here and pre-compile them.
     var templates = {
         success: hogan.compile(document.getElementById("karma-template").innerHTML),
         failure: hogan.compile(document.getElementById("fail-template").innerHTML)
     };
     
+    // The default place we render into and remove items from is a div with an
+    // id of "content".
     var content = document.getElementById("content");
     
     function renderInto(template, into, data) {

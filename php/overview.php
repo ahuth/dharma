@@ -55,11 +55,11 @@ namespace overview {
 	}
 
 	function getProductionData($group) {
-        $total = mt_rand(400, 700);
-        $totalPD = mt_rand(200, 400);
+        $total = mt_rand(400000, 700000);
+        $totalPD = mt_rand(200000, 400000);
         $totalEarly = $total - $totalPD;
-        $nuts = mt_rand(200, 400);
-        $nutsPD = mt_rand(50, 200);
+        $nuts = mt_rand(200000, 400000);
+        $nutsPD = mt_rand(50000, 200000);
         $nutsEarly = $nuts - $nutsPD;
         $bolts = $total - $nuts;
         $boltsPD = $totalPD - $nutsPD;
