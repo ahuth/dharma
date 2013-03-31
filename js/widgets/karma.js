@@ -28,11 +28,14 @@ dharma.widgets.karma = (function (name, Widget, core) {
         };
         core.publish("request-data", args);
         core.subscribe("here's-data", name, function (_args, response) {
+            // See if the response is from the request we made.
             if (args !== _args) {
                 return;
             }
+            // After we render this, we won't need to listen for more data.
             core.unsubscribe("here's-data", name);
             core.unsubscribe("no-data", name);
+            // Make sure that the data looks right.
             if (!response.hasOwnProperty(name)) {
                 me.renderFail(destination);
             }

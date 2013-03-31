@@ -3,18 +3,22 @@
 
 dharma.widgets = dharma.widgets || {};
 
-dharma.widgets.quality = (function (name, accounting, Widget, core) {
+dharma.widgets.spending = (function (name, accounting, Widget, core) {
     "use strict";
     
     // me is our instance of the Widget object.  In the initialization we specify
     // the name and templates to use.
-    var me = new Widget("quality", "quality-template", "fail-template");
+    var me = new Widget("spending", "spending-template", "fail-template");
     // args is the arguments we use when requesting data.  We save these so that
     // we can recognize the returned request.
     var args;
     // destination is the default location on the page we'll render this widget
     // to.
     var destination = "content";
+    
+    function formatDollars(num) {
+        return accounting.formatMoney(num, "$", 0);
+    }
     
     core.subscribe("clear-screen", name, function () {
         me.remove();
@@ -40,11 +44,17 @@ dharma.widgets.quality = (function (name, accounting, Widget, core) {
             if (!response.hasOwnProperty(name)) {
                 me.renderFail(destination);
             }
-            // Format our number properly.  I've kept all number formatting out
-            // of the server.
+            // Format our number properly.  All number formatting is kept out of
+            // the server and on the client.
             data = {
-                turnbacks: response[name].turnbacks,
-                scrap: accounting.formatMoney(response[name].scrap, "$", 0)
+                yesterday: formatDollars(response[name].yesterday),
+                qtd: formatDollars(response[name].qtd),
+                people: formatDollars(response[name].people),
+                supplies: formatDollars(response[name].supplies),
+                tools: formatDollars(response[name].tools),
+                utilities: formatDollars(response[name].utilities),
+                maintenance: formatDollars(response[name].maintenance),
+                other: formatDollars(response[name].other)
             };
             me.renderSuccess(destination, data);
         });
@@ -58,4 +68,4 @@ dharma.widgets.quality = (function (name, accounting, Widget, core) {
         });
     });
     
-}("quality", parent.accounting, dharma.widget, dharma.core));
+}("spending", parent.accounting, dharma.widget, dharma.core));
