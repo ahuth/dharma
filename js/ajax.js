@@ -10,7 +10,11 @@ dharma.ajax = (function (window, XMLHttpRequest, RSVP) {
         var item, parameters = "";
         for (item in args) {
             if (args.hasOwnProperty(item)) {
-                parameters += (parameters === "" ? "?" + item + "=" + args[item] : "&" + item + "=" + args[item]);
+                if (parameters === "") {
+                    parameters = "?" + item + "=" + args[item];
+                } else {
+                    parameters += "&" + item + "=" + args[item];
+                }
             }
         }
         return parameters;
