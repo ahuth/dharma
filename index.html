@@ -19,26 +19,26 @@
                 <p class="secondary">{{change}}</p>
             </section>
         </script>
-		
-		<script type="template/mustache" id="quality-template">
-			<section class="widget" id="quality">
-				<h2>Quality</h2>
-				<table>
-					<tr>
-						<td>Turnbacks</td>
-						<td>{{turnbacks}}</td>
-					</tr>
-					<tr>
-						<td>Scrap</td>
-						<td>{{scrap}}</td>
-					</tr>
-				</table>
-			</section>
-		</script>
-		
-		<script type="template/mustache" id="spending-template">
-			<section class="widget" id="spending">
-				<h2>Spending</h2>
+           
+        <script type="template/mustache" id="quality-template">
+            <section class="widget" id="quality">
+                <h2>Quality</h2>
+                <table>
+                    <tr>
+                        <td>Turnbacks</td>
+                        <td>{{turnbacks}}</td>
+                    </tr>
+                    <tr>
+                        <td>Scrap</td>
+                        <td>{{scrap}}</td>
+                    </tr>
+                </table>
+            </section>
+        </script>
+        
+        <script type="template/mustache" id="spending-template">
+            <section class="widget" id="spending">
+                <h2>Spending</h2>
                 <table>
                     <tr>
                         <td>Yesterday</td>
@@ -50,7 +50,7 @@
                     </tr>
                     <tr>
                         <td></td>
-						<td></td>
+                        <td></td>
                     </tr>
                     <tr>
                         <td>People</td>
@@ -68,7 +68,7 @@
                         <td>Utilities</td>
                         <td>{{utilities}}</td>
                     </tr>
-					<tr>
+                    <tr>
                         <td>Maint</td>
                         <td>{{maintenance}}</td>
                     </tr>
@@ -77,17 +77,17 @@
                         <td>{{other}}</td>
                     </tr>
                 </table>
-			</section>
-		</script>
-		
-		<script type="template/mustache" id="production-template">
-			<section class="widget" id="production">
-				<h2>Production</h2>
+            </section>
+        </script>
+        
+        <script type="template/mustache" id="production-template">
+            <section class="widget" id="production">
+                <h2>Production</h2>
                 <div id="total-prod-chart" style="width:200px; height:200px;"></div>
                 <div id="nuts-prod-chart" style="width:200px; height:200px;"></div>
                 <div id="bolts-prod-chart" style="width:200px; height:200px;"></div>
-			</section>
-		</script>
+            </section>
+        </script>
         
         <script type="template/mustache" id="fail-template">
             <section class="widget fail" id="{{id}}">
@@ -95,7 +95,7 @@
                 <p>Something went wrong</p>
             </section>
         </script>
-		
+
 	</head>
 	<body>
         <header>
@@ -187,10 +187,8 @@
         <script src="js/libs/accounting.min.js"></script>
 		<script src="js/core.js"></script>
 		<script src="js/ajax.js"></script>
-		<script src="js/widgets/karma.js"></script>
-        <script src="js/widgets/quality.js"></script>
-        <script src="js/widgets/spending.js"></script>
-        <script src="js/widgets/production.js"></script>
+        <script src="js/widget.js"></script>
+        <script src="js/widgets/karma.js"></script>
 		<script src="js/init.js"></script>
 	</body>
 </html>
