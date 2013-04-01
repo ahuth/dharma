@@ -1,7 +1,7 @@
 /* Top-level widgets */
 
 .widget {
-    cursor: pointer;
+    /*cursor: pointer;*/
     position: absolute;
 }
 

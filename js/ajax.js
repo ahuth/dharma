@@ -17,34 +17,32 @@ dharma.ajax = (function (name, window, rsvp, core) {
             url += "?" + parameters;
         }
         
-        var promise = new rsvp.Promise(function (resolve, reject) {
-            
-            var timeout,
-                XHR = new XMLHttpRequest();
+        var XHR = new XMLHttpRequest(),
+            promise = new rsvp.Promise(),
+            timeout;
         
-            XHR.open("get", url, true);
-            XHR.setRequestHeader("content-type", "application/x-www-form-urlencoded");
-            XHR.setRequestHeader("X-Requested-With", "XMLHttpRequest");
-            XHR.onreadystatechange = function () {
-                if (XHR.readyState === done) {
-                    window.clearTimeout(timeout);
-                    if (XHR.status === ok && XHR.response !== null) {
-                        resolve(XHR.responseText);
-                    } else {
-                        reject(XHR);
-                    }
+        XHR.open("get", url, true);
+        XHR.setRequestHeader("content-type", "application/x-www-form-urlencoded");
+        XHR.setRequestHeader("X-Requested-With", "XMLHttpRequest");
+        XHR.onreadystatechange = function () {
+            if (XHR.readyState === done) {
+                window.clearTimeout(timeout);
+                if (XHR.status === ok && XHR.response !== null) {
+					promise.resolve(XHR.responseText);
+                } else {
+                    promise.reject(XHR);
                 }
-            };
-            
-            // If we don't get a response back in 4 seconds, abort the request and
-            // reject the promise object.
-            timeout = setTimeout(function () {
-                XHR.abort();
-                promise.reject(XHR);
-            }, 4000);
-            
-            XHR.send();
-        });
+            }
+        };
+        
+        // If we don't get a response back in 4 seconds, abort the request and
+        // reject the promise object.
+        timeout = setTimeout(function () {
+            XHR.abort();
+            promise.reject(XHR);
+        }, 4000);
+        
+        XHR.send();
         
         return promise;
     }
