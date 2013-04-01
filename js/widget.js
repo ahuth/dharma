@@ -1,6 +1,9 @@
 /*jslint vars: true, browser: true */
 /*global dharma */
 
+// widget implements a base module that we will build off of for our widget
+// modules.  This tells each widget how to render itself and how to manage
+// event handlers.
 dharma.widget = (function (document, hogan) {
     "use strict";
     

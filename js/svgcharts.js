@@ -1,6 +1,7 @@
 /*jslint vars: true, browser: true */
 /*global dharma */
 
+// svghcharts handles any chart drawing needs.
 dharma.svgcharts = (function (name, charts, core) {
     "use strict";
     
