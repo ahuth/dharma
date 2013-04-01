@@ -27,15 +27,24 @@ dharma.navigation = (function (me, document, core) {
         };
     }
     
+    // formatString puts a string in the format we want to display as part of
+    // our navigaion.
+    function formatString(input) {
+        return input.slice(0, 1).toUpperCase() + input.slice(1).toLowerCase();
+    }
+    
     // Attach event handlers to the navigation buttons.
     var item;
     for (item = 0; item < groupAnchors.length; item += 1) {
-        groupAnchors[item].addEventListener("click", makeGroupCallback(groupAnchors[item].href), false);
+        groupAnchors[item].addEventListener("click", makeGroupCallback(groupAnchors[item].innerHTML), false);
     }
     
     // Register our subscriptions.
     core.subscribe("show-overview", me, function (group) {
-        
+        var title = formatString(group);
+        if (currentGroup.innerHTML !== title) {
+            currentGroup.innerHTML = title;
+        }
     });
     
 }("navigation", parent.document, dharma.core));
