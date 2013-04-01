@@ -70,7 +70,7 @@ dharma.widget = (function (document, hogan) {
                 return false;
             }
             this.removeAllEvents();
-            reference.parent.removeChild(reference);
+            reference.parentNode.removeChild(reference);
             reference = null;
         };
         // addEvent adds an event handler to the widget.
