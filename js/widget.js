@@ -79,6 +79,24 @@ dharma.widget = (function (document, hogan) {
             }
             reference.addEventListener(event, fn, false);
         };
+        // removeEvent removes the specified event handler from the widget.
+        this.removeEvent = function (event, fn) {
+            if (!reference) {
+                return false;
+            }
+            reference.removeEventListener(event, fn, false);
+        };
+        // removeAllEvents removes every event handler for the widget.  This is
+        // accomplished by cloning the node and overwriting the existing one.
+        this.removeAllEvents = function () {
+            var newNode;
+            if (!reference) {
+                return false;
+            }
+            newNode = reference.cloneNode(true);
+            reference.parentNode.replaceChild(newNode, reference);
+            reference = newNode;
+        };
     };
     
 }(parent.document, parent.Hogan));
