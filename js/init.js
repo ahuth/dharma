@@ -9,6 +9,5 @@ dharma.init = (function (name, core) {
     // Main program subscriptions that control the flow.
     core.subscribe("widget-clicked", name, function (widget) {
         core.publish("clear-screen");
-        alert(widget);
     });
 }("init", dharma.core));
