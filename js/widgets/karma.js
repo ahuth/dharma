@@ -40,6 +40,9 @@ dharma.widgets.karma = (function (name, Widget, core) {
                 me.renderFail(destination);
             }
             me.renderSuccess(destination, response[name]);
+            me.addEvent("click", function () {
+                alert("Hello!");
+            });
         });
         core.subscribe("no-data", name, function (_args) {
             if (args !== _args) {

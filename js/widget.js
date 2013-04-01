@@ -72,6 +72,13 @@ dharma.widget = (function (document, hogan) {
             reference.parent.removeChild(reference);
             reference = null;
         };
+        // addEvent adds an event handler to the widget.
+        this.addEvent = function (event, fn) {
+            if (!reference) {
+                return false;
+            }
+            reference.addEventListener(event, fn, false);
+        };
     };
     
 }(parent.document, parent.Hogan));

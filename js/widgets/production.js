@@ -16,10 +16,6 @@ dharma.widgets.production = (function (name, accounting, Widget, core) {
     // to.
     var destination = "content";
     
-    function formatNumber(num) {
-        return accounting.formatNumber(num, 0);
-    }
-    
     core.subscribe("clear-screen", name, function () {
         me.remove();
     });
