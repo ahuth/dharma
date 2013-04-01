@@ -57,6 +57,9 @@ dharma.widgets.spending = (function (name, accounting, Widget, core) {
                 other: formatDollars(response[name].other)
             };
             me.renderSuccess(destination, data);
+            me.addEvent("click", function () {
+                core.publish("widget-clicked", name);
+            });
         });
         core.subscribe("no-data", name, function (_args) {
             if (args !== _args) {

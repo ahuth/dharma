@@ -47,6 +47,9 @@ dharma.widgets.quality = (function (name, accounting, Widget, core) {
                 scrap: accounting.formatMoney(response[name].scrap, "$", 0)
             };
             me.renderSuccess(destination, data);
+            me.addEvent("click", function () {
+                core.publish("widget-clicked", name);
+            });
         });
         core.subscribe("no-data", name, function (_args) {
             if (args !== _args) {

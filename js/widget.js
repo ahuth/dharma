@@ -69,6 +69,7 @@ dharma.widget = (function (document, hogan) {
             if (!reference) {
                 return false;
             }
+            this.removeAllEvents();
             reference.parent.removeChild(reference);
             reference = null;
         };

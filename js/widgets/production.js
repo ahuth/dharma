@@ -50,6 +50,9 @@ dharma.widgets.production = (function (name, accounting, Widget, core) {
             core.publish("request-chart", "bar", "total-prod-chart", totalData, chartOptions);
             core.publish("request-chart", "bar", "nuts-prod-chart", nutsData, chartOptions);
             core.publish("request-chart", "bar", "bolts-prod-chart", boltsData, chartOptions);
+            me.addEvent("click", function () {
+                core.publish("widget-clicked", name);
+            });
         });
         core.subscribe("no-data", name, function (_args) {
             if (args !== _args) {

@@ -6,4 +6,8 @@ dharma.init = (function (name, core) {
     // Main entry point for the program.  Start off by showing the jenkintown
     // overview.
     core.publish("show-overview", "jenkintown");
+    // Main program subscriptions that control the flow.
+    core.subscribe("widget-clicked", name, function (widget) {
+        alert(widget);
+    });
 }("init", dharma.core));
