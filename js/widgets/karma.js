@@ -9,9 +9,6 @@ dharma.widgets.karma = (function (name, Widget, core) {
     // me is our instance of the Widget object.  In the initialization we specify
     // the name and templates to use.
     var me = new Widget("karma", "karma-template", "fail-template");
-    // args is the arguments we use when requesting data.  We save these so that
-    // we can recognize the returned request.
-    var args;
     // destination is the default location on the page we'll render this widget
     // to.
     var destination = "content";
@@ -21,7 +18,9 @@ dharma.widgets.karma = (function (name, Widget, core) {
     });
     
     core.subscribe("show-overview", name, function (_group) {
-        args = {
+        // args is the arguments we use when requesting data.  We save these so
+        // that we can recognize the returned request.
+        var args = {
             type: "overview",
             what: name,
             group: _group
