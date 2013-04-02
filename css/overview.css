@@ -7,7 +7,7 @@
 
 #karma {
     background-color: #47bbb3;
-	height: 20em;
+	min-height: 20em;
     min-width: 14em;
     top: 0;
     left: 0;
@@ -17,7 +17,7 @@
 
 #quality {
 	background-color: #ff8001;
-	height: 20em;
+	min-height: 20em;
     min-width: 28em;
     top: 0;
     left: -webkit-calc(25% + 0.25em);
@@ -28,7 +28,7 @@
 
 #spending {
 	background-color: #634fff;
-	height: 40.5em;
+	min-height: 40.5em;
     min-width: 14em;
     top: 0;
     left: -webkit-calc(75% + 0.25em);
@@ -39,7 +39,7 @@
 
 #production {
 	background-color: #ff7676;
-	height: 20em;
+	min-height: 20em;
     min-width: 42.5em;
     top: 20.5em;
     left: 0;

@@ -13,21 +13,13 @@ body {
 	width: 96%;
 }
 
-header {
-    height: 2.4em;
-}
-
-header h1 {
-    font-size: 1.5em;
-    width: 5em;
-}
-
 /* General Dharma sections */
 
 #content {
-    /* Putting a min-width here ensures that the window getting really small
+    /* Putting min-dimensions here ensures that the window getting really small
     won't mess up our layout.*/
     min-width: 60em;
+	min-height: 40.5em;
     /* Setting position: relative lets us use absolute positioning for all
     children elements with respect to this container's boundaries.*/
     position: relative;

@@ -9,7 +9,7 @@
 		
 		<link rel="stylesheet" href="css/reset.css">
         <link rel="stylesheet" href="css/main.css">
-        <link rel="stylesheet" href="css/nav.css">
+        <link rel="stylesheet" href="css/header.css">
         <link rel="stylesheet" href="css/overview.css">
         
         <script type="template/mustache" id="karma-template">
@@ -99,7 +99,7 @@
 	</head>
 	<body>
         <header>
-            <h1 id="current-selection">Jenkintown</h1>
+            <p id="navicon">&#9776;</p>
             <nav>
                 <table>
                     <colgroup span="1"></colgroup>
@@ -178,6 +178,9 @@
                     </tr>
                 </table>
             </nav>
+			<ol id="breadcrumbs">
+				<li><a href="#jenkintown">Jenkintown</a></li>
+			</ol>
         </header>
         <div id="content"></div>
         <script src="js/libs/raphael-min.js"></script>

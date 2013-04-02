@@ -9,6 +9,7 @@ dharma.init = (function (name, document, core) {
     core.publish("show-overview", "jenkintown");
     core.subscribe("widget-clicked", name, function (widget) {
         core.publish("clear-screen");
+		core.publish("show-breakdown", widget);
     });
     core.subscribe("group-clicked", name, function (group) {
         core.publish("clear-screen");
