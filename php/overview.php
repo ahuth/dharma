@@ -64,6 +64,7 @@ namespace overview {
         $bolts = $total - $nuts;
         $boltsPD = $totalPD - $nutsPD;
         $boltsEarly = $bolts - $boltsPD;
+        $milestone = 'shipped';
         return array('total' => array('total'   => $total,
                                       'overdue' => $totalPD,
                                       'early'   => $totalEarly),

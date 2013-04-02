@@ -2,7 +2,7 @@
 /*global dharma */
 
 // navigation controls the look and event handlers of the navigation parts of
-// our app.
+// our app.  This module also manages the app history.
 dharma.navigation = (function (me, document, core) {
     "use strict";
     
@@ -13,16 +13,15 @@ dharma.navigation = (function (me, document, core) {
     
     // makeGroupCallback returns a function that is called when a group link is
     // clicked.
-    function makeGroupCallback(url) {
-        // Get the last part of the url.
-        var text = url.split("/");
-        text = text[text.length - 1];
+    function makeGroupCallback(text) {
         // Remove the leading #.
         if (text[0] === "#") {
             text = text.slice(1);
         }
         return function (event) {
             core.publish("group-clicked", text);
+            // Prevent the link from being followed.  We'll manually make any
+            // changes without refreshing the page.
             event.preventDefault();
         };
     }
