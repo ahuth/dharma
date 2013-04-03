@@ -3,7 +3,7 @@
 
 // navigation controls the look and event handlers of the navigation parts of
 // our app and the breadcrumbs.
-dharma.navigation = (function (me, document, core) {
+dharma.navigation = (function (name, document, core) {
     "use strict";
     
     // Keep references to screen elements we may be required to modify or update.
@@ -55,7 +55,7 @@ dharma.navigation = (function (me, document, core) {
 	}, false);
     
     // Register our subscriptions.
-    core.subscribe("show-overview", me, function (group) {
+    core.subscribe("show-overview", name, function (group) {
 		var title = formatString(group);
 		if (typeof group !== "string") {
 			return false;
@@ -65,7 +65,7 @@ dharma.navigation = (function (me, document, core) {
 		currentGroup.href = "#" + group.toLowerCase();
     });
 	
-	core.subscribe("show-breakdown", me, function (category) {
+	core.subscribe("show-breakdown", name, function (category) {
 		var title = formatString(category),
 			splitNode,
 			categoryNode;
@@ -80,7 +80,7 @@ dharma.navigation = (function (me, document, core) {
 		breadcrumbs.appendChild(categoryNode);
 	});
 	
-	core.subscribe("breadcrumb-clicked", me, function (group) {
+	core.subscribe("breadcrumb-clicked", name, function (group) {
 		var title = formatString(group);
 		if (typeof group !== "string" || breadcrumbs.children.length < 3) {
 			return false;
