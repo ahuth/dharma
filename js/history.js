@@ -54,6 +54,8 @@ dharma.history = (function (name, window, history, core) {
     // As we update the page with 'show-overview' or 'show-breakdown', capture
     // what the page looks like so that we can come back to that.
     core.subscribe("capture-history", name, function () {
+        // The first time we get this message, we want to modify the history
+        // state.  Any other time, we add a new state.
 		if (!initial) {
 			initial = true;
 			changeHistory();

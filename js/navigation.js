@@ -48,10 +48,9 @@ dharma.navigation = (function (name, document, core) {
 		var splitNode,
 			categoryNode;
 		// Remove all elements from breadcrumbs except for the first element.
-		// If necessary, we'll reconstruct the other elements.
+		// If necessary, we'll modify this first element and/or reconstruct
+        // the subsequent elements.
 		removeNodesExceptFirst(breadcrumbs);
-		// If we have a group, then remove everything but the first element from
-		// breadcrumbs.  Then change that element to reflect the group.
 		if (group) {
 			currentGroup.innerText = formatString(group);
 			currentGroup.href = "#" + group.toLowerCase();
@@ -78,42 +77,40 @@ dharma.navigation = (function (name, document, core) {
 		event.preventDefault();
 	}, false);
     
-    // Register our subscriptions.
+    // If we're showing an overview or a breakdown, update the breadcrumbs in
+    // the appropriate way.
     core.subscribe("show-overview", name, function (group) {
-		var title = formatString(group);
-		if (typeof group !== "string") {
-			return false;
-		}
-		removeNodesExceptFirst(breadcrumbs);
-		currentGroup.innerText = title;
-		currentGroup.href = "#" + group.toLowerCase();
+        if (!group) {
+            return false;
+        }
+        updateBreadcrumbs(group, null);
     });
-	
 	core.subscribe("show-breakdown", name, function (category) {
-		var title = formatString(category),
-			splitNode,
-			categoryNode;
-		if (typeof category !== "string") {
-			return false;
-		}
-		splitNode = document.createElement("li");
-		splitNode.innerText = ">";
-		categoryNode = document.createElement("li");
-		categoryNode.innerText = title;
-		breadcrumbs.appendChild(splitNode);
-		breadcrumbs.appendChild(categoryNode);
+        if (!category) {
+            return false;
+        }
+        updateBreadcrumbs(null, category);
 	});
 	
+    // The breadcrumb-clicked message is separate from the "click" event on the
+    // breadcrumb just in case I ever decide to have another module handle this
+    // event.
 	core.subscribe("breadcrumb-clicked", name, function (group) {
-		var title = formatString(group);
+        // If we're already where the breadcrumb link would take us, then end
+        // here and don't proceed.
 		if (typeof group !== "string" || breadcrumbs.children.length < 3) {
 			return false;
 		}
 		core.publish("show-overview", group.toLowerCase());
 	});
 	
+    // update-breadcrumbs only gets activated if we're interacting with the
+    // browser history, and we need to reconstruct a previous state of the page.
 	core.subscribe("update-breadcrumbs", name, function (group, category) {
-		
+		if (!group) {
+            return false;
+        }
+        updateBreadcrumbs(group, category);
 	});
     
 }("navigation", parent.document, dharma.core));
