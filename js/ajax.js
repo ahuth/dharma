@@ -64,7 +64,7 @@ dharma.ajax = (function (name, window, rsvp, core) {
     }
     
     core.subscribe("request-data", name, function (args) {
-        get("php/dharmaservice.php", constructParamsString(args)).then(function (value) {
+        get("/dharma/php/dharmaservice.php", constructParamsString(args)).then(function (value) {
             core.publish("here's-data", args, JSON.parse(value));
         }, function () {
             core.publish("no-data", args);

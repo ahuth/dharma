@@ -7,8 +7,7 @@
 dharma.history = (function (name, window, history, core) {
     "use strict";
     
-    // Keep track of the current group and widget when we hear those messages.
-    var currentGroup, currentWidget;
+    var initial = false;
     
     // HTML elements we'll need to get data from.
     var breadcrumbs = document.getElementById("breadcrumbs");
@@ -16,31 +15,51 @@ dharma.history = (function (name, window, history, core) {
     // updateContent takes a bunch of data after we get a 'popstate' event and
     // updates the page with it.
     function updateContent(data) {
-        if (data === null) {
+        if (!data) {
             return false;
         }
+		
     }
-    
-    // We'll need to alter the initial history once the page is loaded so that
-    // we can come back to it.  To do this, listen for the "chart-drawn" event,
-    // which is the last thing to happen when the page is displayed.  We only
-    // need this once, though, so immediately unsubscribe.
-    core.subscribe("chart-drawn", name, function () {
-        core.unsubscribe("chart-drawn", name);
-    });
+	
+	// captureContent takes all the data we have on the page and puts it in an
+	// object, so that later we can retrieve it and restore the state.
+	function captureContent() {
+		var data = {},
+			breadcrumbElements = breadcrumbs.getElementsByTagName("li");
+		data.group = breadcrumbElements[0].getElementsByTagName("a")[0].innerText.toLowerCase();
+		// Is this an overview or a breakdown?
+		if (breadcrumbElements.length === 1) {
+			data.type = "overview";
+		} else {
+			data.type = "breakdown";
+			data.category = breadcrumbElements[breadcrumbElements.length - 1].innerText.toLowerCase();
+		}
+		return data;
+	}
+	
+	function changeHistory() {
+		var content = captureContent();
+		history.replaceState(content, "initialState", "jenkintown");
+	}
+	
+	function captureHistory() {
+		var content = captureContent();
+		var url = "/dharma/" + content.group;
+		if (content.type === "breakdown") {
+			url += "/" + content.category;
+		}
+		history.pushState(content, content.type, url);
+	}
     
     // As we update the page with 'show-overview' or 'show-breakdown', capture
     // what the page looks like so that we can come back to that.
-    core.subscribe("show-overview", name, function (group) {
-        // Don't capture anything when the page initially loads.  In a different
-        // function, we'll modify the initial history item instead.
-        if (!currentGroup) {
-            currentGroup = breadcrumbs.getElementsByTagName("li")[0].getElementsByTagName("a")[0].innerText;
-            return false;
-        }
-    });
-    
-    core.subscribe("show-breakdown", name, function (widget) {
+    core.subscribe("capture-history", name, function () {
+		if (!initial) {
+			initial = true;
+			changeHistory();
+			return;
+		}
+		captureHistory();
     });
     
     // When the user clicks the backwards or forward button, a 'popstate' event

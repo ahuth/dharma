@@ -41,6 +41,30 @@ dharma.navigation = (function (name, document, core) {
 			parent.removeChild(parent.lastChild);
 		}
 	}
+	
+	// updateBreadcrumbs changes the breadcrumb elements based on what we pass
+	// to it.  There are 3 possibilities: just a group, just a category, or both.
+	function updateBreadcrumbs(group, category) {
+		var splitNode,
+			categoryNode;
+		// Remove all elements from breadcrumbs except for the first element.
+		// If necessary, we'll reconstruct the other elements.
+		removeNodesExceptFirst(breadcrumbs);
+		// If we have a group, then remove everything but the first element from
+		// breadcrumbs.  Then change that element to reflect the group.
+		if (group) {
+			currentGroup.innerText = formatString(group);
+			currentGroup.href = "#" + group.toLowerCase();
+		}
+		if (category) {
+			splitNode = document.createElement("li");
+			splitNode.innerText = ">";
+			categoryNode = document.createElement("li");
+			categoryNode.innerText = formatString(category);
+			breadcrumbs.appendChild(splitNode);
+			breadcrumbs.appendChild(categoryNode);
+		}
+	}
     
     // Attach event handlers to the navigation buttons.
     var item;
@@ -86,6 +110,10 @@ dharma.navigation = (function (name, document, core) {
 			return false;
 		}
 		core.publish("show-overview", group.toLowerCase());
+	});
+	
+	core.subscribe("update-breadcrumbs", name, function (group, category) {
+		
 	});
     
 }("navigation", parent.document, dharma.core));

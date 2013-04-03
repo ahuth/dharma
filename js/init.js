@@ -4,9 +4,7 @@
 dharma.init = (function (name, document, core) {
 	"use strict";
     
-    // Main entry point for the program.  Start off by showing the jenkintown
-    // overview.  Then subscribe to control-flow messages.
-    core.publish("show-overview", "jenkintown");
+	// General control flow subscriptions.
     core.subscribe("widget-clicked", name, function (widget) {
         core.publish("clear-screen");
 		core.publish("show-breakdown", widget);
@@ -15,5 +13,15 @@ dharma.init = (function (name, document, core) {
         core.publish("clear-screen");
         core.publish("show-overview", group);
     });
+	core.subscribe("show-overview", name, function () {
+		core.publish("capture-history");
+	});
+	core.subscribe("show-breakdown", name, function () {
+		core.publish("capture-history");
+	});
+	
+	// Main entry point for the program.  Start off by showing the jenkintown
+    // overview.
+    core.publish("show-overview", "jenkintown");
     
 }("init", parent.document, dharma.core));
