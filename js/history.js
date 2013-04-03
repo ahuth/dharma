@@ -18,7 +18,7 @@ dharma.history = (function (name, window, history, core) {
         if (!data) {
             return false;
         }
-		
+        core.publish("update-breadcrumbs", data.group, data.category);
     }
 	
 	// captureContent takes all the data we have on the page and puts it in an
@@ -30,6 +30,7 @@ dharma.history = (function (name, window, history, core) {
 		// Is this an overview or a breakdown?
 		if (breadcrumbElements.length === 1) {
 			data.type = "overview";
+            data.category = null;
 		} else {
 			data.type = "breakdown";
 			data.category = breadcrumbElements[breadcrumbElements.length - 1].innerText.toLowerCase();
@@ -37,11 +38,20 @@ dharma.history = (function (name, window, history, core) {
 		return data;
 	}
 	
+    // Sometimes you CAN change history.  Because this is an ajax web-application,
+    // we can't normally use the back button to get back to the initial page.  To
+    // fix that, we change the browser's history of the initial page load to
+    // contain a state object that we give it.  If we need to go back to the first
+    // page, we can retrieve this object and reconstruct the page.
 	function changeHistory() {
 		var content = captureContent();
 		history.replaceState(content, "initialState", "jenkintown");
 	}
 	
+    // captureHistory serves the same purpose as changeHistory(), except its for
+    // subsequent 'pages' in our app, not the first page.  Because of this, we
+    // don't need to alter history, we need to push a NEW history state object
+    // to the browser's history.
 	function captureHistory() {
 		var content = captureContent();
 		var url = "/dharma/" + content.group;
