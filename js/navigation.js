@@ -102,6 +102,7 @@ dharma.navigation = (function (name, document, core) {
 			return false;
 		}
 		core.publish("show-overview", group.toLowerCase());
+        core.publish("capture-history");
 	});
 	
     // update-breadcrumbs only gets activated if we're interacting with the

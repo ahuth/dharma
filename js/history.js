@@ -58,7 +58,7 @@ dharma.history = (function (name, window, history, core) {
 		if (content.type === "breakdown") {
 			url += "/" + content.category;
 		}
-		history.pushState(content, content.type, url);
+		history.pushState(content, content.group + "-" + content.type, url);
 	}
     
     // As we update the page with 'show-overview' or 'show-breakdown', capture
