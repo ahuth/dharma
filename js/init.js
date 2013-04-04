@@ -1,7 +1,7 @@
 /*jslint vars: true, browser: true */
 /*global dharma */
 
-dharma.init = (function (name, document, core) {
+dharma.init = (function (name, core) {
 	"use strict";
     
 	// General control flow subscriptions.
@@ -22,4 +22,4 @@ dharma.init = (function (name, document, core) {
     core.publish("show-overview", "jenkintown");
     core.publish("capture-history");
     
-}("init", parent.document, dharma.core));
+}("init", dharma.core));
