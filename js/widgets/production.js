@@ -6,6 +6,7 @@ dharma.widgets = dharma.widgets || {};
 dharma.widgets.production = (function (name, accounting, Widget, core) {
     "use strict";
     
+    var chartOptions = {bar_width: 20, bar_spacing: 46};
     // me is our instance of the Widget object.  In the initialization we specify
     // the name and templates to use.
     var me = new Widget("production", "production-template", "fail-template");
@@ -27,8 +28,7 @@ dharma.widgets.production = (function (name, accounting, Widget, core) {
         };
         core.publish("request-data", args);
         core.subscribe("here's-data", name, function (_args, response) {
-            var totalData, nutsData, boltsData,
-                chartOptions = {bar_width: 20, bar_spacing: 46};
+            var totalData, nutsData, boltsData;
             // See if the response is from the request we made.
             if (args !== _args) {
                 return;
@@ -42,7 +42,7 @@ dharma.widgets.production = (function (name, accounting, Widget, core) {
                 return;
             }
             me.renderSuccess(destination);
-            // Split up our data and format everything.
+            // Split up our data.
             totalData = response[name].total;
             nutsData = response[name].nuts;
             boltsData = response[name].bolts;
@@ -61,6 +61,26 @@ dharma.widgets.production = (function (name, accounting, Widget, core) {
             me.renderFail(destination);
             core.unsubscribe("here's-data", name);
             core.unsubscribe("no-data", name);
+        });
+    });
+    
+    core.subscribe("reconstruct-overview", name, function (data) {
+        var totalData, nutsData, boltsData;
+        if (!data.hasOwnProperty(name)) {
+            me.renderFail(destination);
+            return;
+        }
+        me.renderSuccess(destination);
+        // Split up our data.
+        totalData = data[name].total;
+        nutsData = data[name].nuts;
+        boltsData = data[name].bolts;
+        // Make some charts!
+        core.publish("request-chart", "bar", "total-prod-chart", totalData, chartOptions);
+        core.publish("request-chart", "bar", "nuts-prod-chart", nutsData, chartOptions);
+        core.publish("request-chart", "bar", "bolts-prod-chart", boltsData, chartOptions);
+        me.addEvent("click", function () {
+            core.publish("widget-clicked", name);
         });
     });
     

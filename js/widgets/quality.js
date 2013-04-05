@@ -61,4 +61,20 @@ dharma.widgets.quality = (function (name, accounting, Widget, core) {
         });
     });
     
+    core.subscribe("reconstruct-overview", name, function (data) {
+        var oldData;
+        if (!data.hasOwnProperty(name)) {
+            me.renderFail(destination);
+            return;
+        }
+        oldData = {
+            turnbacks: data[name].turnbacks,
+            scrap: accounting.formatMoney(data[name].scrap, "$", 0)
+        };
+        me.renderSuccess(destination, oldData);
+        me.addEvent("click", function () {
+            core.publish("widget-clicked", name);
+        });
+    });
+    
 }("quality", parent.accounting, dharma.widget, dharma.core));

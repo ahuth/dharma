@@ -71,4 +71,26 @@ dharma.widgets.spending = (function (name, accounting, Widget, core) {
         });
     });
     
+    core.subscribe("reconstruct-overview", name, function (data) {
+        var oldData;
+        if (!data.hasOwnProperty(name)) {
+            me.renderFail(destination);
+            return;
+        }
+        oldData = {
+            yesterday: formatDollars(data[name].yesterday),
+            qtd: formatDollars(data[name].qtd),
+            people: formatDollars(data[name].people),
+            supplies: formatDollars(data[name].supplies),
+            tools: formatDollars(data[name].tools),
+            utilities: formatDollars(data[name].utilities),
+            maintenance: formatDollars(data[name].maintenance),
+            other: formatDollars(data[name].other)
+        };
+        me.renderSuccess(destination, oldData);
+        me.addEvent("click", function () {
+            core.publish("widget-clicked", name);
+        });
+    });
+    
 }("spending", parent.accounting, dharma.widget, dharma.core));
