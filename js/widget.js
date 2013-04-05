@@ -10,7 +10,7 @@ dharma.widget = (function (document, hogan) {
     // helper is a div that is NOT in the DOM.  It helps us convert a string
     // to an actual HTML node.  I put it at the module-level so that we don't
     // have to repeatedly create and destroy it.
-    var helper;
+    var helper = document.createElement("div");
     
     // elementizeString creates an HTML element from a string, which allows us
     // to use appendChild() too add things to the page.  Using .innerHTML is
@@ -18,7 +18,6 @@ dharma.widget = (function (document, hogan) {
     function elementizeString(htmlString) {
         var elementNode = 1,
             firstNode;
-        helper = helper || document.createElement("div");
         helper.innerHTML = htmlString;
         firstNode = helper.firstChild;
         // The first node may have been whitespace, so find the real first node.
@@ -35,8 +34,8 @@ dharma.widget = (function (document, hogan) {
         // reference will refer to the actual HTML element.  Once we have it,
         // we can remove the widget from the page without knowing where it is.
         var reference = null;
-        // Templates stores pre-compiled mustache templates.  We pull these out
-        // of the DOM.
+        // Templates stores pre-compiled mustache templates.  We pull the
+        // uncompiled out of the page, and then compile them.
         var templates = {
             success: hogan.compile(document.getElementById(successTemplate).innerHTML),
             fail: hogan.compile(document.getElementById(failTemplate).innerHTML)
@@ -67,7 +66,7 @@ dharma.widget = (function (document, hogan) {
             node.appendChild(elementizeString(templates.fail.render({id: this.name})));
             reference = document.getElementById(this.name);
         };
-        // removeMe removes the widget from the DOM.
+        // removeMe removes the widget from the page.
         this.remove = function () {
             if (!reference) {
                 return false;
