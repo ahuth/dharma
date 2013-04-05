@@ -19,15 +19,34 @@ dharma.history = (function (name, window, history, core) {
         if (!data) {
             return false;
         }
-        core.publish("update-breadcrumbs", data.group, data.category);
         core.publish("reconstruct-previous-state", data);
+    }
+    
+    // modifyHistory adds our data to the current history state, then adds a new
+    // state representing our updated page.
+    function modifyHistory(group, category) {
+        var url = "/dharma/" + group,
+            id = group;
+        if (!group) {
+            return false;
+        }
+        // Replace the previous browser state's data.
+        history.replaceState(data, history.state.id, history.state.url);
+        // Capture the new state without data.
+        if (category) {
+            url += "/" + category;
+            id += "-" + category;
+        }
+        history.pushState({}, id, url);
+        // Reset the data object so we can receive new ajax responses.
+        data = null;
+        data = {};
     }
     
     // If we're updating the screen, store any data we have received from ajax
     // calls into the previous item in the browser history.   Then create a new
     // item in the browser history for the updated page.
     core.subscribe("show-overview", name, function (group) {
-        var url;
         // On our first time running this, there is no previous state to change,
         // so just push a new state.
         if (initial) {
@@ -35,26 +54,11 @@ dharma.history = (function (name, window, history, core) {
             initial = false;
             return;
         }
-        // Replace the previous browser state's data.
-        history.replaceState(data, history.state.id, history.state.url);
-        // Capture the new state without data.
-        url = "/dharma/" + group;
-        history.pushState({}, group + "-overview", url);
-        // Reset the data object se we can receive new ajax responses.
-        data = null;
-        data = {};
+        modifyHistory(group.toLowerCase(), null);
     });
     core.subscribe("show-breakdown", name, function (category) {
-        var url,
-            group = document.getElementById("breadcrumbs").getElementsByTagName("a")[0].innerText.toLowerCase();
-        // Replace the previous browser state's data.
-        history.replaceState(data, history.state.id, history.state.url);
-        // Capture the new state without data.
-        url = "/dharma/" + group + "/" + category.toLowerCase();
-        history.pushState({}, group + "-breakdown", url);
-        // Reset the data object se we can receive new ajax responses.
-        data = null;
-        data = {};
+        var group = document.getElementById("breadcrumbs").getElementsByTagName("a")[0].innerText;
+        modifyHistory(group.toLowerCase(), category.toLowerCase());
     });
     
     // As ajax returns data to us, keep track of the response.  If we need to
@@ -67,10 +71,11 @@ dharma.history = (function (name, window, history, core) {
                 data[item] = response[item];
             }
         }
-        for (item in args) {
-            if (args.hasOwnProperty(item)) {
-                data[item] = args[item];
-            }
+        if (!data.group && response.hasOwnProperty("group")) {
+            data.group = response.group;
+        }
+        if (!data.type && response.hasOwnProperty("type")) {
+            data.type = response.type;
         }
     });
     
