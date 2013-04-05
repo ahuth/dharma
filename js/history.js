@@ -13,9 +13,6 @@ dharma.history = (function (name, window, history, core) {
     // browser history.
     var data = {};
     
-    // HTML elements we'll need to get data from.
-    var breadcrumbs = document.getElementById("breadcrumbs");
-    
     // updateContent takes a bunch of data after we get a 'popstate' event and
     // updates the page with it.
     function updateContent(data) {
@@ -23,6 +20,7 @@ dharma.history = (function (name, window, history, core) {
             return false;
         }
         core.publish("update-breadcrumbs", data.group, data.category);
+        core.publish("reconstruct-previous-state", data);
     }
     
     // If we're updating the screen, store any data we have received from ajax
@@ -48,7 +46,7 @@ dharma.history = (function (name, window, history, core) {
     });
     core.subscribe("show-breakdown", name, function (category) {
         var url,
-            group = breadcrumbs.getElementsByTagName("a")[0].innerText.toLowerCase();
+            group = document.getElementById("breadcrumbs").getElementsByTagName("a")[0].innerText.toLowerCase();
         // Replace the previous browser state's data.
         history.replaceState(data, history.state.id, history.state.url);
         // Capture the new state without data.
