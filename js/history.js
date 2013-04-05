@@ -7,14 +7,15 @@
 dharma.history = (function (name, window, history, core) {
     "use strict";
     
-    var initial = true;
+    var initial = true,
+        currentGroup;
     
     // Keep track of ajax response data here.  We'll use this to update our
     // browser history.
     var data = {};
     
     // updateContent takes a bunch of data after we get a 'popstate' event and
-    // updates the page with it.
+    // update the page with it.
     function updateContent(data) {
         if (!data) {
             return false;
@@ -43,10 +44,10 @@ dharma.history = (function (name, window, history, core) {
         data = {};
     }
     
-    // If we're updating the screen, store any data we have received from ajax
-    // calls into the previous item in the browser history.   Then create a new
-    // item in the browser history for the updated page.
+    // If we're updating the screen, add data we've stored to the current history
+    // state, then add a new state representing the updated page (but no data).
     core.subscribe("show-overview", name, function (group) {
+        currentGroup = group;
         // On our first time running this, there is no previous state to change,
         // so just push a new state.
         if (initial) {
@@ -57,13 +58,11 @@ dharma.history = (function (name, window, history, core) {
         modifyHistory(group.toLowerCase(), null);
     });
     core.subscribe("show-breakdown", name, function (category) {
-        var group = document.getElementById("breadcrumbs").getElementsByTagName("a")[0].innerText;
-        modifyHistory(group.toLowerCase(), category.toLowerCase());
+        modifyHistory(currentGroup.toLowerCase(), category.toLowerCase());
     });
     
-    // As ajax returns data to us, keep track of the response.  If we need to
-    // update the page, we'll store this data so we can come back to a previous
-    // point in history using the back button.
+    // Keep track of ajax responses.  Before we update the page, we'll store this
+    // data with the appropriate item int he browser history.
     core.subscribe("here's-data", name, function (args, response) {
         var item;
         for (item in response) {
