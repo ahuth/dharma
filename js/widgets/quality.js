@@ -38,6 +38,7 @@ dharma.widgets.quality = (function (name, accounting, Widget, core) {
             // Make sure that the data looks right.
             if (!response.hasOwnProperty(name)) {
                 me.renderFail(destination);
+                return;
             }
             // Format our number properly.  I've kept all number formatting out
             // of the server.

@@ -39,6 +39,7 @@ dharma.widgets.production = (function (name, accounting, Widget, core) {
             // Make sure that the data looks right.
             if (!response.hasOwnProperty(name)) {
                 me.renderFail(destination);
+                return;
             }
             me.renderSuccess(destination);
             // Split up our data and format everything.

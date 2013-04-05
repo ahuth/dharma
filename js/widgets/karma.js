@@ -37,6 +37,7 @@ dharma.widgets.karma = (function (name, Widget, core) {
             // Make sure that the data looks right.
             if (!response.hasOwnProperty(name)) {
                 me.renderFail(destination);
+                return;
             }
             me.renderSuccess(destination, response[name]);
             me.addEvent("click", function () {
@@ -50,6 +51,17 @@ dharma.widgets.karma = (function (name, Widget, core) {
             me.renderFail(destination);
             core.unsubscribe("here's-data", name);
             core.unsubscribe("no-data", name);
+        });
+    });
+    
+    core.subscribe("reconstruct-overview", name, function (data) {
+        if (!data.hasOwnProperty(name)) {
+            me.renderFail(destination);
+            return;
+        }
+        me.renderSuccess(destination, data[name]);
+        me.addEvent("click", function () {
+            core.publish("widget-clicked", name);
         });
     });
     

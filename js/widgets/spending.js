@@ -42,6 +42,7 @@ dharma.widgets.spending = (function (name, accounting, Widget, core) {
             // Make sure that the data looks right.
             if (!response.hasOwnProperty(name)) {
                 me.renderFail(destination);
+                return;
             }
             // Format our number properly.  All number formatting is kept out of
             // the server and on the client.

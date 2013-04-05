@@ -70,11 +70,11 @@ dharma.history = (function (name, window, history, core) {
                 data[item] = response[item];
             }
         }
-        if (!data.group && response.hasOwnProperty("group")) {
-            data.group = response.group;
+        if (!data.group && args.hasOwnProperty("group")) {
+            data.group = args.group;
         }
-        if (!data.type && response.hasOwnProperty("type")) {
-            data.type = response.type;
+        if (!data.type && args.hasOwnProperty("type")) {
+            data.type = args.type;
         }
     });
     

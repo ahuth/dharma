@@ -16,9 +16,9 @@ dharma.init = (function (name, core) {
         core.publish("clear-screen");
         core.publish("update-breadcrumbs", data.group, data.category);
         if (data.type === "overview") {
-            core.publish("reconstruct-overview");
+            core.publish("reconstruct-overview", data);
         } else {
-            core.publish("reconstruct-breakdown");
+            core.publish("reconstruct-breakdown", data);
         }
     });
 	
