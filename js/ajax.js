@@ -1,4 +1,4 @@
-/*jslint vars: true, browser: true */
+/*jslint vars: true, browser: true , plusplus: true*/
 /*global dharma */
 
 // ajax handles all ajax requests.  Args are provided to this module as an object,
@@ -7,11 +7,19 @@
 dharma.ajax = (function (name, window, rsvp, core) {
 	"use strict";
     
+    // Bound the number of outstanding ajax requests we can have at one time.
+    // There should never be more than the number of widgets on the screen, but
+    // just in case we'll limit the number.
+    var maxrequests = 8,
+        numrequests = 0;
+    
     // Send a get request and return a promise object.  This promise object will
     // **eventually** hold the response text.
     function get(url, parameters) {
         
         var done = 4, ok = 200;
+        
+        numrequests++;
     
         if (typeof parameters === "string") {
             url += "?" + parameters;
@@ -26,6 +34,7 @@ dharma.ajax = (function (name, window, rsvp, core) {
         XHR.setRequestHeader("X-Requested-With", "XMLHttpRequest");
         XHR.onreadystatechange = function () {
             if (XHR.readyState === done) {
+                numrequests--;
                 window.clearTimeout(timeout);
                 if (XHR.status === ok && XHR.response !== null) {
 					promise.resolve(XHR.responseText);
@@ -64,6 +73,10 @@ dharma.ajax = (function (name, window, rsvp, core) {
     }
     
     core.subscribe("request-data", name, function (args) {
+        if (numrequests > maxrequests) {
+            core.publish("no-data", args);
+            return false;
+        }
         get("/dharma/php/dharmaservice.php", constructParamsString(args)).then(function (value) {
             core.publish("here's-data", args, JSON.parse(value));
         }, function () {
