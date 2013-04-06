@@ -8,8 +8,9 @@ dharma.ajax = (function (name, window, rsvp, core) {
 	"use strict";
     
     // Bound the number of outstanding ajax requests we can have at one time.
-    // There should never be more than the number of widgets on the screen, but
-    // just in case we'll limit the number.
+    // It shouldn't be possible for there to be more ajax requests open than
+    // there are widgets (4), but just in case something goes horribly wrong,
+    // we'll limit the number of requests that can be open.
     var maxrequests = 8,
         numrequests = 0;
     

@@ -8,7 +8,7 @@ dharma.widgets.spending = (function (name, accounting, Widget, core) {
     
     // me is our instance of the Widget object.  In the initialization we specify
     // the name and templates to use.
-    var me = new Widget("spending", "spending-template", "fail-template");
+    var me = new Widget("spending", "spending-overview-template", "fail-overview-template");
     // args is the arguments we use when requesting data.  We save these so that
     // we can recognize the returned request.
     var destination = "content";

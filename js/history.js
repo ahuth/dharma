@@ -57,13 +57,13 @@ dharma.history = (function (name, window, history, core) {
             return;
         }
         addHistory(group.toLowerCase(), null);
-        // Reset the data object so we can receive new ajax requests.
+        // Reset the data object so we can receive new data.
         data = null;
         data = {};
     });
     core.subscribe("show-breakdown", name, function (category) {
         addHistory(null, category.toLowerCase());
-        // Reset the data object so we can receive new ajax requests.
+        // Reset the data object so we can receive new data.
         data = null;
         data = {};
     });

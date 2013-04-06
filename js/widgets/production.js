@@ -9,7 +9,7 @@ dharma.widgets.production = (function (name, accounting, Widget, core) {
     var chartOptions = {bar_width: 20, bar_spacing: 46};
     // me is our instance of the Widget object.  In the initialization we specify
     // the name and templates to use.
-    var me = new Widget("production", "production-template", "fail-template");
+    var me = new Widget("production", "production-overview-template", "fail-overview-template");
     // destination is the default location on the page we'll render this widget
     // to.
     var destination = "content";

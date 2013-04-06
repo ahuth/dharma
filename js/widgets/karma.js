@@ -8,7 +8,7 @@ dharma.widgets.karma = (function (name, Widget, core) {
     
     // me is our instance of the Widget object.  In the initialization we specify
     // the name and templates to use.
-    var me = new Widget("karma", "karma-template", "fail-template");
+    var me = new Widget("karma", "karma-overview-template", "fail-overview-template");
     // destination is the default location on the page we'll render this widget
     // to.
     var destination = "content";
