@@ -5,7 +5,7 @@
 // but this module provides the url.  We do that so that requesting modules don't
 // need to know anything about where the data is coming from or how.
 dharma.ajax = (function (name, window, rsvp, core) {
-	"use strict";
+    "use strict";
     
     // Bound the number of outstanding ajax requests we can have at one time.
     // It shouldn't be possible for there to be more ajax requests open than
@@ -21,7 +21,7 @@ dharma.ajax = (function (name, window, rsvp, core) {
         var done = 4, ok = 200;
         
         numrequests++;
-    
+        
         if (typeof parameters === "string") {
             url += "?" + parameters;
         }
@@ -38,7 +38,7 @@ dharma.ajax = (function (name, window, rsvp, core) {
                 numrequests--;
                 window.clearTimeout(timeout);
                 if (XHR.status === ok && XHR.response !== null) {
-					promise.resolve(XHR.responseText);
+                    promise.resolve(XHR.responseText);
                 } else {
                     promise.reject(XHR);
                 }
