@@ -14,17 +14,18 @@ dharma.widgets.production = (function (name, accounting, Widget, core) {
     // to.
     var destination = "content";
     
-    // makeNodeCurrent removes all classes from a list of nodes, and puts the
-    // 'current' class on the specified node.
-    function makeNodeCurrent(nodes, num) {
-        var item;
-        for (item = 0; item < nodes.length; item++) {
-            if (item === num - 1) {
-                nodes[item].className = "current";
-                return;
-            }
-            nodes[item].className = "";
+    // formatResultsObject takes our ajax response and formats the numbers as
+    // money.
+    function formatResults(obj) {
+        var item, output = {};
+        output.results = [];
+        for (item = 0; item < obj.results.length; item++) {
+            output.results.push({
+                milestone: obj.results[item].milestone,
+                result: accounting.formatMoney(obj.results[item].result, "$", 0)
+            });
         }
+        return output;
     }
     
     core.subscribe("clear-screen", name, function () {
@@ -41,7 +42,7 @@ dharma.widgets.production = (function (name, accounting, Widget, core) {
         };
         core.publish("request-data", args);
         core.subscribe("here's-data", name, function (_args, response) {
-            var listNodes, liNodes, item;
+            var item, results;
             // See if the response is from the request we made.
             if (args !== _args) {
                 return;
@@ -54,7 +55,9 @@ dharma.widgets.production = (function (name, accounting, Widget, core) {
                 me.renderFail(destination);
                 return;
             }
-            me.renderSuccess(destination, response[name]);
+            // Format the numbers and output them.
+            results = formatResults(response[name]);
+            me.renderSuccess(destination, results);
             me.addEvent("click", function () {
                 core.publish("widget-clicked", name);
             });
@@ -70,12 +73,13 @@ dharma.widgets.production = (function (name, accounting, Widget, core) {
     });
     
     core.subscribe("reconstruct-overview", name, function (data) {
-        var listNodes;
+        var results;
         if (!data.hasOwnProperty(name)) {
             me.renderFail(destination);
             return;
         }
-        me.renderSuccess(destination, data[name]);
+        results = formatResults(data[name]);
+        me.renderSuccess(destination, results);
         me.addEvent("click", function () {
             core.publish("widget-clicked", name);
         });
