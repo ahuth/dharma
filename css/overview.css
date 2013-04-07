@@ -45,6 +45,9 @@
     left: 0;
     width: -webkit-calc(75% - 0.25em);
     width: calc(75% - 0.25em);
+    /* The content should never overflow the widget, but because we're generating
+    the contents, it's possible.  If it does, clip it off.*/
+    overflow-y: hidden;
 }
 
 /* Generic widget parts */
@@ -133,4 +136,15 @@
 
 #spending table td:nth-child(even) {
     color: rgba(255, 255, 255, 0.9);
+}
+
+#production table {
+    font-size: 1.6em;
+    width: 40%;
+    left: 30%;
+    top: 35%;
+}
+
+#production table tr {
+    height: 1.8em;
 }

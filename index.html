@@ -83,16 +83,14 @@
         <script type="template/mustache" id="production-overview-template">
             <section class="widget" id="production">
                 <h2>Production</h2>
-                <ul id="milestones">
-                    {{#milestones}}
-                        <li>{{milestone}}</li>
-                    {{/milestones}}
-                </ul>
-                <ul id="results">
+                <table>
                     {{#results}}
-                        <li>{{total}}</li>
+                        <tr>
+                            <td>{{milestone}}</td>
+                            <td>{{result}}</td>
+                        </tr>
                     {{/results}}
-                </ul>
+                </table>
             </section>
         </script>
         

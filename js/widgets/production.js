@@ -41,7 +41,7 @@ dharma.widgets.production = (function (name, accounting, Widget, core) {
         };
         core.publish("request-data", args);
         core.subscribe("here's-data", name, function (_args, response) {
-            var listNodes;
+            var listNodes, liNodes, item;
             // See if the response is from the request we made.
             if (args !== _args) {
                 return;
@@ -58,10 +58,6 @@ dharma.widgets.production = (function (name, accounting, Widget, core) {
             me.addEvent("click", function () {
                 core.publish("widget-clicked", name);
             });
-            // Add the 'current' class to the first list item of each list.
-            listNodes = document.getElementById(name).getElementsByTagName("ul");
-            makeNodeCurrent(listNodes[0].getElementsByTagName("li"), 1);
-            makeNodeCurrent(listNodes[1].getElementsByTagName("li"), 1);
         });
         core.subscribe("no-data", name, function (_args) {
             if (args !== _args) {
@@ -83,10 +79,6 @@ dharma.widgets.production = (function (name, accounting, Widget, core) {
         me.addEvent("click", function () {
             core.publish("widget-clicked", name);
         });
-        // Add the 'current' class to both of our lists.
-        listNodes = document.getElementById(name).getElementsByTagName("ul");
-        makeNodeCurrent(listNodes[0].getElementsByTagName("li"), 1);
-        makeNodeCurrent(listNodes[1].getElementsByTagName("li"), 1);
     });
     
 }("production", parent.accounting, dharma.widget, dharma.core));
