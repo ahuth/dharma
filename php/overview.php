@@ -24,15 +24,15 @@ namespace overview {
         $value  = mt_rand(22, 96);
         $change = mt_rand(-10, 10);
         $change = $change < 0 ? (string)$change : '+' . (string)$change;
-        return array('value'  => $value,
-                     'change' => $change . '%');
+        return ['value'  => $value,
+                'change' => $change . '%'];
 	}
 
 	function getQualityData($group) {
 		$turnbacks = mt_rand(0, 6);
         $scrap     = mt_rand(0, 50000);
-        return array('turnbacks' => $turnbacks,
-                     'scrap' => $scrap);
+        return ['turnbacks' => $turnbacks,
+                'scrap' => $scrap];
 	}
 
 	function getSpendingData($group) {
@@ -44,35 +44,23 @@ namespace overview {
         $maintenance = mt_rand(0, 10000);
         $other       = mt_rand(5000, 10000);
         $yesterday   = $people + $supplies + $tools + $utilities + $maintenance + $other;
-        return array('yesterday'   => $yesterday,
-                     'qtd'         => $QTD,
-                     'people'      => $people,
-                     'supplies'    => $supplies,
-                     'tools'       => $tools,
-                     'utilities'   => $utilities,
-                     'maintenance' => $maintenance,
-                     'other'       => $other);
+        return ['yesterday'   => $yesterday,
+                'qtd'         => $QTD,
+                'people'      => $people,
+                'supplies'    => $supplies,
+                'tools'       => $tools,
+                'utilities'   => $utilities,
+                'maintenance' => $maintenance,
+                'other'       => $other];
 	}
 
 	function getProductionData($group) {
-        $total = mt_rand(400, 700);
-        $totalPD = mt_rand(200, 400);
-        $totalEarly = $total - $totalPD;
-        $nuts = mt_rand(200, 400);
-        $nutsPD = mt_rand(50, 200);
-        $nutsEarly = $nuts - $nutsPD;
-        $bolts = $total - $nuts;
-        $boltsPD = $totalPD - $nutsPD;
-        $boltsEarly = $bolts - $boltsPD;
-        $milestone = 'shipped';
-        return array('total' => array('total'   => $total,
-                                      'overdue' => $totalPD,
-                                      'early'   => $totalEarly),
-                     'nuts'  => array('nuts'    => $nuts,
-                                      'overdue' => $nutsPD,
-                                      'early'   => $nutsEarly),
-                     'bolts' => array('bolts'   => $bolts,
-                                      'overdue' => $boltsPD,
-                                      'early'   => $boltsEarly));
+        $milestones[] = ['milestone' => 'pre-form'];
+        $milestones[] = ['milestone' => 'pre-ndt'];
+        $milestones[] = ['milestone' => 'plating'];
+        $results[] = ['total' => mt_rand(100000, 400000)];
+        $results[] = ['total' => mt_rand(200000, 500000)];
+        $results[] = ['total' => mt_rand(500000, 900000)];
+        return ['milestones' => $milestones, 'results' => $results];
 	}
 }

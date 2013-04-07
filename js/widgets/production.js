@@ -1,4 +1,4 @@
-/*jslint vars: true, browser: true, nomen: true */
+/*jslint vars: true, browser: true, nomen: true, plusplus: true */
 /*global dharma */
 
 dharma.widgets = dharma.widgets || {};
@@ -14,6 +14,19 @@ dharma.widgets.production = (function (name, accounting, Widget, core) {
     // to.
     var destination = "content";
     
+    // makeNodeCurrent removes all classes from a list of nodes, and puts the
+    // 'current' class on the specified node.
+    function makeNodeCurrent(nodes, num) {
+        var item;
+        for (item = 0; item < nodes.length; item++) {
+            if (item === num - 1) {
+                nodes[item].className = "current";
+                return;
+            }
+            nodes[item].className = "";
+        }
+    }
+    
     core.subscribe("clear-screen", name, function () {
         me.remove();
     });
@@ -28,7 +41,7 @@ dharma.widgets.production = (function (name, accounting, Widget, core) {
         };
         core.publish("request-data", args);
         core.subscribe("here's-data", name, function (_args, response) {
-            var totalData, nutsData, boltsData;
+            var listNodes;
             // See if the response is from the request we made.
             if (args !== _args) {
                 return;
@@ -41,18 +54,14 @@ dharma.widgets.production = (function (name, accounting, Widget, core) {
                 me.renderFail(destination);
                 return;
             }
-            me.renderSuccess(destination);
-            // Split up our data.
-            totalData = response[name].total;
-            nutsData = response[name].nuts;
-            boltsData = response[name].bolts;
-            // Make some charts!
-            core.publish("request-chart", "bar", "total-prod-chart", totalData, chartOptions);
-            core.publish("request-chart", "bar", "nuts-prod-chart", nutsData, chartOptions);
-            core.publish("request-chart", "bar", "bolts-prod-chart", boltsData, chartOptions);
+            me.renderSuccess(destination, response[name]);
             me.addEvent("click", function () {
                 core.publish("widget-clicked", name);
             });
+            // Add the 'current' class to the first list item of each list.
+            listNodes = document.getElementById(name).getElementsByTagName("ul");
+            makeNodeCurrent(listNodes[0].getElementsByTagName("li"), 1);
+            makeNodeCurrent(listNodes[1].getElementsByTagName("li"), 1);
         });
         core.subscribe("no-data", name, function (_args) {
             if (args !== _args) {
@@ -65,23 +74,19 @@ dharma.widgets.production = (function (name, accounting, Widget, core) {
     });
     
     core.subscribe("reconstruct-overview", name, function (data) {
-        var totalData, nutsData, boltsData;
+        var listNodes;
         if (!data.hasOwnProperty(name)) {
             me.renderFail(destination);
             return;
         }
-        me.renderSuccess(destination);
-        // Split up our data.
-        totalData = data[name].total;
-        nutsData = data[name].nuts;
-        boltsData = data[name].bolts;
-        // Make some charts!
-        core.publish("request-chart", "bar", "total-prod-chart", totalData, chartOptions);
-        core.publish("request-chart", "bar", "nuts-prod-chart", nutsData, chartOptions);
-        core.publish("request-chart", "bar", "bolts-prod-chart", boltsData, chartOptions);
+        me.renderSuccess(destination, data[name]);
         me.addEvent("click", function () {
             core.publish("widget-clicked", name);
         });
+        // Add the 'current' class to both of our lists.
+        listNodes = document.getElementById(name).getElementsByTagName("ul");
+        makeNodeCurrent(listNodes[0].getElementsByTagName("li"), 1);
+        makeNodeCurrent(listNodes[1].getElementsByTagName("li"), 1);
     });
     
 }("production", parent.accounting, dharma.widget, dharma.core));

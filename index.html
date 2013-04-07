@@ -83,9 +83,16 @@
         <script type="template/mustache" id="production-overview-template">
             <section class="widget" id="production">
                 <h2>Production</h2>
-                <div id="total-prod-chart" style="width:200px; height:200px;"></div>
-                <div id="nuts-prod-chart" style="width:200px; height:200px;"></div>
-                <div id="bolts-prod-chart" style="width:200px; height:200px;"></div>
+                <ul id="milestones">
+                    {{#milestones}}
+                        <li>{{milestone}}</li>
+                    {{/milestones}}
+                </ul>
+                <ul id="results">
+                    {{#results}}
+                        <li>{{total}}</li>
+                    {{/results}}
+                </ul>
             </section>
         </script>
         
