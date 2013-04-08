@@ -6,7 +6,6 @@ dharma.widgets = dharma.widgets || {};
 dharma.widgets.production = (function (name, accounting, Widget, core) {
     "use strict";
     
-    var chartOptions = {bar_width: 20, bar_spacing: 46};
     // me is our instance of the Widget object.  In the initialization we specify
     // the name and templates to use.
     var me = new Widget("production", "production-overview-template", "fail-overview-template");
