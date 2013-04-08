@@ -4,9 +4,9 @@
 dharma.init = (function (name, core) {
     "use strict";
     
-    core.subscribe("widget-clicked", name, function (widget) {
+    core.subscribe("widget-clicked", name, function (group, widget) {
         core.publish("clear-screen");
-        core.publish("show-breakdown", widget);
+        core.publish("show-breakdown", group, widget);
     });
     core.subscribe("group-clicked", name, function (group) {
         core.publish("clear-screen");

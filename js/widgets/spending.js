@@ -58,7 +58,7 @@ dharma.widgets.spending = (function (name, accounting, Widget, core) {
             };
             me.renderSuccess(destination, data);
             me.addEvent("click", function () {
-                core.publish("widget-clicked", name);
+                core.publish("widget-clicked", _group, name);
             });
         });
         core.subscribe("no-data", name, function (_args) {
@@ -89,7 +89,7 @@ dharma.widgets.spending = (function (name, accounting, Widget, core) {
         };
         me.renderSuccess(destination, oldData);
         me.addEvent("click", function () {
-            core.publish("widget-clicked", name);
+            core.publish("widget-clicked", data.group, name);
         });
     });
     

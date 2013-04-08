@@ -92,7 +92,7 @@ dharma.navigation = (function (name, document, core) {
         }
         updateBreadcrumbs(group, null);
     });
-    core.subscribe("show-breakdown", name, function (category) {
+    core.subscribe("show-breakdown", name, function (group, category) {
         if (!category) {
             return false;
         }

@@ -59,7 +59,7 @@ dharma.widgets.production = (function (name, accounting, Widget, core) {
             results = formatResults(response[name]);
             me.renderSuccess(destination, results);
             me.addEvent("click", function () {
-                core.publish("widget-clicked", name);
+                core.publish("widget-clicked", _group, name);
             });
         });
         core.subscribe("no-data", name, function (_args) {
@@ -81,7 +81,7 @@ dharma.widgets.production = (function (name, accounting, Widget, core) {
         results = formatResults(data[name]);
         me.renderSuccess(destination, results);
         me.addEvent("click", function () {
-            core.publish("widget-clicked", name);
+            core.publish("widget-clicked", data.group, name);
         });
     });
     

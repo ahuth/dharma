@@ -41,7 +41,7 @@ dharma.widgets.karma = (function (name, Widget, core) {
             }
             me.renderSuccess(destination, response[name]);
             me.addEvent("click", function () {
-                core.publish("widget-clicked", name);
+                core.publish("widget-clicked", _group, name);
             });
         });
         core.subscribe("no-data", name, function (_args) {
@@ -61,7 +61,7 @@ dharma.widgets.karma = (function (name, Widget, core) {
         }
         me.renderSuccess(destination, data[name]);
         me.addEvent("click", function () {
-            core.publish("widget-clicked", name);
+            core.publish("widget-clicked", data.group, name);
         });
     });
     

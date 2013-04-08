@@ -61,7 +61,7 @@ dharma.history = (function (name, window, history, core) {
         data = null;
         data = {};
     });
-    core.subscribe("show-breakdown", name, function (category) {
+    core.subscribe("show-breakdown", name, function (group, category) {
         addHistory(null, category.toLowerCase());
         // Reset the data object so we can receive new data.
         data = null;

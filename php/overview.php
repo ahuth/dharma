@@ -55,9 +55,8 @@ namespace overview {
 	}
 
 	function getProductionData($group) {
-        $results[] = ['milestone' => 'pre-form', 'result' => mt_rand(50000, 400000)];
-        $results[] = ['milestone' => 'pre-ndt', 'result' => mt_rand(100000, 500000)];
-        $results[] = ['milestone' => 'plating', 'result' => mt_rand(400000, 800000)];
+        $results[] = ['milestone' => 'Shipped', 'result' => mt_rand(1000000, 2000000)];
+        $results[] = ['milestone' => 'Docked', 'result' => mt_rand(1000000, 2000000)];
         return ['results' => $results];
 	}
 }
