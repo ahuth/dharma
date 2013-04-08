@@ -36,7 +36,6 @@ namespace overview {
 	}
 
 	function getSpendingData($group) {
-        $QTD         = mt_rand(1000000, 2000000);
         $people      = mt_rand(20000, 60000);
         $supplies    = mt_rand(5000, 20000);
         $tools       = mt_rand(0, 5000);
@@ -45,7 +44,6 @@ namespace overview {
         $other       = mt_rand(5000, 10000);
         $yesterday   = $people + $supplies + $tools + $utilities + $maintenance + $other;
         return ['yesterday'   => $yesterday,
-                'qtd'         => $QTD,
                 'people'      => $people,
                 'supplies'    => $supplies,
                 'tools'       => $tools,
