@@ -1,0 +1,9 @@
+#karma-breakdown {
+	box-sizing: border-box;
+	border: 1em solid #47bbb3;
+	background-color: #fefefe;
+}
+
+#karma-breakdown div#chartarea {
+	margin: auto;
+}

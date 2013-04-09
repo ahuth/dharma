@@ -17,11 +17,12 @@ dharma.widgets.spending = (function (name, accounting, Widget, core) {
         return accounting.formatMoney(num, "$", 0);
     }
     
-    core.subscribe("clear-screen", name, function () {
+    core.subscribe("show-breakdown", name, function () {
         me.remove();
     });
     
     core.subscribe("show-overview", name, function (_group) {
+		me.remove();
         // args is the arguments we use when requesting data.  We save these so
         // that we can recognize the returned request.
         var args = {

@@ -17,6 +17,11 @@ $output = [];
 	
 if ($type == 'overview') {
 	$output = overview\getOverviewData($what, $group);
+} else if ($type == 'breakdown') {
+	$output = breakdown\getBreakdownData($what, $group);
+} else {
+	echo NULL;
+	return;
 }
 	
 echo json_encode($output);
