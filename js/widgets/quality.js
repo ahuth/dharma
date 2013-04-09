@@ -13,12 +13,11 @@ dharma.widgets.quality = (function (name, accounting, Widget, core) {
     // to.
     var destination = "content";
     
-    core.subscribe("show-breakdown", name, function () {
+    core.subscribe("clear-screen", name, function () {
         me.remove();
     });
     
     core.subscribe("show-overview", name, function (_group) {
-		me.remove();
         // args is the arguments we use when requesting data.  We save these so
         // that we can recognize the returned request.
         var args = {

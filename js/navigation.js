@@ -106,6 +106,7 @@ dharma.navigation = (function (name, document, core) {
         if (typeof group !== "string") {
             return false;
         }
+        core.publish("clear-screen");
         core.publish("show-overview", group.toLowerCase());
     });
     

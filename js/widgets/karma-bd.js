@@ -9,6 +9,9 @@ dharma.widgets.karma = (function (name, Charts, Widget, core) {
     var me = new Widget(name, "karma-breakdown-template", "fail-overview-template"),
         destination = "content";
 	
+    // createReferenceLine creates the data for a line we can chart showing what
+    // it would look like if you got <num> karma every day.  We pass in the data
+    // object so that we can get the sames dates our data has.
 	function createReferenceLine(num, data) {
 		var output = [],
 			total = 0,
@@ -17,39 +20,40 @@ dharma.widgets.karma = (function (name, Charts, Widget, core) {
 			total += num;
 			output.push([data[item][0], total, {no_dot: true}]);
 		}
-		/*var day = new Date(2013, 3, 1);
-		for (item = 0; item < 64; item++) {
-			total += num;
-			day = new Date(day.setDate(day.getDate() + 1));
-			output.push([new Date(day), total, {no_dot: true}]);
-		}*/
 		return output;
 	}
 	
+    // drawChart takes some data and plots the chart.  We have 4 lines on the
+    // chart: 1 is our data from the server, and 3 more reference lines.
 	function drawChart(_data) {
 		if (!_data) {
 			return;
 		}
-		var referenceLineOptions = {
-			fill_area: false
-		};
 		var chart = new Charts.LineChart("chartarea", {
 			label_max: false,
 			label_min: false,
 			show_y_labels: false,
-			x_padding: 40
+			x_padding: 50,
+            fill_area: true,
+            show_grid: true
+		});
+        chart.add_line({
+			data: createReferenceLine(33, _data),
+			options: {
+                fill_area: false
+            }
+		});
+        chart.add_line({
+			data: createReferenceLine(66, _data),
+			options: {
+                fill_area: false
+            }
 		});
 		chart.add_line({
 			data: createReferenceLine(100, _data),
-			options: referenceLineOptions
-		});
-		chart.add_line({
-			data: createReferenceLine(66, _data),
-			options: referenceLineOptions
-		});
-		chart.add_line({
-			data: createReferenceLine(33, _data),
-			options: referenceLineOptions
+			options: {
+                fill_area: false
+            }
 		});
 		chart.add_line({
 			data: _data
@@ -57,6 +61,8 @@ dharma.widgets.karma = (function (name, Charts, Widget, core) {
 		chart.draw();
 	}
 	
+    // convertDates returns an object that mirrors the data we got from the
+    // server, except the date strings are converted to javascript date objects.
 	function convertDates(data) {
 		var output = [], item;
 		for (item = 0; item < data.length; item++) {
@@ -65,6 +71,8 @@ dharma.widgets.karma = (function (name, Charts, Widget, core) {
 		return output;
 	}
 	
+    // accumulateKarma returns an object that mirros the data we got from the
+    // server, except the karma values are cumulative, not individual.
 	function accumulateKarma(data) {
 		var output = [],
 			total = 0,
@@ -76,12 +84,11 @@ dharma.widgets.karma = (function (name, Charts, Widget, core) {
 		return output;
 	}
     
-    core.subscribe("show-overview", name, function () {
+    core.subscribe("clear-screen", name, function () {
         me.remove();
     });
     
     core.subscribe("show-breakdown", name, function (_group, _what) {
-		me.remove();
 		var args = {
             type: "breakdown",
             what: _what,
@@ -116,6 +123,18 @@ dharma.widgets.karma = (function (name, Charts, Widget, core) {
             core.unsubscribe("here's-data", name);
             core.unsubscribe("no-data", name);
         });
+    });
+    
+    core.subscribe("reconstruct-breakdown", name, function (data) {
+        var oldData;
+        if (!data.hasOwnProperty("karma")) {
+            me.renderFail(destination);
+            return;
+        }
+        oldData = convertDates(data.karma);
+        oldData = accumulateKarma(oldData);
+        me.renderSuccess(destination);
+        drawChart(oldData);
     });
     
 }("karma-breakdown", parent.Charts, dharma.widget, dharma.core));
