@@ -45,8 +45,6 @@ nav {
     z-index: 9999;
 	-moz-transition: left 0.5s;
 	-webkit-transition: left 0.5s;
-	-o-transition: left 0.5s;
-	-ms-transition: left 0.5s;
     transition: left 0.5s;
 }
 
