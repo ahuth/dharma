@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
-	<head>
+    <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
         <title>Dharma</title>
@@ -11,7 +11,7 @@
         <link rel="stylesheet" href="css/main.css">
         <link rel="stylesheet" href="css/header.css">
         <link rel="stylesheet" href="css/overview.css">
-		<link rel="stylesheet" href="css/breakdown.css">
+        <link rel="stylesheet" href="css/breakdown.css">
         
         <script type="template/mustache" id="karma-overview-template">
             <section class="widget" id="karma">
@@ -20,10 +20,10 @@
                 <p class="secondary">{{change}}</p>
             </section>
         </script>
-           
+        
         <script type="template/mustache" id="quality-overview-template">
-            <section class="widget" id="quality">
-                <h2>Quality</h2>
+        <section class="widget" id="quality">
+            <h2>Quality</h2>
                 <table>
                     <tr>
                         <td>Turnbacks</td>
@@ -92,98 +92,98 @@
         </script>
         
         <script type="template/mustache" id="fail-overview-template">
-            <section class="widget fail" id="{{id}}">
+        <section class="widget fail" id="{{id}}">
+            <h1>:-(</h1>
+            <p>Something went wrong</p>
+        </section>
+        </script>
+        
+        <script type="template/mustache" id="fail-breakdown-template">
+            <section class="breakdown fail" id="{{id}}">
                 <h1>:-(</h1>
                 <p>Something went wrong</p>
             </section>
         </script>
-		
-		<script type="template/mustache" id="fail-breakdown-template">
-			<section class="breakdown fail" id="{{id}}">
-				<h1>:-(</h1>
-                <p>Something went wrong</p>
-			</section>
-		</script>
         
         <script type="template/mustache" id="karma-breakdown-template">
             <section class="breakdown" id="karma-breakdown">
-				<div class="chartwrap">
-					<div class="chart" id="karmachart" style="width:960px;height:300px">
-						<h2>Karma</h2>
-					</div>
-				</div>
+                <div class="chartwrap">
+                    <div class="chart" id="karmachart" style="width:960px;height:300px">
+                        <h2>Karma</h2>
+                    </div>
+                </div>
             </section>
         </script>
-		
-		<script type="template/mustache" id="quality-breakdown-template">
-			<section class="breakdown" id="quality-breakdown">
-				<div class="chartwrap">
-					<div class="chart" id="qualitychart" style="width: 960px;height:300px">
-						<h2>Turnbacks</h2>
-					</div>
-				</div>
-				<div class="chartwrap">
-					<div class="chart" id="scrapchart" style="width: 960px;height:300px">
-						<h2>Scrap</h2>
-					</div>
-				</div>
-			</section>
-		</script>
-		
-		<script type="template/mustache" id="spending-breakdown-template">
+        
+        <script type="template/mustache" id="quality-breakdown-template">
+            <section class="breakdown" id="quality-breakdown">
+                <div class="chartwrap">
+                    <div class="chart" id="qualitychart" style="width: 960px;height:300px">
+                        <h2>Turnbacks</h2>
+                    </div>
+                </div>
+                <div class="chartwrap">
+                    <div class="chart" id="scrapchart" style="width: 960px;height:300px">
+                        <h2>Scrap</h2>
+                    </div>
+                </div>
+            </section>
+        </script>
+        
+        <script type="template/mustache" id="spending-breakdown-template">
             <section class="breakdown" id="spending-breakdown">
-				<div class="chartwrap">
-					<div class="chart" id="yesterdaychart" style="width:960px;height:300px">
-						<h2>Karma</h2>
-					</div>
-				</div>
-				<div class="chartwrap">
-					<div class="chart" id="peoplechart" style="width:960px;height:300px">
-						<h2>Karma</h2>
-					</div>
-				</div>
-				<div class="chartwrap">
-					<div class="chart" id="supplieschart" style="width:960px;height:300px">
-						<h2>Karma</h2>
-					</div>
-				</div>
-				<div class="chartwrap">
-					<div class="chart" id="toolschart" style="width:960px;height:300px">
-						<h2>Karma</h2>
-					</div>
-				</div>
-				<div class="chartwrap">
-					<div class="chart" id="utilitieschart" style="width:960px;height:300px">
-						<h2>Karma</h2>
-					</div>
-				</div>
-				<div class="chartwrap">
-					<div class="chart" id="maintenancechart" style="width:960px;height:300px">
-						<h2>Karma</h2>
-					</div>
-				</div>
-				<div class="chartwrap">
-					<div class="chart" id="otherchart" style="width:960px;height:300px">
-						<h2>Karma</h2>
-					</div>
-				</div>
+                <div class="chartwrap">
+                    <div class="chart" id="yesterdaychart" style="width:960px;height:300px">
+                        <h2>Karma</h2>
+                    </div>
+                </div>
+                <div class="chartwrap">
+                    <div class="chart" id="peoplechart" style="width:960px;height:300px">
+                        <h2>Karma</h2>
+                    </div>
+                </div>
+                <div class="chartwrap">
+                    <div class="chart" id="supplieschart" style="width:960px;height:300px">
+                        <h2>Karma</h2>
+                    </div>
+                </div>
+                <div class="chartwrap">
+                    <div class="chart" id="toolschart" style="width:960px;height:300px">
+                        <h2>Karma</h2>
+                    </div>
+                </div>
+                <div class="chartwrap">
+                    <div class="chart" id="utilitieschart" style="width:960px;height:300px">
+                        <h2>Karma</h2>
+                    </div>
+                </div>
+                <div class="chartwrap">
+                    <div class="chart" id="maintenancechart" style="width:960px;height:300px">
+                        <h2>Karma</h2>
+                    </div>
+                </div>
+                <div class="chartwrap">
+                    <div class="chart" id="otherchart" style="width:960px;height:300px">
+                        <h2>Karma</h2>
+                    </div>
+                </div>
             </section>
         </script>
-		
-		<script type="template/mustache" id="production-breakdown-template">
-			<section class="breakdown" id="production-breakdown">
-				{{#results}}
-					<div class="chartwrap">
-						<div class="chart" id="{{chartId}}" style="width:960px;height:300px">
-							<h2>{{chartTitle}}</h2>
-						</div>
-					</div>
-				{{/results}}
-			</section>
-		</script>
-
-	</head>
-	<body>
+        
+        <script type="template/mustache" id="production-breakdown-template">
+            <section class="breakdown" id="production-breakdown">
+                {{#results}}
+                    <div class="chartwrap">
+                        <div class="chart" id="{{chartId}}" style="width:960px;height:300px">
+                            <h2>{{chartTitle}}</h2>
+                        </div>
+                    </div>
+                {{/results}}
+            </section>
+        </script>
+        
+    </head>
+    <body>
         <header>
             <p id="navicon">&#9776;</p>
             <nav>
@@ -264,9 +264,9 @@
                     </tr>
                 </table>
             </nav>
-			<ol id="breadcrumbs">
-				<li><a href="#jenkintown">Jenkintown</a></li>
-			</ol>
+            <ol id="breadcrumbs">
+                <li><a href="#jenkintown">Jenkintown</a></li>
+            </ol>
         </header>
         <div id="content"></div>
         <script src="js/libs/rsvp.min.js"></script>
@@ -284,7 +284,7 @@
         <script src="js/widgets/spending.js"></script>
         <script src="js/widgets/production.js"></script>
         <script src="js/widgets/karma-bd.js"></script>
-		<script src="js/widgets/quality-bd.js"></script>
+        <script src="js/widgets/quality-bd.js"></script>
         <script src="js/init.js"></script>
-	</body>
+    </body>
 </html>
