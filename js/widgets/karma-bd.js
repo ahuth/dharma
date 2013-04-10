@@ -33,7 +33,6 @@ dharma.widgets.karma = (function (name, Charts, Widget, core) {
 			label_max: false,
 			label_min: false,
 			show_y_labels: false,
-			x_padding: 50,
             fill_area: true,
             show_grid: true
 		});

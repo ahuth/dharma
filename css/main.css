@@ -20,6 +20,7 @@ body {
     won't mess up our layout.*/
     min-width: 60em;
 	min-height: 40.5em;
+    max-width: 75em;
     /* Setting position: relative lets us use absolute positioning for all
     children elements with respect to this container's boundaries.*/
     position: relative;
