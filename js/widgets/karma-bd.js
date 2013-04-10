@@ -34,7 +34,8 @@ dharma.widgets.karma = (function (name, Charts, Widget, core) {
 			label_min: false,
 			show_y_labels: false,
             fill_area: true,
-            show_grid: true
+            show_grid: true,
+            x_padding: 65
 		});
         chart.add_line({
 			data: createReferenceLine(33, _data),
@@ -69,6 +70,14 @@ dharma.widgets.karma = (function (name, Charts, Widget, core) {
 		}
 		return output;
 	}
+    
+    // getDateString converts a date object to a string in the format we need
+    // for our chart.
+    function getDateString(dateobj) {
+        var months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun",
+                      "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+        return months[dateobj.getMonth()] + " " + dateobj.getDate() + ", " + dateobj.getFullYear();
+    }
 	
     // accumulateKarma returns an object that mirros the data we got from the
     // server, except the karma values are cumulative, not individual.
@@ -78,7 +87,7 @@ dharma.widgets.karma = (function (name, Charts, Widget, core) {
 			item;
 		for (item = 0; item < data.length; item++) {
 			total += data[item][1];
-			output.push([data[item][0], total, {tooltip: data[item][0].toDateString() + ": " + data[item][1]}]);
+			output.push([data[item][0], total, {tooltip: getDateString(data[item][0]) + ": " + data[item][1]}]);
 		}
 		return output;
 	}
