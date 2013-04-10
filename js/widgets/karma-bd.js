@@ -3,10 +3,10 @@
 
 dharma.widgets = dharma.widgets || {};
 
-dharma.widgets.karma = (function (name, Charts, Widget, core) {
+dharma.widgets.karma_breakdown = (function (name, Charts, Widget, core) {
     "use strict";
     
-    var me = new Widget(name, "karma-breakdown-template", "fail-overview-template"),
+    var me = new Widget(name, "karma-breakdown-template", "fail-breakdown-template"),
         destination = "content";
 	
     // createReferenceLine creates the data for a line we can chart showing what
@@ -29,7 +29,7 @@ dharma.widgets.karma = (function (name, Charts, Widget, core) {
 		if (!_data) {
 			return;
 		}
-		var chart = new Charts.LineChart("chartarea", {
+		var chart = new Charts.LineChart("karmachart", {
 			label_max: false,
 			label_min: false,
 			show_y_labels: false,
@@ -76,7 +76,7 @@ dharma.widgets.karma = (function (name, Charts, Widget, core) {
     function getDateString(dateobj) {
         var months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun",
                       "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
-        return months[dateobj.getMonth()] + " " + dateobj.getDate() + ", " + dateobj.getFullYear();
+        return months[dateobj.getMonth()] + " " + dateobj.getDate();
     }
 	
     // accumulateKarma returns an object that mirros the data we got from the

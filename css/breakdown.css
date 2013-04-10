@@ -1,9 +1,27 @@
-#karma-breakdown {
-	box-sizing: border-box;
-	border: 1em solid #47bbb3;
+.breakdown {
+	padding: 1em;
+	background-color: #ccc;
+}
+
+.breakdown .chartwrap {
+	margin-bottom: 1em;
 	background-color: #fefefe;
 }
 
-#karma-breakdown div#chartarea {
+.breakdown .chartwrap:last-child {
+	margin-bottom: 0;
+}
+
+.breakdown .chart {
+	position: relative;
 	margin: auto;
+}
+
+.breakdown .chart h2 {
+	color: #242424;
+	font-size: 1.2em;
+	position: absolute;
+	top: 0.6em;
+	text-align: center;
+	width: 100%;
 }

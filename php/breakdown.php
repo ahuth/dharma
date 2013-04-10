@@ -11,6 +11,9 @@ namespace breakdown {
 			case 'karma':
 				$output['karma'] = getKarmaData($group);
 				break;
+			case 'quality':
+				$output['quality'] = getQualityData($group);
+				break;
 		}
 		return $output;
 	}
@@ -30,4 +33,7 @@ namespace breakdown {
 		return $output;
 	}
     
+	function getQualityData($group) {
+		return NULL;
+	}
 }
