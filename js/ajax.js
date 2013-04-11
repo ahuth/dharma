@@ -1,7 +1,7 @@
 /*jslint vars: true, browser: true , plusplus: true*/
 /*global dharma */
 
-dharma.ajax = (function (name, window, rsvp) {
+dharma.ajax = (function (window, rsvp) {
     "use strict";
     
     // Send a get request and return a promise object.  This promise object will
@@ -49,4 +49,4 @@ dharma.ajax = (function (name, window, rsvp) {
 		get: get
 	};
     
-}("ajax", parent.window, parent.RSVP));
+}(parent.window, parent.RSVP));
