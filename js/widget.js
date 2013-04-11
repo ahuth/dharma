@@ -4,7 +4,7 @@
 // widget implements a base module that we will build off of for our widget
 // modules.  This tells each widget how to render itself and how to manage
 // event handlers.
-dharma.widget = (function (document, hogan) {
+dharma.widget = (function (document, accounting, hogan, ajax, core) {
     "use strict";
     
     // helper is a div that is NOT in the DOM.  It helps us convert a string
@@ -26,19 +26,35 @@ dharma.widget = (function (document, hogan) {
         }
         return firstNode;
     }
+	
+	// constructParamsString creates an ajax get request string from an object
+    // of arguments we want to send.
+    function constructParamsString(args) {
+        var item, parameters = "";
+        for (item in args) {
+            if (args.hasOwnProperty(item)) {
+                if (parameters === "") {
+                    parameters = item + "=" + args[item];
+                } else {
+                    parameters += "&" + item + "=" + args[item];
+                }
+            }
+        }
+        return parameters;
+    }
     
     // Returning this function allows us to use this module as a base for making
     // widgets.
-    return function (name, successTemplate, failTemplate) {
+    return function (name, successTemplate, type) {
         this.name = name;
+		this.type = type;
         // reference will refer to the actual HTML element.  Once we have it,
         // we can remove the widget from the page without knowing where it is.
         var reference = null;
-        // Templates stores pre-compiled mustache templates.  We pull the
-        // uncompiled out of the page, and then compile them.
+        // Templates stores compiled mustache templates.
         var templates = {
-            success: hogan.compile(document.getElementById(successTemplate).innerHTML),
-            fail: hogan.compile(document.getElementById(failTemplate).innerHTML)
+            success: hogan.compile(successTemplate),
+            fail: hogan.compile('<section class="{{type}} fail" id="{{id}}"><h1>:-(</h1><p>Something went wrong</p></section>')
         };
         // renderSuccess renders the success template and places it into the DOM.
         this.renderSuccess = function (destinationName, data) {
@@ -63,10 +79,10 @@ dharma.widget = (function (document, hogan) {
             if (reference) {
                 this.remove();
             }
-            node.appendChild(elementizeString(templates.fail.render({id: this.name})));
+            node.appendChild(elementizeString(templates.fail.render({type: type, id: this.name})));
             reference = document.getElementById(this.name);
         };
-        // removeMe removes the widget from the page.
+        // remove removes the widget from the page.
         this.remove = function () {
             if (!reference) {
                 return false;
@@ -100,6 +116,19 @@ dharma.widget = (function (document, hogan) {
             reference.parentNode.replaceChild(newNode, reference);
             reference = newNode;
         };
+		// requestData makes an ajax request and publishes a message once the
+		// response is received.
+		this.requestData = function (args) {
+			ajax.get("/dharma/php/dharmaservice.php", constructParamsString(args)).then(function (value) {
+				core.publish("here's-data", JSON.parse(value));
+			}, function () {
+				core.publish("no-data", args);
+			});
+		};
+		// formatMoney puts a dollar ammount into the format we want.
+		this.formatMoney = function (num) {
+			return accounting.formatMoney(num, "$", 0);
+		};
     };
     
-}(parent.document, parent.Hogan));
+}(parent.document, parent.accounting, parent.Hogan, dharma.ajax, dharma.core));

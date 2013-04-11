@@ -13,12 +13,26 @@ if (empty($_GET['type']) || empty($_GET['what']) || empty($_GET['group'])) {
 $type  = sanitizeString($_GET['type']);
 $what  = sanitizeString($_GET['what']);
 $group = sanitizeString($_GET['group']);
-$output = [];
-	
+
+/* The client will expect a response in the following format:
+	{
+		type: 'overview' or 'breakdown',
+		group: dept or area,
+		what: 'karma', 'quality', 'spending', 'production',
+		data: the data
+	}
+*/
+
 if ($type == 'overview') {
-	$output = overview\getOverviewData($what, $group);
+	$output = ['type' => $type,
+			   'group' => $group,
+			   'what' => $what,
+			   'data' => overview\getOverviewData($what, $group)];
 } else if ($type == 'breakdown') {
-	$output = breakdown\getBreakdownData($what, $group);
+	$output = ['type' => $type,
+			   'group' => $group,
+			   'what' => $what,
+			   'data' => overview\getBreakdownData($what, $group)];
 } else {
 	echo NULL;
 	return;

@@ -5,16 +5,16 @@ namespace overview {
 	function getOverviewData($what, $group) {
 		switch ($what) {
 			case 'karma':
-				$output['karma'] = getKarmaData($group);
+				$output = getKarmaData($group);
 				break;
 			case 'quality':
-				$output['quality'] = getQualityData($group);
+				$output = getQualityData($group);
 				break;
 			case 'spending':
-				$output['spending'] = getSpendingData($group);
+				$output = getSpendingData($group);
 				break;
 			case 'production':
-				$output['production'] = getProductionData($group);
+				$output = getProductionData($group);
 				break;
 		}
 		return $output;
@@ -24,8 +24,7 @@ namespace overview {
         $value  = mt_rand(22, 96);
         $change = mt_rand(-10, 10);
         $change = $change < 0 ? (string)$change : '+' . (string)$change;
-        return ['value'  => $value,
-                'change' => $change . '%'];
+        return ['value'  => $value, 'change' => $change . '%'];
 	}
 
 	function getQualityData($group) {
@@ -53,8 +52,9 @@ namespace overview {
 	}
 
 	function getProductionData($group) {
-        $results[] = ['milestone' => 'Shipped', 'result' => mt_rand(1000000, 2000000)];
-        $results[] = ['milestone' => 'Docked', 'result' => mt_rand(1000000, 2000000)];
+        $results[] = ['milestone' => 'Pre-form', 'result' => mt_rand(50000, 200000)];
+        $results[] = ['milestone' => 'Pre-NDT', 'result' => mt_rand(200000, 400000)];
+		$results[] = ['milestone' => 'Plating', 'result' => mt_rand(400000, 800000)];
         return ['results' => $results];
 	}
 }

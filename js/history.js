@@ -69,22 +69,13 @@ dharma.history = (function (name, window, history, core) {
     });
     
     // Listen for successful ajax requests, and store the data if we hear any.
-    core.subscribe("here's-data", name, function (args, response) {
-        var item;
-        for (item in response) {
-            if (response.hasOwnProperty(item)) {
-                data[item] = response[item];
-            }
-        }
-        if (!data.type) {
-            data.type = args.type;
-        }
-        if (!data.category && data.type === "breakdown") {
-            data.category = args.what;
-        }
-        if (!data.group) {
-            data.group = currentGroup;
-        }
+    core.subscribe("data-processed", name, function (widgetName, processedData) {
+        data[widgetName] = processedData;
+		if (!data.type) {
+			data.group = currentGroup;
+			data.type = widgetName.split("-")[1];
+			data.category = data.type === "breakdown" ? widgetName.split("-")[0] : null;
+		}
         changeHistory(data);
     });
     

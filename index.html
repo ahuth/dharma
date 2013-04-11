@@ -14,7 +14,7 @@
         <link rel="stylesheet" href="css/breakdown.css">
         
         <script type="template/mustache" id="karma-overview-template">
-            <section class="widget" id="karma">
+            <section class="overview" id="karma-overview">
                 <h2>Karma</h2>
                 <p class="main">{{value}}</p>
                 <p class="secondary">{{change}}</p>
@@ -22,7 +22,7 @@
         </script>
         
         <script type="template/mustache" id="quality-overview-template">
-        <section class="widget" id="quality">
+        <section class="overview" id="quality-overview">
             <h2>Quality</h2>
                 <table>
                     <tr>
@@ -38,7 +38,7 @@
         </script>
         
         <script type="template/mustache" id="spending-overview-template">
-            <section class="widget" id="spending">
+            <section class="overview" id="spending-overview">
                 <h2>Spending</h2>
                 <table>
                     <tr>
@@ -78,7 +78,7 @@
         </script>
         
         <script type="template/mustache" id="production-overview-template">
-            <section class="widget" id="production">
+            <section class="overview" id="production-overview">
                 <h2>Production</h2>
                 <table>
                     {{#results}}
@@ -88,20 +88,6 @@
                         </tr>
                     {{/results}}
                 </table>
-            </section>
-        </script>
-        
-        <script type="template/mustache" id="fail-overview-template">
-        <section class="widget fail" id="{{id}}">
-            <h1>:-(</h1>
-            <p>Something went wrong</p>
-        </section>
-        </script>
-        
-        <script type="template/mustache" id="fail-breakdown-template">
-            <section class="breakdown fail" id="{{id}}">
-                <h1>:-(</h1>
-                <p>Something went wrong</p>
             </section>
         </script>
         
@@ -118,7 +104,7 @@
         <script type="template/mustache" id="quality-breakdown-template">
             <section class="breakdown" id="quality-breakdown">
                 <div class="chartwrap">
-                    <div class="chart" id="qualitychart" style="width: 960px;height:300px">
+                    <div class="chart" id="turnbackchart" style="width: 960px;height:300px">
                         <h2>Turnbacks</h2>
                     </div>
                 </div>
@@ -279,12 +265,10 @@
         <script src="js/navigation.js"></script>
         <script src="js/history.js"></script>
         <script src="js/widget.js"></script>
-        <script src="js/widgets/karma.js"></script>
-        <script src="js/widgets/quality.js"></script>
-        <script src="js/widgets/spending.js"></script>
-        <script src="js/widgets/production.js"></script>
-        <script src="js/widgets/karma-bd.js"></script>
-        <script src="js/widgets/quality-bd.js"></script>
+        <script src="js/overview/karma-overview.js"></script>
+		<script src="js/overview/quality-overview.js"></script>
+		<script src="js/overview/spending-overview.js"></script>
+		<script src="js/overview/production-overview.js"></script>
         <script src="js/init.js"></script>
     </body>
 </html>

@@ -1,4 +1,4 @@
-/*jslint vars: true, browser: true */
+/*jslint vars: true, browser: true, plusplus: true */
 
 // All of our modules will fall under the dharma object, so that we don't put
 // stuff into the global namespace.  Because we define this object here, be sure
@@ -26,7 +26,7 @@ dharma.core = (function () {
         }
         for (item in obj) {
             if (obj.hasOwnProperty(item)) {
-                size += 1;
+                size++;
             }
         }
         return size;

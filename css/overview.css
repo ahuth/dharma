@@ -1,11 +1,11 @@
 /* Top-level widgets */
 
-.widget {
+.overview {
     cursor: pointer;
     position: absolute;
 }
 
-#karma {
+#karma-overview {
     background-color: #47bbb3;
 	min-height: 20em;
     min-width: 14em;
@@ -14,7 +14,7 @@
     width: calc(25% - 0.25em);
 }
 
-#quality {
+#quality-overview {
 	background-color: #ff8001;
 	min-height: 20em;
     min-width: 28em;
@@ -23,7 +23,7 @@
     width: calc(50% - 0.5em);
 }
 
-#spending {
+#spending-overview {
 	background-color: #634fff;
 	min-height: 40.5em;
     min-width: 14em;
@@ -32,7 +32,7 @@
     width: calc(25% - 0.25em);
 }
 
-#production {
+#production-overview {
 	background-color: #ff7676;
 	min-height: 20em;
     min-width: 42.5em;
@@ -46,11 +46,11 @@
 
 /* Generic widget parts */
 
-.widget h2, .widget p, .widget table {
+.overview h2, .overview p, .overview table {
 	position: absolute;
 }
 
-.widget > h2 {
+.overview > h2 {
     font-size: 1.5em;
     text-align: center;
     color: rgba(255, 255, 255, 0.7);
@@ -58,28 +58,28 @@
 	top: 15%;
 }
 
-.widget p {
+.overview p {
     font-size: 1.5em;
 	width: 100%;
 	text-align: center;
 }
 
-.widget table td {
+.overview table td {
 	height: 1.4em;
 }
 
-.widget table td:nth-child(even) {
+.overview table td:nth-child(even) {
 	text-align: right;
 }
 
-.widget.fail > h1 {
+.overview.fail > h1 {
 	position: relative;
     text-align: center;
     margin-top: 0.8em;
     font-size: 6em;
 }
 
-.widget.fail > p {
+.overview.fail > p {
 	position: relative;
     text-align: center;
     margin-top: 1em;
@@ -88,16 +88,16 @@
 
 /* Specific widget parts */
 
-#karma p.main {
+#karma-overview p.main {
 	font-size: 4em;
 	top: calc(50% - 0.5em);
 }
 
-#karma p.secondary {
+#karma-overview p.secondary {
 	bottom: 15%;
 }
 
-#quality table {
+#quality-overview table {
 	font-size: 1.8em;
 	top: calc(50% - 1em);
 	width: 60%;
@@ -106,13 +106,13 @@
 	left: 20%;
 }
 
-#spending > h2 {
+#spending-overview > h2 {
 	/* The other widgets have their title at top=15%.  Spending is twice as
 	tall as the others, though, so put its title at 7.5%.*/
 	top: 7.5%;
 }
 
-#spending table {
+#spending-overview table {
 	font-size: 1.4em;
 	top: calc(50% - 8.4em);
 	width: 90%;
@@ -121,21 +121,21 @@
 	left: 5%;
 }
 
-#spending table td {
+#spending-overview table td {
     color: rgba(255, 255, 255, 0.7);
 }
 
-#spending table td:nth-child(even) {
+#spending-overview table td:nth-child(even) {
     color: rgba(255, 255, 255, 0.9);
 }
 
-#production table {
+#production-overview table {
     font-size: 1.6em;
     width: 40%;
     left: 30%;
     top: 36%;
 }
 
-#production table tr {
+#production-overview table tr {
     height: 1.8em;
 }
