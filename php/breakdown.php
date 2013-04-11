@@ -20,8 +20,6 @@ namespace breakdown {
 	
 	function getKarmaData($group) {
 		$total = 0;
-		//$begin = date_create_from_format("Y-m-d", "2013-04-01");
-		//$end = date_create_from_format("Y-m-d", NULL);
 		$period = new DatePeriod(
 			new DateTime('2013-04-01'),
 			new DateInterval('P1D'),
@@ -34,6 +32,17 @@ namespace breakdown {
 	}
     
 	function getQualityData($group) {
-		return NULL;
+		$total = 0;
+        $period = new DatePeriod(
+            new DateTime('2013-04-01'),
+            new DateInterval('P1D'),
+            new DateTime(NULL)
+        );
+        foreach($period as $dt) {
+            $dates[] = date_format($dt, 'Y-m-d \E\S\T');
+            $turnbacks[] = mt_rand(0, 4);
+            $scrap[] = mt_rand(0, 20000);
+        }
+        return ['dates' => $dates, 'turnbacks' => $turnbacks, 'scrap' => $scrap];
 	}
 }
