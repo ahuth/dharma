@@ -32,7 +32,7 @@ if ($type == 'overview') {
 	$output = ['type' => $type,
 			   'group' => $group,
 			   'what' => $what,
-			   'data' => overview\getBreakdownData($what, $group)];
+			   'data' => breakdown\getBreakdownData($what, $group)];
 } else {
 	echo NULL;
 	return;
