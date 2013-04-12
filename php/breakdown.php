@@ -27,6 +27,9 @@ namespace breakdown {
 			case 'quality':
 				$output = getQualityData($group);
 				break;
+			case 'spending':
+				$output = getSpendingData($group);
+				break;
 		}
 		return $output;
 	}
@@ -42,7 +45,7 @@ namespace breakdown {
             $karma[] = mt_rand(0, 100);
         }
         return ['dates' => $dates, 
-				'karma' => ['values' => $karma, 'reference' => 66]];
+				'karma' => ['values' => $karma, 'reference' => 50]];
 	}
     
 	function getQualityData($group) {
@@ -57,7 +60,35 @@ namespace breakdown {
             $scrap[] = mt_rand(0, 5000);
         }
         return ['dates' => $dates,
-				'turnbacks' => ['values' => $turnbacks, 'reference' => 1],
-				'scrap' => ['values' => $scrap, 'reference' => 1000]];
+				'turnbacks' => ['values' => $turnbacks, 'reference' => 2],
+				'scrap' 	=> ['values' => $scrap, 'reference' => 2500]];
+	}
+	
+	function getSpendingData($group) {
+		$period = new DatePeriod(
+			new DateTime('2013-04-01'),
+			new DateInterval('P1D'),
+			new DateTime(NULL)
+		);
+		foreach($period as $dt) {
+			$dates[] = date_format($dt, 'Y-m-d \E\S\T');
+			$people[]      = mt_rand(20000, 60000);
+			$supplies[]    = mt_rand(5000, 20000);
+			$tools[]       = mt_rand(0, 5000);
+			$utilities[]   = 10000;
+			$maintenance[] = mt_rand(0, 10000);
+			$other[]       = mt_rand(5000, 10000);
+			$yesterday[]   = $people[count($people) - 1] + $supplies[count($supplies) - 1] + 
+							 $tools[count($tools) - 1] + $utilities[count($utilities) -1] + 
+							 $maintenance[count($maintenance) - 1] + $other[count($other) - 1];
+		}
+		return ['dates' => $dates,
+				'yesterday'   => ['values' => $yesterday, 'reference' => 77500],
+				'people' 	  => ['values' => $people, 'reference' => 40000],
+				'supplies' 	  => ['values' => $supplies, 'reference' => 12500],
+				'tools' 	  => ['values' => $tools, 'reference' => 2500],
+				'utilities'   => ['values' => $utilities, 'reference' => 10000],
+				'maintenance' => ['values' => $maintenance, 'reference' => 5000],
+				'other' 	  => ['values' => $other, 'reference' => 7500]];
 	}
 }

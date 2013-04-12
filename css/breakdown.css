@@ -1,18 +1,24 @@
-.breakdown {
-	padding: 1em;
-	background-color: #ccc;
-}
-
 .breakdown .chartwrap {
-	margin-bottom: 1em;
+	/* Make position relative so we can slide each one up by 1 em.*/
+	position: relative;
+	/* Make box-sizing border-box so that we can have a 1 em border around the
+	chart elements without expanding the size.*/
+	box-sizing: border-box;
+	border: 1em solid #ccc;
 	background-color: #fefefe;
+	/* Each 'chartwrap' has a 1em border around it.  This creates a 2em vertical
+	gap between them.  Slide each one up by 1em (except for the first one) to
+	make the gap only 1em.*/
+	top: -1em;
 }
 
-.breakdown .chartwrap:last-child {
-	margin-bottom: 0;
+.breakdown .chartwrap:first-child {
+	top: 0;
 }
 
 .breakdown .chart {
+	/* Make position relative so that we can absolutly position child elements
+	with respect to this element.*/
 	position: relative;
 	margin: auto;
 }
@@ -22,6 +28,8 @@
 	font-size: 1.2em;
 	position: absolute;
 	top: 0.6em;
+	/* Making the width 100% and aligning the text to center lets us center this
+	element without knowing how long it is.*/
 	text-align: center;
 	width: 100%;
 }

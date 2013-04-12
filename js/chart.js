@@ -52,7 +52,7 @@ dharma.chart = (function (accounting, Charts) {
 			total += values[item];
 			date = new Date(dates[item]);
 			if (money) {
-				output.push([date, total, {tooltip: getDateString(date) + ": " + accounting.formatMoney(values[item])}]);
+				output.push([date, total, {tooltip: getDateString(date) + ": " + accounting.formatMoney(values[item], "$", 0)}]);
 			} else {
 				output.push([date, total, {tooltip: getDateString(date) + ": " + values[item]}]);
 			}

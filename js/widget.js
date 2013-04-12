@@ -122,6 +122,20 @@ dharma.widget = (function (document, accounting, hogan, ajax, core) {
 		this.formatMoney = function (num) {
 			return accounting.formatMoney(num, "$", 0);
 		};
+		// renderTemplate takes a mustache template and renders it into the
+		// widget as a child.
+		this.renderTemplate = function (templateString, data) {
+			var template = hogan.compile(templateString);
+			if (!reference) {
+				return false;
+			}
+			reference.appendChild(elementizeString(template.render(data)));
+		};
+		// formatString makes the first character of a string uppercase, and the
+		// rest lowercase.
+		this.formatString = function (input) {
+			return input.slice(0, 1).toUpperCase() + input.slice(1).toLowerCase();
+		};
 	};
 	
 }(parent.document, parent.accounting, parent.Hogan, dharma.ajax, dharma.core));

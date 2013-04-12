@@ -100,46 +100,19 @@
                 </div>
             </section>
         </script>
-        
-        <script type="template/mustache" id="quality-breakdown-template">
-            <section class="breakdown" id="quality-breakdown">
-                <div class="chartwrap">
-                    <div class="chart" id="turnbackschart" style="width: 960px;height:300px">
-                        <h2>Turnbacks</h2>
-                    </div>
-                </div>
-                <div class="chartwrap">
-                    <div class="chart" id="scrapchart" style="width: 960px;height:300px">
-                        <h2>Scrap</h2>
-                    </div>
-                </div>
-            </section>
-        </script>
-        
-        <script type="template/mustache" id="spending-breakdown-template">
-            <section class="breakdown" id="spending-breakdown">
-                {{#results}}
-                    <div class="chartwrap">
-                        <div class="chart" id="{{chartId}}" style="width:960px;height:300px">
-                            <h2>{{chartTitle}}</h2>
-                        </div>
-                    </div>
-                {{/results}}
-            </section>
-        </script>
-        
-        <script type="template/mustache" id="production-breakdown-template">
-            <section class="breakdown" id="production-breakdown">
-                {{#results}}
-                    <div class="chartwrap">
-                        <div class="chart" id="{{chartId}}" style="width:960px;height:300px">
-                            <h2>{{chartTitle}}</h2>
-                        </div>
-                    </div>
-                {{/results}}
-            </section>
-        </script>
-        
+		
+		<script type="template/mustache" id="breakdown-template">
+			<section class="breakdown" id="{{sectionId}}"></section>
+		</script>
+		
+		<script type="template/mustache" id="breakdown-chart-template">
+			<div class="chartwrap">
+				<div class="chart" id="{{chartId}}" style="width:960px;height:300px">
+					<h2>{{chartTitle}}</h2>
+				</div>
+			</div>
+		</script>
+
     </head>
     <body>
         <header>
@@ -243,6 +216,8 @@
 		<script src="js/overview/spending-overview.js"></script>
 		<script src="js/overview/production-overview.js"></script>
         <script src="js/breakdown/karma-breakdown.js"></script>
+		<script src="js/breakdown/quality-breakdown.js"></script>
+		<script src="js/breakdown/spending-breakdown.js"></script>
         <script src="js/init.js"></script>
     </body>
 </html>

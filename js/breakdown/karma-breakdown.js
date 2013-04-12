@@ -6,7 +6,8 @@ dharma.breakdown = dharma.breakdown || {};
 dharma.breakdown.karma = (function (name, Widget, chart, core) {
     "use strict";
     
-    var template = document.getElementById("karma-breakdown-template").innerHTML,
+    var template = document.getElementById("breakdown-template").innerHTML,
+		chartTemplate = document.getElementById("breakdown-chart-template").innerHTML,
 		destination = "content",
 		myType = "breakdown",
 		myWhat = "karma";
@@ -33,7 +34,8 @@ dharma.breakdown.karma = (function (name, Widget, chart, core) {
 			return;
 		}
         var data = {};
-		me.renderSuccess(destination);
+		me.renderSuccess(destination, {sectionId: name});
+		me.renderTemplate(chartTemplate, {chartId: myWhat + "chart", chartTitle: "Karma"});
         data.data = chart.generateData(response.data.dates, response.data.karma.values, false);
 		data.reference = response.data.karma.reference;
         chart.drawLineChart("karmachart", data.data, data.reference, {show_y_labels: false});
@@ -52,7 +54,8 @@ dharma.breakdown.karma = (function (name, Widget, chart, core) {
 		if (!data.hasOwnProperty(name)) {
 			return;
 		}
-		me.renderSuccess(destination);
+		me.renderSuccess(destination, {sectionId: name});
+		me.renderTemplate(chartTemplate, {chartId: myWhat + "chart", chartTitle: "Karma"});
 		chart.drawLineChart("karmachart", data[name].data, data[name].reference, {show_y_labels: false});
 	});
     
