@@ -1,19 +1,19 @@
 .breakdown .chartwrap {
-	/* Make position relative so we can slide each one up by 1 em.*/
-	position: relative;
 	/* Make box-sizing border-box so that we can have a 1 em border around the
 	chart elements without expanding the size.*/
 	box-sizing: border-box;
-	border: 1em solid #ccc;
 	background-color: #fefefe;
-	/* Each 'chartwrap' has a 1em border around it.  This creates a 2em vertical
-	gap between them.  Slide each one up by 1em (except for the first one) to
-	make the gap only 1em.*/
-	top: -1em;
+	border-width: 0.5em 1em;
+	border-style: solid;
+	border-color: #ccc;
 }
 
 .breakdown .chartwrap:first-child {
-	top: 0;
+	border-top-width: 1em;
+}
+
+.breakdown .chartwrap:last-child {
+	border-bottom-width: 1em;
 }
 
 .breakdown .chart {
