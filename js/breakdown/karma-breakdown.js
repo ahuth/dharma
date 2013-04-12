@@ -26,18 +26,26 @@ dharma.breakdown.karma = (function (name, Widget, chart, core) {
 		me.requestData({type: myType, what: myWhat, group: group});
 	});
     
+	// When we get data back, process it into a format that the chart module can
+	// understand.  Then, send of the processed data to be stored.
     core.subscribe("here's-data", name, function (response) {
 		if (response.type !== myType || response.what !== myWhat) {
 			return;
 		}
         var data = {};
 		me.renderSuccess(destination);
-		// Process our data into a format that the chart module can understand.
         data.data = chart.generateData(response.data.dates, response.data.karma, false);
 		data.reference = response.data.karmaReference;
-		// Draw the chart and store the processed data, so we reconstruct the page.
         chart.drawLineChart("karmachart", data.data, data.reference, {show_y_labels: false});
 		core.publish("data-processed", name, data);
+	});
+	
+	// If the request doesn't return any data, render the fail template.
+	core.subscribe("no-data", name, function (args) {
+		if (args.type !== myType || args.what !== myWhat) {
+			return;
+		}
+		me.renderFail(destination);
 	});
 	
 	core.subscribe("reconstruct-breakdown", name, function (data) {
