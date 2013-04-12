@@ -39,7 +39,7 @@ namespace breakdown {
             $dates[] = date_format($dt, 'Y-m-d \E\S\T');
             $karma[] = mt_rand(0, 100);
         }
-        return ['dates' => $dates, 'karma' => $karma];
+        return ['dates' => $dates, 'karma' => $karma, 'karmaReference' => 66];
 	}
     
 	function getQualityData($group) {

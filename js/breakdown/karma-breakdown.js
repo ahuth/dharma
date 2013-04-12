@@ -30,9 +30,22 @@ dharma.breakdown.karma = (function (name, Widget, chart, core) {
 		if (response.type !== myType || response.what !== myWhat) {
 			return;
 		}
-        var data;
+        var data = {};
 		me.renderSuccess(destination);
+		// Process our data into a format that the chart module can understand.
+        data.data = chart.generateData(response.data.dates, response.data.karma, false);
+		data.reference = response.data.karmaReference;
+		// Draw the chart and store the processed data, so we reconstruct the page.
+        chart.drawLineChart("karmachart", data.data, data.reference, {show_y_labels: false});
 		core.publish("data-processed", name, data);
+	});
+	
+	core.subscribe("reconstruct-breakdown", name, function (data) {
+		if (!data.hasOwnProperty(name)) {
+			return;
+		}
+		me.renderSuccess(destination);
+		chart.drawLineChart("karmachart", data[name].data, data[name].reference, {show_y_labels: false});
 	});
     
 }("karma-breakdown", dharma.widget, dharma.chart, dharma.core));
