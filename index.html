@@ -118,41 +118,13 @@
         
         <script type="template/mustache" id="spending-breakdown-template">
             <section class="breakdown" id="spending-breakdown">
-                <div class="chartwrap">
-                    <div class="chart" id="yesterdaychart" style="width:960px;height:300px">
-                        <h2>Karma</h2>
+                {{#results}}
+                    <div class="chartwrap">
+                        <div class="chart" id="{{chartId}}" style="width:960px;height:300px">
+                            <h2>{{chartTitle}}</h2>
+                        </div>
                     </div>
-                </div>
-                <div class="chartwrap">
-                    <div class="chart" id="peoplechart" style="width:960px;height:300px">
-                        <h2>Karma</h2>
-                    </div>
-                </div>
-                <div class="chartwrap">
-                    <div class="chart" id="supplieschart" style="width:960px;height:300px">
-                        <h2>Karma</h2>
-                    </div>
-                </div>
-                <div class="chartwrap">
-                    <div class="chart" id="toolschart" style="width:960px;height:300px">
-                        <h2>Karma</h2>
-                    </div>
-                </div>
-                <div class="chartwrap">
-                    <div class="chart" id="utilitieschart" style="width:960px;height:300px">
-                        <h2>Karma</h2>
-                    </div>
-                </div>
-                <div class="chartwrap">
-                    <div class="chart" id="maintenancechart" style="width:960px;height:300px">
-                        <h2>Karma</h2>
-                    </div>
-                </div>
-                <div class="chartwrap">
-                    <div class="chart" id="otherchart" style="width:960px;height:300px">
-                        <h2>Karma</h2>
-                    </div>
-                </div>
+                {{/results}}
             </section>
         </script>
         

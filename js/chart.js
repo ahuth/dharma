@@ -78,6 +78,7 @@ dharma.chart = (function (accounting, Charts) {
 		chart.draw();
 	}
 	
+	// Module API.
 	return {
 		generateData: generateData,
 		drawLineChart: drawLineChart

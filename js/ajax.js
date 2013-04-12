@@ -45,6 +45,7 @@ dharma.ajax = (function (window, rsvp) {
         return promise;
     }
     
+	// Module API.
     return {
 		get: get
 	};
