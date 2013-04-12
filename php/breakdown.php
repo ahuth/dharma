@@ -30,6 +30,9 @@ namespace breakdown {
 			case 'spending':
 				$output = getSpendingData($group);
 				break;
+			case 'production':
+				$output = getProductionData($group);
+				break;
 		}
 		return $output;
 	}
@@ -71,7 +74,7 @@ namespace breakdown {
 			new DateTime(NULL)
 		);
 		foreach($period as $dt) {
-			$dates[] = date_format($dt, 'Y-m-d \E\S\T');
+			$dates[] 	   = date_format($dt, 'Y-m-d \E\S\T');
 			$people[]      = mt_rand(20000, 60000);
 			$supplies[]    = mt_rand(5000, 20000);
 			$tools[]       = mt_rand(0, 5000);
@@ -90,5 +93,23 @@ namespace breakdown {
 				'utilities'   => ['values' => $utilities, 'reference' => 10000],
 				'maintenance' => ['values' => $maintenance, 'reference' => 5000],
 				'other' 	  => ['values' => $other, 'reference' => 7500]];
+	}
+	
+	function getProductionData($group) {
+		$period = new DatePeriod(
+			new DateTime('2013-04-01'),
+			new DateInterval('P1D'),
+			new DateTime(NULL)
+		);
+		foreach($period as $dt) {
+			$dates[]   = date_format($dt, 'Y-m-d \E\S\T');
+			$preform[] = mt_rand(50000, 200000);
+			$prendt[]  = mt_rand(200000, 400000);
+			$plating[] = mt_rand(400000, 800000);
+		}
+		return ['dates'    => $dates,
+				'Pre-form' => ['values' => $preform, 'reference' => 125000],
+				'Pre-NDT'  => ['values' => $prendt, 'reference' => 300000],
+				'Plating'  => ['values' => $plating, 'reference' => 600000]];
 	}
 }
