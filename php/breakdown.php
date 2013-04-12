@@ -10,10 +10,12 @@ namespace breakdown {
 	The client will expect the data to be in the following format:
 		{
 			dates:    array of dates,
-			category: {
+			category1: {
 				values: array of values for each date,
 				reference: daily average for the previous quarter
 			}
+			category2: ...,
+			category3: ...
 		}
 	*/
 	
