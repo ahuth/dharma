@@ -9,11 +9,11 @@ namespace breakdown {
 	/*
 	The client will expect the data to be in the following format:
 		{
-			dates: array of dates,
-			(category): array of values for each day in the current quarter,
-			... can have multiple categories,
-			(category)Reference: average daily value for the previous quarter,
-			... can have multiple category references
+			dates:    array of dates,
+			category: {
+				values: array of values for each date,
+				reference: daily average for the previous quarter
+			}
 		}
 	*/
 	
@@ -39,7 +39,8 @@ namespace breakdown {
             $dates[] = date_format($dt, 'Y-m-d \E\S\T');
             $karma[] = mt_rand(0, 100);
         }
-        return ['dates' => $dates, 'karma' => $karma, 'karmaReference' => 66];
+        return ['dates' => $dates, 
+				'karma' => ['values' => $karma, 'reference' => 66]];
 	}
     
 	function getQualityData($group) {
@@ -54,9 +55,7 @@ namespace breakdown {
             $scrap[] = mt_rand(0, 5000);
         }
         return ['dates' => $dates,
-				'turnbacks' => $turnbacks,
-				'turnbacksReference' => 1,
-				'scrap' => $scrap,
-				'scrapReference' => 1000];
+				'turnbacks' => ['values' => $turnbacks, 'reference' => 1],
+				'scrap' => ['values' => $scrap, 'reference' => 1000]];
 	}
 }

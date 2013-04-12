@@ -34,8 +34,8 @@ dharma.breakdown.karma = (function (name, Widget, chart, core) {
 		}
         var data = {};
 		me.renderSuccess(destination);
-        data.data = chart.generateData(response.data.dates, response.data.karma, false);
-		data.reference = response.data.karmaReference;
+        data.data = chart.generateData(response.data.dates, response.data.karma.values, false);
+		data.reference = response.data.karma.reference;
         chart.drawLineChart("karmachart", data.data, data.reference, {show_y_labels: false});
 		core.publish("data-processed", name, data);
 	});
