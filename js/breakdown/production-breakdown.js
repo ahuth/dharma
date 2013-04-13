@@ -75,7 +75,7 @@ dharma.breakdown.quality = (function (name, Widget, chart, core) {
 		for (item in myData) {
 			if (myData.hasOwnProperty(item)) {
 				me.renderTemplate(chartTemplate, {chartId: myData[item].id, chartTitle: myData[item].title});
-				chart.drawLineChart(myData[item].id, myData[item].data, myData[item].reference);
+				chart.drawLineChart(myData[item].id, myData[item].data, myData[item].reference, {y_label_size: 12});
 			}
 		}
 	});

@@ -1,6 +1,4 @@
 .breakdown .chartwrap {
-	/* Make box-sizing border-box so that we can have a 1 em border around the
-	chart elements without expanding the size.*/
 	box-sizing: border-box;
 	background-color: #fefefe;
 	border-width: 0.5em 1em;
