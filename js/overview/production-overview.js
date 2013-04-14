@@ -15,17 +15,17 @@ dharma.overview.production = (function (name, Widget, core) {
 	var me = new Widget(name, template, myType);
 	
 	// formatResults takes our data response and formats the numbers as money.
-    function formatResults(obj) {
-        var item, output = {};
-        output.results = [];
-        for (item = 0; item < obj.length; item++) {
-            output.results.push({
-                milestone: obj[item].milestone,
-                result: me.formatMoney(obj[item].result)
-            });
-        }
-        return output;
-    }
+	function formatResults(obj) {
+		var item, output = {};
+		output.results = [];
+		for (item = 0; item < obj.length; item++) {
+			output.results.push({
+				milestone: obj[item].milestone,
+				result: me.formatMoney(obj[item].result)
+			});
+		}
+		return output;
+	}
 	
 	core.subscribe("clear-screen", name, function () {
 		me.remove();

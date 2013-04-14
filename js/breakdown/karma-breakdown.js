@@ -4,41 +4,43 @@
 dharma.breakdown = dharma.breakdown || {};
 
 dharma.breakdown.karma = (function (name, Widget, chart, core) {
-    "use strict";
-    
-    var template = document.getElementById("breakdown-template").innerHTML,
+	"use strict";
+	
+	var template = document.getElementById("breakdown-template").innerHTML,
 		chartTemplate = document.getElementById("breakdown-chart-template").innerHTML,
 		destination = "content",
 		myType = "breakdown",
 		myWhat = "karma";
-    
-    // Me is the actual instance of our widget object.
+	
+	// Me is the actual instance of our widget object.
 	var me = new Widget(name, template, myType);
-    
-    core.subscribe("clear-screen", name, function () {
+	
+	core.subscribe("clear-screen", name, function () {
 		me.remove();
 	});
-    
-    // Request the data we need.  We'll handle this data later.
-    core.subscribe("show-breakdown", name, function (group, widget) {
-        if (widget !== myWhat) {
-            return;
-        }
+	
+	// Request the data we need.  We'll handle this data later.
+	core.subscribe("show-breakdown", name, function (group, widget) {
+		if (widget !== myWhat) {
+			return;
+		}
 		me.requestData({type: myType, what: myWhat, group: group});
 	});
-    
+	
 	// When we get data back, process it into a format that the chart module can
 	// understand.  Then, send of the processed data to be stored.
-    core.subscribe("here's-data", name, function (response) {
+	core.subscribe("here's-data", name, function (response) {
 		if (response.type !== myType || response.what !== myWhat) {
 			return;
 		}
-        var data = {};
+		var data = {
+			dates: chart.generateDates(response.data.dates),
+			data: chart.generateData(response.data.karma.values),
+			reference: chart.generateReference(response.data.karma.reference, response.data.dates.length)
+		};
 		me.renderSuccess(destination, {sectionId: name});
 		me.renderTemplate(chartTemplate, {chartId: myWhat + "chart", chartTitle: "Karma"});
-        data.data = chart.generateData(response.data.dates, response.data.karma.values, false);
-		data.reference = response.data.karma.reference;
-        chart.drawLineChart("karmachart", data.data, data.reference, {});
+		chart.drawLineChart("karmachart", data);
 		core.publish("data-processed", name, data);
 	});
 	
@@ -56,7 +58,7 @@ dharma.breakdown.karma = (function (name, Widget, chart, core) {
 		}
 		me.renderSuccess(destination, {sectionId: name});
 		me.renderTemplate(chartTemplate, {chartId: myWhat + "chart", chartTitle: "Karma"});
-		chart.drawLineChart("karmachart", data[name].data, data[name].reference, {});
+		chart.drawLineChart("karmachart", data[name]);
 	});
-    
+	
 }("karma-breakdown", dharma.widget, dharma.chart, dharma.core));
