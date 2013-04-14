@@ -50,7 +50,7 @@ dharma.breakdown.quality = (function (name, Widget, chart, core) {
 					};
 					// Render the template for this chart and draw the chart on it.
 					me.renderTemplate(chartTemplate, {chartId: data[item].id, chartTitle: data[item].title});
-					chart.drawLineChart(data[item].id, data[item].data, data[item].reference, {y_label_size: 12});
+					chart.drawLineChart(data[item].id, data[item].data, data[item].reference, {});
 				}
 			}
 		}
@@ -75,7 +75,7 @@ dharma.breakdown.quality = (function (name, Widget, chart, core) {
 		for (item in myData) {
 			if (myData.hasOwnProperty(item)) {
 				me.renderTemplate(chartTemplate, {chartId: myData[item].id, chartTitle: myData[item].title});
-				chart.drawLineChart(myData[item].id, myData[item].data, myData[item].reference, {y_label_size: 12});
+				chart.drawLineChart(myData[item].id, myData[item].data, myData[item].reference, {});
 			}
 		}
 	});

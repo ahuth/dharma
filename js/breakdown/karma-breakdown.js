@@ -38,7 +38,7 @@ dharma.breakdown.karma = (function (name, Widget, chart, core) {
 		me.renderTemplate(chartTemplate, {chartId: myWhat + "chart", chartTitle: "Karma"});
         data.data = chart.generateData(response.data.dates, response.data.karma.values, false);
 		data.reference = response.data.karma.reference;
-        chart.drawLineChart("karmachart", data.data, data.reference, {show_y_labels: false});
+        chart.drawLineChart("karmachart", data.data, data.reference, {});
 		core.publish("data-processed", name, data);
 	});
 	
@@ -56,7 +56,7 @@ dharma.breakdown.karma = (function (name, Widget, chart, core) {
 		}
 		me.renderSuccess(destination, {sectionId: name});
 		me.renderTemplate(chartTemplate, {chartId: myWhat + "chart", chartTitle: "Karma"});
-		chart.drawLineChart("karmachart", data[name].data, data[name].reference, {show_y_labels: false});
+		chart.drawLineChart("karmachart", data[name].data, data[name].reference, {});
 	});
     
 }("karma-breakdown", dharma.widget, dharma.chart, dharma.core));
