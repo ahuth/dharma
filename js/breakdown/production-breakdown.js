@@ -44,7 +44,7 @@ dharma.breakdown.quality = (function (name, Widget, chart, core) {
 					// Put our data into a format that the chart module can understand.
 					data[item] = {
 						data: chart.generateData(response.data[item].values),
-						reference: chart.generateReference(response.data[item].reference),
+						reference: chart.generateReference(response.data[item].reference, response.data.dates.length),
 						dates: chart.generateDates(response.data.dates),
 						id: item + "chart",
 						title: me.formatString(item)

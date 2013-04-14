@@ -56,7 +56,7 @@ dharma.chart = (function (accounting, Ico) {
 				referenceLine: data.reference
 			}, {
 				markers: "circle",
-				colors: {data: "#00FF00", reference: "#0000FF"},
+				colours: {dataLine: "#00FF00", referenceLine: "#0000FF"},
 				labels: data.dates,
 				meanline: false,
 				grid: true,
