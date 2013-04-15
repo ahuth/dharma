@@ -6,13 +6,14 @@ dharma.overview = dharma.overview || {};
 dharma.overview.karma = (function (name, Widget, core) {
 	"use strict";
 	
-	var template = document.getElementById("karma-overview-template").innerHTML,
+	var successTemplate = document.getElementById("karma-overview-template").innerHTML,
+		failTemplate = document.getElementById("fail-template").innerHTML,
 		destination = "content",
 		myType = "overview",
 		myWhat = "karma";
 	
 	// Me is the actual instance of our widget object.
-	var me = new Widget(name, template, myType);
+	var me = new Widget(name, successTemplate, failTemplate, myType);
 	
 	core.subscribe("clear-screen", name, function () {
 		me.remove();

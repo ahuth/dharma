@@ -6,14 +6,15 @@ dharma.breakdown = dharma.breakdown || {};
 dharma.breakdown.quality = (function (name, Widget, chart, core) {
 	"use strict";
 	
-	var template = document.getElementById("breakdown-template").innerHTML,
+	var successTemplate = document.getElementById("breakdown-template").innerHTML,
+		failTemplate = document.getElementById("fail-template").innerHTML,
 		chartTemplate = document.getElementById("breakdown-chart-template").innerHTML,
 		destination = "content",
 		myType = "breakdown",
 		myWhat = "quality";
 	
 	// Me is the actual instance of our widget object.
-	var me = new Widget(name, template, myType);
+	var me = new Widget(name, successTemplate, failTemplate, myType);
 	
 	core.subscribe("clear-screen", name, function () {
 		me.remove();
@@ -33,8 +34,7 @@ dharma.breakdown.quality = (function (name, Widget, chart, core) {
 		if (response.type !== myType || response.what !== myWhat) {
 			return;
 		}
-		var data = {},
-			item;
+		var data = {}, item;
 		me.renderSuccess(destination, {sectionId: name});
 		// There could be more than one chart we need to draw.  Loop through the
 		// data and draw a chart for each set that we find.
@@ -46,6 +46,7 @@ dharma.breakdown.quality = (function (name, Widget, chart, core) {
 						data: chart.generateData(response.data[item].values),
 						reference: chart.generateReference(response.data[item].reference, response.data.dates.length),
 						dates: chart.generateDates(response.data.dates),
+						tooltips: chart.generateTooltips(response.data.dates, response.data[item].values, (item === "scrap")),
 						id: item + "chart",
 						title: me.formatString(item)
 					};

@@ -12,6 +12,7 @@
         <link rel="stylesheet" href="css/header.css">
         <link rel="stylesheet" href="css/overview.css">
         <link rel="stylesheet" href="css/breakdown.css">
+		<link rel="stylesheet" href="css/print.css" media="print">
         
         <script type="template/mustache" id="karma-overview-template">
             <section class="overview" id="karma-overview">
@@ -22,8 +23,8 @@
         </script>
         
         <script type="template/mustache" id="quality-overview-template">
-        <section class="overview" id="quality-overview">
-            <h2>Quality</h2>
+        	<section class="overview" id="quality-overview">
+            	<h2>Quality</h2>
                 <table>
                     <tr>
                         <td>Turnbacks</td>
@@ -90,16 +91,6 @@
                 </table>
             </section>
         </script>
-        
-        <script type="template/mustache" id="karma-breakdown-template">
-            <section class="breakdown" id="karma-breakdown">
-                <div class="chartwrap">
-                    <div class="chart" id="karmachart" style="width:960px;height:300px">
-                        <h2>Karma</h2>
-                    </div>
-                </div>
-            </section>
-        </script>
 		
 		<script type="template/mustache" id="breakdown-template">
 			<section class="breakdown" id="{{sectionId}}"></section>
@@ -111,6 +102,10 @@
 					<h2>{{chartTitle}}</h2>
 				</div>
 			</div>
+		</script>
+		
+		<script type="template/mustache" id="fail-template">
+			<section class="{{type}} fail" id="{{id}}"><h1>:-(</h1><p>Something went wrong</p></section>
 		</script>
 
     </head>

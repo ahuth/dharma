@@ -45,7 +45,7 @@ dharma.widget = (function (document, accounting, hogan, ajax, core) {
 	
 	// Returning this function allows us to use this module as a base for making
 	// widgets.
-	return function (name, successTemplate, type) {
+	return function (name, successTemplate, failTemplate, type) {
 		this.name = name;
 		this.type = type;
 		// reference will refer to the actual HTML element.  Once we have it,
@@ -54,7 +54,7 @@ dharma.widget = (function (document, accounting, hogan, ajax, core) {
 		// Templates stores compiled mustache templates.
 		var templates = {
 			success: hogan.compile(successTemplate),
-			fail: hogan.compile('<section class="{{type}} fail" id="{{id}}"><h1>:-(</h1><p>Something went wrong</p></section>')
+			fail: hogan.compile(failTemplate)
 		};
 		// renderSuccess renders the success template and places it into the DOM.
 		this.renderSuccess = function (destinationName, data) {

@@ -6,14 +6,15 @@ dharma.breakdown = dharma.breakdown || {};
 dharma.breakdown.karma = (function (name, Widget, chart, core) {
 	"use strict";
 	
-	var template = document.getElementById("breakdown-template").innerHTML,
+	var successTemplate = document.getElementById("breakdown-template").innerHTML,
+		failTemplate = document.getElementById("fail-template").innerHTML,
 		chartTemplate = document.getElementById("breakdown-chart-template").innerHTML,
 		destination = "content",
 		myType = "breakdown",
 		myWhat = "karma";
 	
 	// Me is the actual instance of our widget object.
-	var me = new Widget(name, template, myType);
+	var me = new Widget(name, successTemplate, failTemplate, myType);
 	
 	core.subscribe("clear-screen", name, function () {
 		me.remove();
@@ -36,7 +37,8 @@ dharma.breakdown.karma = (function (name, Widget, chart, core) {
 		var data = {
 			dates: chart.generateDates(response.data.dates),
 			data: chart.generateData(response.data.karma.values),
-			reference: chart.generateReference(response.data.karma.reference, response.data.dates.length)
+			reference: chart.generateReference(response.data.karma.reference, response.data.dates.length),
+			tooltips: chart.generateTooltips(response.data.dates, response.data.karma.values, false)
 		};
 		me.renderSuccess(destination, {sectionId: name});
 		me.renderTemplate(chartTemplate, {chartId: myWhat + "chart", chartTitle: "Karma"});
