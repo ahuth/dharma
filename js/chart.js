@@ -80,10 +80,22 @@ dharma.chart = (function (accounting, Charts) {
 		return options;
 	}
 	
+	// findYAxisRange determines min and max values we want for our Y-axis.
+	// Raphy charts doesn't start at 0 unless we specify our own range.
+	function findYAxisRange(data, reference) {
+		var maxValue;
+		if (data[data.length - 1] > reference[reference.length - 1]) {
+			maxValue = data[data.length - 1];
+		} else {
+			maxValue = reference[reference.length - 1];
+		}
+		return [0, maxValue];
+	}
+	
 	// drawLineChart draws a line chart which includes our data and areference
 	// line.
 	function drawLineChart(destination, data) {
-		var chartOptions = makeRaphyOptions(),
+		var chartOptions = makeRaphyOptions({y_axis_scale: findYAxisRange(data.data, data.reference)}),
 			mainLine = makeRaphyData(data.dates, data.data, true),
 			referenceLine = makeRaphyData(data.dates, data.reference, false);
 		
