@@ -44,6 +44,10 @@ dharma.chart = (function (accounting, Charts) {
 		return output;
 	}
 	
+	function makeTooltip(date, value) {
+		return getDateString(date) + ": " + value;
+	}
+	
 	// makeRaphyData takes the data we've previously generated and puts it in a
 	// data structure that raphy charts understands.
 	function makeRaphyData(dates, values, dots) {
@@ -53,7 +57,7 @@ dharma.chart = (function (accounting, Charts) {
 		var item, output = [];
 		for (item = 0; item < dates.length; item++) {
 			if (dots) {
-				output.push([dates[item], values[item]]);
+				output.push([dates[item], values[item], {tooltip: makeTooltip(dates[item], values[item])}]);
 			} else {
 				output.push([dates[item], values[item], {no_dot: true}]);
 			}
@@ -94,10 +98,15 @@ dharma.chart = (function (accounting, Charts) {
 	
 	// drawLineChart draws a line chart which includes our data and areference
 	// line.
-	function drawLineChart(destination, data) {
-		var chartOptions = makeRaphyOptions({y_axis_scale: findYAxisRange(data.data, data.reference)}),
-			mainLine = makeRaphyData(data.dates, data.data, true),
-			referenceLine = makeRaphyData(data.dates, data.reference, false);
+	function drawLineChart(destination, data, options) {
+		var chartOptions, mainLine, referenceLine;
+		
+		options = options || {};
+		options.y_axis_scale = findYAxisRange(data.data, data.reference);
+		
+		chartOptions = makeRaphyOptions(options);
+		mainLine = makeRaphyData(data.dates, data.data, true);
+		referenceLine = makeRaphyData(data.dates, data.reference, false);
 		
 		var chart = new Charts.LineChart(destination, chartOptions);
 		
