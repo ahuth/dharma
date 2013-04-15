@@ -44,6 +44,7 @@ dharma.chart = (function (accounting, Charts) {
 		return output;
 	}
 	
+	// makeTooltip creates the pop up box we'll use on our data points.
 	function makeTooltip(date, value) {
 		return getDateString(date) + ": " + value;
 	}
