@@ -1,0 +1,99 @@
+@page {
+	size: auto;
+	margin: 1cm 0.5cm;
+}
+
+* {
+	background: transparent !important;
+	color: #111 !important;
+	text-shadow: none !important;
+}
+
+body {
+	background: white !important;
+}
+
+tr {
+	page-break-inside: avoid;
+}
+
+h2, h3 {
+	page-break-after: avoid;
+}
+
+#navicon, nav {
+	display: none;
+}
+
+#content {
+	min-width: 0;
+	min-height: 0;
+	font-size: 10pt;
+}
+
+#breadcrumbs {
+	left: 0;
+}
+
+.overview {
+	border: 1px solid #111;
+}
+
+.overview h2 {
+	top: 12% !important;
+}
+
+#karma-overview {
+	width: 66mm; /* fallback */
+	width: calc(34% - 2mm);
+	height: 70mm;
+}
+
+#quality-overview {
+	width: 136mm; /* fallback */
+	width: calc(66% - 2mm);
+	left: 70mm; /* fallback */
+	left: calc(34% + 2mm);
+	height: 70mm;
+}
+
+#spending-overview {
+	width: 101mm; /* fallback */
+	width: calc(50% - 2mm);
+	top: 74mm;
+	left: 0;
+	height: 100mm;
+}
+
+#production-overview {
+	width: 101mm; /* fallback */
+	width: calc(50% - 2mm);
+	top: 74mm;
+	left: 105mm; /* fallback */
+	left: calc(50% + 2mm);
+	height: 100mm;
+}
+
+#spending-overview table {
+	top: 25%;
+	width: 80%;
+	left: 10%;
+}
+
+#production-overview table {
+	top: 25%;
+	width: 75%;
+	left: 12.5%;
+}
+
+.breakdown .chartwrap {
+	border-style: none;
+}
+
+.breakdown .chart h2 {
+	text-decoration: underline;
+}
+
+.breakdown .chart svg path {
+	fill: none !important;;
+}
