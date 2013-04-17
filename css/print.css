@@ -44,21 +44,21 @@ h2, h3 {
 }
 
 #karma-overview {
-	width: 66mm; /* fallback */
+	width: 66mm;
 	width: calc(34% - 2mm);
 	height: 70mm;
 }
 
 #quality-overview {
-	width: 136mm; /* fallback */
+	width: 136mm;
 	width: calc(66% - 2mm);
-	left: 70mm; /* fallback */
+	left: 70mm;
 	left: calc(34% + 2mm);
 	height: 70mm;
 }
 
 #spending-overview {
-	width: 101mm; /* fallback */
+	width: 101mm;
 	width: calc(50% - 2mm);
 	top: 74mm;
 	left: 0;
@@ -66,10 +66,10 @@ h2, h3 {
 }
 
 #production-overview {
-	width: 101mm; /* fallback */
+	width: 101mm;
 	width: calc(50% - 2mm);
 	top: 74mm;
-	left: 105mm; /* fallback */
+	left: 105mm;
 	left: calc(50% + 2mm);
 	height: 100mm;
 }

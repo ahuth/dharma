@@ -53,6 +53,9 @@ namespace overview {
 
 	function getProductionData($group) {
 		$milestones = ['jenkintown' => ['shipped', 'docked'],
+					   'nuts' => ['shipped', 'docked'],
+					   'bolts' => ['shipped', 'docked'],
+					   'batch quality' => ['shipped', 'docked'],
 					   '6211' => ['machine', 'squeeze'],
 					   '6216' => ['assemble/stamp', 'blank prep', 'form', 'machine', 'squeeze'],
 					   '6219' => ['machine', 'squeeze'],

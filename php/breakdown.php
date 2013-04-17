@@ -97,6 +97,9 @@ namespace breakdown {
 	
 	function getProductionData($group) {
 		$milestones = ['jenkintown' => ['shipped', 'docked'],
+					   'nuts' => ['shipped', 'docked'],
+					   'bolts' => ['shipped', 'docked'],
+					   'batch quality' => ['shipped', 'docked'],
 					   '6211' => ['machine', 'squeeze'],
 					   '6216' => ['assemble/stamp', 'blank prep', 'form', 'machine', 'squeeze'],
 					   '6219' => ['machine', 'squeeze'],
@@ -135,7 +138,7 @@ namespace breakdown {
 			$output['dates'][] = date_format($dt, 'Y-m-d \E\S\T');
 			foreach($milestones[$group] as $ms) {
 				$output[$ms]['values'][] = mt_rand(100000, 600000);
-				if (!$output[$ms]['reference']) {
+				if (!array_key_exists($output[$ms], 'reference')) {
 					$output[$ms]['reference'] = mt_rand(300000, 400000);
 				}
 			}
