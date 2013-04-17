@@ -24,7 +24,7 @@
 
 #spending-overview {
 	background-color: #634fff;
-	min-height: 40.5em;
+	height: 40.5em;
     top: 0;
     left: calc(75% + 0.25em);
     width: calc(25% - 0.25em);
@@ -128,9 +128,9 @@
 
 #production-overview table {
     font-size: 1.6em;
-    width: 40%;
-    left: 30%;
-    top: 36%;
+    width: 50%;
+    left: 25%;
+    top: 32%;
 }
 
 #production-overview table tr {

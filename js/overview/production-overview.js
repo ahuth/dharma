@@ -21,7 +21,7 @@ dharma.overview.production = (function (name, Widget, core) {
 		output.results = [];
 		for (item = 0; item < obj.length; item++) {
 			output.results.push({
-				milestone: obj[item].milestone,
+				milestone: me.formatString(obj[item].milestone),
 				result: me.formatMoney(obj[item].result)
 			});
 		}
