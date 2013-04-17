@@ -96,20 +96,57 @@ namespace breakdown {
 	}
 	
 	function getProductionData($group) {
+		$milestones = ['jenkintown' => ['shipped', 'docked'],
+					   '6211' => ['machine', 'squeeze'],
+					   '6216' => ['assemble/stamp', 'blank prep', 'form', 'machine', 'squeeze'],
+					   '6219' => ['machine', 'squeeze'],
+					   '6220' => ['form', 'screw machine', 'squeeze'],
+					   '6221' => ['form', 'screw machine', 'squeeze'],
+					   '6222' => ['form', 'screw machine'],
+					   '6242' => ['blank prep', 'form'],
+					   '6260' => [],
+					   '6280' => ['assemble/stamp', 'machine', 'squeeze'],
+					   '6290' => ['assemble/stamp', 'machine', 'squeeze'],
+					   '6291' => ['machine', 'squeeze'],
+					   '6830' => [],
+					   '6265' => [],
+					   '6614' => ['post-ht machine', 'post-thread machine', 'pre-ht machine'],
+					   '6620' => ['post-ht grind', 'post-thread grind', 'pre-ht grind'],
+					   '6629' => ['blank prep'],
+					   '6630' => ['form'],
+					   '6640' => ['blank prep', 'form'],
+					   '6651' => ['assemble/stamp', 'post-ht grind', 'post-thread grind', 'pre-ht grind'],
+					   '6652' => ['post-ht grind', 'post-thread grind', 'pre-ht grind'],
+					   '6662' => ['assemble/stamp', 'post-ht machine', 'post-thread machine', 'pre-ht machine'],
+					   '6670' => ['assemble/stamp', 'thread roll'],
+					   '4411' => ['inspect'],
+					   '4420' => ['lab'],
+					   '4422' => ['ndt'],
+					   '6850' => ['heat treat'],
+					   '6855' => ['heat treat', 'plate'],
+					   '6860' => ['plate', 'pre-form', 'pre-ndt']]
 		$period = new DatePeriod(
 			new DateTime('2013-04-01'),
 			new DateInterval('P1D'),
 			new DateTime(NULL)
 		);
 		foreach($period as $dt) {
-			$dates[]   = date_format($dt, 'Y-m-d \E\S\T');
-			$preform[] = mt_rand(50000, 200000);
+			//$dates[]   = date_format($dt, 'Y-m-d \E\S\T');
+			$output['dates'][] = date_format($dt, 'Y-m-d \E\S\T');
+			/*$preform[] = mt_rand(50000, 200000);
 			$prendt[]  = mt_rand(200000, 400000);
-			$plating[] = mt_rand(400000, 800000);
+			$plating[] = mt_rand(400000, 800000);*/
+			foreach($milestones[$group] as $ms) {
+				$output[$ms]['values'][] = mt_rand(100000, 600000);
+				if (!$output[$ms]['reference']) {
+					$output[$ms]['reference'] = mt_rand(300000, 400000);
+				}
+			}
 		}
-		return ['dates'    => $dates,
+		/*return ['dates'    => $dates,
 				'Pre-form' => ['values' => $preform, 'reference' => 125000],
 				'Pre-NDT'  => ['values' => $prendt, 'reference' => 300000],
-				'Plating'  => ['values' => $plating, 'reference' => 600000]];
+				'Plating'  => ['values' => $plating, 'reference' => 600000]];*/
+		return $output;
 	}
 }

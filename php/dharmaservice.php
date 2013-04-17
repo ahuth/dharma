@@ -10,9 +10,9 @@ if (empty($_GET['type']) || empty($_GET['what']) || empty($_GET['group'])) {
 	return;
 }
 	
-$type  = sanitizeString($_GET['type']);
-$what  = sanitizeString($_GET['what']);
-$group = sanitizeString($_GET['group']);
+$type  = strtolower(sanitizeString($_GET['type']));
+$what  = strtolower(sanitizeString($_GET['what']));
+$group = strtolower(sanitizeString($_GET['group']));
 
 /* The client will expect a response in the following format:
 	{
