@@ -3,7 +3,7 @@
 
 dharma.breakdown = dharma.breakdown || {};
 
-dharma.breakdown.quality = (function (name, Widget, chart, core) {
+dharma.breakdown.production = (function (name, Widget, chart, core) {
 	"use strict";
 	
 	var successTemplate = document.getElementById("breakdown-template").innerHTML,
