@@ -17,7 +17,6 @@
 #quality-overview {
 	background-color: #ff8001;
 	min-height: 20em;
-    /*min-width: 28em;*/
     top: 0;
     left: calc(25% + 0.25em);
     width: calc(50% - 0.5em);
@@ -25,9 +24,7 @@
 
 #spending-overview {
 	background-color: #634fff;
-	/*min-height: 40.5em;*/
-    /*min-width: 14em;*/
-	height: 40.5em;
+	min-height: 40.5em;
     top: 0;
     left: calc(75% + 0.25em);
     width: calc(25% - 0.25em);
@@ -36,7 +33,6 @@
 #production-overview {
 	background-color: #ff7676;
 	min-height: 20em;
-    /*min-width: 42.5em;*/
     top: 20.5em;
     left: 0;
     width: calc(75% - 0.25em);

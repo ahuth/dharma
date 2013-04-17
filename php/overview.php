@@ -52,10 +52,6 @@ namespace overview {
 	}
 
 	function getProductionData($group) {
-        /*$results[] = ['milestone' => 'Pre-form', 'result' => mt_rand(50000, 200000)];
-        $results[] = ['milestone' => 'Pre-NDT', 'result' => mt_rand(200000, 400000)];
-		$results[] = ['milestone' => 'Plating', 'result' => mt_rand(400000, 800000)];
-        return ['results' => $results];*/
 		$milestones = ['jenkintown' => ['shipped', 'docked'],
 					   '6211' => ['machine', 'squeeze'],
 					   '6216' => ['assemble/stamp', 'blank prep', 'form', 'machine', 'squeeze'],
