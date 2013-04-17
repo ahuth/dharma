@@ -124,18 +124,14 @@ namespace breakdown {
 					   '4422' => ['ndt'],
 					   '6850' => ['heat treat'],
 					   '6855' => ['heat treat', 'plate'],
-					   '6860' => ['plate', 'pre-form', 'pre-ndt']]
+					   '6860' => ['plate', 'pre-form', 'pre-ndt']];
 		$period = new DatePeriod(
 			new DateTime('2013-04-01'),
 			new DateInterval('P1D'),
 			new DateTime(NULL)
 		);
 		foreach($period as $dt) {
-			//$dates[]   = date_format($dt, 'Y-m-d \E\S\T');
 			$output['dates'][] = date_format($dt, 'Y-m-d \E\S\T');
-			/*$preform[] = mt_rand(50000, 200000);
-			$prendt[]  = mt_rand(200000, 400000);
-			$plating[] = mt_rand(400000, 800000);*/
 			foreach($milestones[$group] as $ms) {
 				$output[$ms]['values'][] = mt_rand(100000, 600000);
 				if (!$output[$ms]['reference']) {
@@ -143,10 +139,6 @@ namespace breakdown {
 				}
 			}
 		}
-		/*return ['dates'    => $dates,
-				'Pre-form' => ['values' => $preform, 'reference' => 125000],
-				'Pre-NDT'  => ['values' => $prendt, 'reference' => 300000],
-				'Plating'  => ['values' => $plating, 'reference' => 600000]];*/
 		return $output;
 	}
 }

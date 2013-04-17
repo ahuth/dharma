@@ -52,9 +52,42 @@ namespace overview {
 	}
 
 	function getProductionData($group) {
-        $results[] = ['milestone' => 'Pre-form', 'result' => mt_rand(50000, 200000)];
+        /*$results[] = ['milestone' => 'Pre-form', 'result' => mt_rand(50000, 200000)];
         $results[] = ['milestone' => 'Pre-NDT', 'result' => mt_rand(200000, 400000)];
 		$results[] = ['milestone' => 'Plating', 'result' => mt_rand(400000, 800000)];
-        return ['results' => $results];
+        return ['results' => $results];*/
+		$milestones = ['jenkintown' => ['shipped', 'docked'],
+					   '6211' => ['machine', 'squeeze'],
+					   '6216' => ['assemble/stamp', 'blank prep', 'form', 'machine', 'squeeze'],
+					   '6219' => ['machine', 'squeeze'],
+					   '6220' => ['form', 'screw machine', 'squeeze'],
+					   '6221' => ['form', 'screw machine', 'squeeze'],
+					   '6222' => ['form', 'screw machine'],
+					   '6242' => ['blank prep', 'form'],
+					   '6260' => [],
+					   '6280' => ['assemble/stamp', 'machine', 'squeeze'],
+					   '6290' => ['assemble/stamp', 'machine', 'squeeze'],
+					   '6291' => ['machine', 'squeeze'],
+					   '6830' => [],
+					   '6265' => [],
+					   '6614' => ['post-ht machine', 'post-thread machine', 'pre-ht machine'],
+					   '6620' => ['post-ht grind', 'post-thread grind', 'pre-ht grind'],
+					   '6629' => ['blank prep'],
+					   '6630' => ['form'],
+					   '6640' => ['blank prep', 'form'],
+					   '6651' => ['assemble/stamp', 'post-ht grind', 'post-thread grind', 'pre-ht grind'],
+					   '6652' => ['post-ht grind', 'post-thread grind', 'pre-ht grind'],
+					   '6662' => ['assemble/stamp', 'post-ht machine', 'post-thread machine', 'pre-ht machine'],
+					   '6670' => ['assemble/stamp', 'thread roll'],
+					   '4411' => ['inspect'],
+					   '4420' => ['lab'],
+					   '4422' => ['ndt'],
+					   '6850' => ['heat treat'],
+					   '6855' => ['heat treat', 'plate'],
+					   '6860' => ['plate', 'pre-form', 'pre-ndt']];
+		foreach ($milestones[$group] as $ms) {
+			$output['results'][] = ['milestone' => $ms, 'result' => mt_rand(100000, 600000)];
+		}
+		return $output;
 	}
 }
