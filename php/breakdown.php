@@ -119,6 +119,7 @@ namespace breakdown {
 					   '6652' => ['post-ht grind', 'post-thread grind', 'pre-ht grind'],
 					   '6662' => ['assemble/stamp', 'post-ht machine', 'post-thread machine', 'pre-ht machine'],
 					   '6670' => ['assemble/stamp', 'thread roll'],
+					   '6840' => [],
 					   '4411' => ['inspect'],
 					   '4420' => ['lab'],
 					   '4422' => ['ndt'],
