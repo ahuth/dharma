@@ -25,7 +25,7 @@ dharma.breakdown.production = (function (name, Widget, chart, core) {
 		if (widget !== myWhat) {
 			return;
 		}
-		me.requestData({type: myType, what: myWhat, group: group});
+		core.publish("request-data", {type: myType, what: myWhat, group: group});
 	});
 	
 	// When we get data back, process it into a format that the chart module can

@@ -35,7 +35,7 @@ dharma.overview.production = (function (name, Widget, core) {
 	// If we need to show the overview, request the data but don't handle the
 	// response.  We'll take care of that later.
 	core.subscribe("show-overview", name, function (group) {
-		me.requestData({type: myType, what: myWhat, group: group});
+		core.publish("request-data", {type: myType, what: myWhat, group: group});
 	});
 	
 	// Verify that data is for the request we made.  Then process it into a
