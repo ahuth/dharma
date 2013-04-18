@@ -45,6 +45,10 @@ dharma.overview.production = (function (name, Widget, core) {
 		if (response.type !== myType || response.what !== myWhat) {
 			return;
 		}
+		// Most 'groups' return data.  A few don't, because they don't have any
+		// milestones associated with them.  If this is the case, create a blank
+		// data object so that formatResults() doesn't choke on it.
+		response.data = response.data || {results: {}};
 		var data = formatResults(response.data.results);
 		me.renderSuccess(destination, data);
 		core.publish("data-processed", name, data);
