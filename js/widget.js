@@ -4,7 +4,7 @@
 // widget implements a base module that we will build off of for our widget
 // modules.  This tells each widget how to render itself and how to manage
 // event handlers.
-dharma.widget = (function (document, accounting, hogan, ajax, core) {
+dharma.widget = (function (document, accounting, hogan) {
 	"use strict";
 	
 	// helper is a div that is NOT in the DOM.  It helps us convert a string
@@ -25,22 +25,6 @@ dharma.widget = (function (document, accounting, hogan, ajax, core) {
 			firstNode = firstNode.nextSibling;
 		}
 		return firstNode;
-	}
-	
-	// constructParamsString creates an ajax get request string from an object
-	// of arguments we want to send.
-	function constructParamsString(args) {
-		var item, parameters = "";
-		for (item in args) {
-			if (args.hasOwnProperty(item)) {
-				if (parameters === "") {
-					parameters = item + "=" + args[item];
-				} else {
-					parameters += "&" + item + "=" + args[item];
-				}
-			}
-		}
-		return parameters;
 	}
 	
 	// Returning this function allows us to use this module as a base for making
@@ -109,19 +93,6 @@ dharma.widget = (function (document, accounting, hogan, ajax, core) {
 			reference.parentNode.replaceChild(newNode, reference);
 			reference = newNode;
 		};
-		// requestData makes an ajax request and publishes a message once the
-		// response is received.
-		this.requestData = function (args) {
-			ajax.get("/dharma/php/dharmaservice.php", constructParamsString(args)).then(function (value) {
-				core.publish("here's-data", JSON.parse(value));
-			}, function () {
-				core.publish("no-data", args);
-			});
-		};
-		// formatMoney puts a dollar ammount into the format we want.
-		this.formatMoney = function (num) {
-			return accounting.formatMoney(num, "$", 0);
-		};
 		// renderTemplate takes a mustache template and renders it into the
 		// widget as a child.
 		this.renderTemplate = function (templateString, data) {
@@ -136,6 +107,10 @@ dharma.widget = (function (document, accounting, hogan, ajax, core) {
 		this.formatString = function (input) {
 			return input.slice(0, 1).toUpperCase() + input.slice(1).toLowerCase();
 		};
+		// formatMoney puts a dollar ammount into the format we want.
+		this.formatMoney = function (num) {
+			return accounting.formatMoney(num, "$", 0);
+		};
 	};
 	
-}(parent.document, parent.accounting, parent.Hogan, dharma.ajax, dharma.core));
+}(parent.document, parent.accounting, parent.Hogan));

@@ -1,8 +1,24 @@
 /*jslint vars: true, browser: true , plusplus: true*/
 /*global dharma */
 
-dharma.ajax = (function (window, rsvp) {
+dharma.ajax = (function (window, rsvp, core) {
 	"use strict";
+	
+	// constructParamsString creates an ajax get request string from an object
+	// of arguments we want to send.
+	function constructParamsString(args) {
+		var item, parameters = "";
+		for (item in args) {
+			if (args.hasOwnProperty(item)) {
+				if (parameters === "") {
+					parameters = item + "=" + args[item];
+				} else {
+					parameters += "&" + item + "=" + args[item];
+				}
+			}
+		}
+		return parameters;
+	}
 	
 	// Send a get request and return a promise object.  This promise object will
 	// **eventually** hold the response text.
@@ -10,6 +26,7 @@ dharma.ajax = (function (window, rsvp) {
 		
 		var done = 4, ok = 200;
 		
+		// If a timeout wasn't specified, set it to 4000 milliseconds.
 		timeoutIn = timeoutIn || 4000;
 		
 		if (typeof parameters === "string") {
@@ -45,9 +62,22 @@ dharma.ajax = (function (window, rsvp) {
 		return promise;
 	}
 	
-	// Module API.
-	return {
-		get: get
-	};
+	core.subscribe("request-data", name, function (args) {
+		if (!args) {
+			return;
+		}
+		var params = constructParamsString(args),
+			request = get("/dharma/php/dharmaservice.php", params, 4000);
+		
+		request.then(function (value) {
+			if (!value) {
+				core.publish("no-data", args);
+				return;
+			}
+			core.publish("here's-data", JSON.parse(value));
+		}, function () {
+			core.publish("no-data", args);
+		});
+	});
 	
-}(parent.window, parent.RSVP));
+}(parent.window, parent.RSVP, dharma.core));
