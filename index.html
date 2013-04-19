@@ -93,19 +93,24 @@
         </script>
 		
 		<script type="template/mustache" id="breakdown-template">
-			<section class="breakdown" id="{{sectionId}}"></section>
-		</script>
-		
-		<script type="template/mustache" id="breakdown-chart-template">
-			<div class="chartwrap">
-				<div class="chart" id="{{chartId}}" style="width:960px;height:300px">
-					<h2>{{chartTitle}}</h2>
-				</div>
-			</div>
+			<section class="breakdown" id="{{sectionId}}">
+				<ol>
+					{{#charts}}
+						<li>
+							<div class="chart" id="{{chartId}}" style="width:960px;height:300px">
+								<h2>{{chartTitle}}</h2>
+							</div>
+						</li>
+					{{/charts}}
+				</ol>
+			</section>
 		</script>
 		
 		<script type="template/mustache" id="fail-template">
-			<section class="{{type}} fail" id="{{id}}"><h1>:-(</h1><p>Something went wrong</p></section>
+			<section class="{{type}} fail" id="{{id}}">
+				<h1>:-(</h1>
+				<p>Something went wrong</p>
+			</section>
 		</script>
 
     </head>

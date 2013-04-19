@@ -68,14 +68,13 @@ dharma.history = (function (name, window, history, core) {
 		data = {};
 	});
 	
-	// Once modules process their ajax data, they'll send them out.  We store
-	// those in the browser history here.
-	core.subscribe("data-processed", name, function (widgetName, processedData) {
-		data[widgetName] = processedData;
+	// Store ajax responses in the browser history.
+	core.subscribe("here's-data", name, function (response) {
+		data[response.what + "-" + response.type] = response;
 		if (!data.type) {
 			data.group = currentGroup;
-			data.type = widgetName.split("-")[1];
-			data.category = data.type === "breakdown" ? widgetName.split("-")[0] : null;
+			data.type = response.type;
+			data.what = data.type === "breakdown" ? response.what : null;
 		}
 		changeHistory(data);
 	});

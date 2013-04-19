@@ -1,7 +1,7 @@
 /*jslint vars: true, browser: true, plusplus: true */
 /*global dharma */
 
-dharma.chart = (function (accounting, Charts) {
+dharma.chart = (function (name, accounting, Charts, core) {
 	"use strict";
 	
 	// getDateString converts a date object to a string in the following format:
@@ -154,13 +154,14 @@ dharma.chart = (function (accounting, Charts) {
 		chart.draw();
 	}
 	
-	// Module API.
-	return {
-		generateData: generateData,
-		generateDates: generateDates,
-		generateReference: generateReference,
-		generateTooltips: generateTooltips,
-		drawLineChart: drawLineChart
-	};
+	core.subscribe("draw-line-chart", name, function (destination, dates, rawData, money, options) {
+		var data = {
+			dates: generateDates(dates),
+			data: generateData(rawData.values),
+			reference: generateReference(rawData.reference, dates.length),
+			tooltips: generateTooltips(dates, rawData.values, money)
+		};
+		drawLineChart(destination, data, options);
+	});
 	
-}(parent.accounting, parent.Charts));
+}("chart", parent.accounting, parent.Charts, dharma.core));

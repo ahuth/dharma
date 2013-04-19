@@ -60,7 +60,11 @@ dharma.overview.quality = (function (name, Widget, core) {
 			me.renderFail(destination);
 			return;
 		}
-		me.renderSuccess(destination, data[name]);
+		var oldData = {
+			turnbacks: data[name].data.turnbacks,
+			scrap: me.formatMoney(data[name].data.scrap)
+		};
+		me.renderSuccess(destination, oldData);
 		me.addEvent("click", function () {
 			core.publish("widget-clicked", data.group, myWhat);
 		});

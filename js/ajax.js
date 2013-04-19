@@ -1,7 +1,7 @@
 /*jslint vars: true, browser: true , plusplus: true*/
 /*global dharma */
 
-dharma.ajax = (function (window, rsvp, core) {
+dharma.ajax = (function (name, window, rsvp, core) {
 	"use strict";
 	
 	// constructParamsString creates an ajax get request string from an object
@@ -80,4 +80,4 @@ dharma.ajax = (function (window, rsvp, core) {
 		});
 	});
 	
-}(parent.window, parent.RSVP, dharma.core));
+}("ajax", parent.window, parent.RSVP, dharma.core));

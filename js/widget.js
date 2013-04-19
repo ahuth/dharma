@@ -71,7 +71,7 @@ dharma.widget = (function (document, accounting, hogan) {
 			if (!reference) {
 				return false;
 			}
-			this.removeAllEvents();
+			this.removeEvents();
 			reference.parentNode.removeChild(reference);
 			reference = null;
 		};
@@ -84,7 +84,7 @@ dharma.widget = (function (document, accounting, hogan) {
 		};
 		// removeAllEvents removes every event handler for the widget.  This is
 		// accomplished by cloning the node and overwriting the existing one.
-		this.removeAllEvents = function () {
+		this.removeEvents = function () {
 			var newNode;
 			if (!reference) {
 				return false;
@@ -92,15 +92,6 @@ dharma.widget = (function (document, accounting, hogan) {
 			newNode = reference.cloneNode(true);
 			reference.parentNode.replaceChild(newNode, reference);
 			reference = newNode;
-		};
-		// renderTemplate takes a mustache template and renders it into the
-		// widget as a child.
-		this.renderTemplate = function (templateString, data) {
-			var template = hogan.compile(templateString);
-			if (!reference) {
-				return false;
-			}
-			reference.appendChild(elementizeString(template.render(data)));
 		};
 		// formatString makes the first character of a string uppercase, and the
 		// rest lowercase.
@@ -110,6 +101,19 @@ dharma.widget = (function (document, accounting, hogan) {
 		// formatMoney puts a dollar ammount into the format we want.
 		this.formatMoney = function (num) {
 			return accounting.formatMoney(num, "$", 0);
+		};
+		// constructChartTemplateData takes a request-data response and pulls out
+		// the data we need to render a template for it.
+		this.constructChartTemplateData = function (data) {
+			var item, output = [];
+			for (item in data) {
+				if (data.hasOwnProperty(item)) {
+					if (item !== "dates") {
+						output.push({chartId: item + "chart", chartTitle: this.formatString(item)});
+					}
+				}
+			}
+			return output;
 		};
 	};
 	

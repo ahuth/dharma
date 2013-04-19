@@ -65,7 +65,16 @@ dharma.overview.spending = (function (name, Widget, core) {
 			me.renderFail(destination);
 			return;
 		}
-		me.renderSuccess(destination, data[name]);
+		var oldData = {
+			yesterday: me.formatMoney(data[name].data.yesterday),
+			people: me.formatMoney(data[name].data.people),
+			supplies: me.formatMoney(data[name].data.supplies),
+			tools: me.formatMoney(data[name].data.tools),
+			utilities: me.formatMoney(data[name].data.utilities),
+			maintenance: me.formatMoney(data[name].data.maintenance),
+			other: me.formatMoney(data[name].data.other)
+		};
+		me.renderSuccess(destination, oldData);
 		me.addEvent("click", function () {
 			core.publish("widget-clicked", data.group, myWhat);
 		});

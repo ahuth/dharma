@@ -8,7 +8,6 @@ dharma.breakdown.quality = (function (name, Widget, chart, core) {
 	
 	var successTemplate = document.getElementById("breakdown-template").innerHTML,
 		failTemplate = document.getElementById("fail-template").innerHTML,
-		chartTemplate = document.getElementById("breakdown-chart-template").innerHTML,
 		destination = "content",
 		myType = "breakdown",
 		myWhat = "quality";
@@ -34,29 +33,16 @@ dharma.breakdown.quality = (function (name, Widget, chart, core) {
 		if (response.type !== myType || response.what !== myWhat) {
 			return;
 		}
-		var data = {}, item;
-		me.renderSuccess(destination, {sectionId: name});
-		// There could be more than one chart we need to draw.  Loop through the
-		// data and draw a chart for each set that we find.
+		var charts = me.constructChartTemplateData(response.data),
+			item;
+		me.renderSuccess(destination, {sectionId: name, charts: charts});
 		for (item in response.data) {
 			if (response.data.hasOwnProperty(item)) {
 				if (item !== "dates") {
-					// Put our data into a format that the chart module can understand.
-					data[item] = {
-						data: chart.generateData(response.data[item].values),
-						reference: chart.generateReference(response.data[item].reference, response.data.dates.length),
-						dates: chart.generateDates(response.data.dates),
-						tooltips: chart.generateTooltips(response.data.dates, response.data[item].values, (item === "scrap")),
-						id: item + "chart",
-						title: me.formatString(item)
-					};
-					// Render the template for this chart and draw the chart on it.
-					me.renderTemplate(chartTemplate, {chartId: data[item].id, chartTitle: data[item].title});
-					chart.drawLineChart(data[item].id, data[item]);
+					core.publish("draw-line-chart", item + "chart", response.data.dates, response.data[item], (item === "scrap"));
 				}
 			}
 		}
-		core.publish("data-processed", name, data);
 	});
 	
 	// If the request doesn't return any data, render the fail template.
@@ -71,13 +57,14 @@ dharma.breakdown.quality = (function (name, Widget, chart, core) {
 		if (!data.hasOwnProperty(name)) {
 			return;
 		}
-		var myData = data[name],
+		var charts = me.constructChartTemplateData(data[name].data),
 			item;
-		me.renderSuccess(destination, {sectionId: name});
-		for (item in myData) {
-			if (myData.hasOwnProperty(item)) {
-				me.renderTemplate(chartTemplate, {chartId: myData[item].id, chartTitle: myData[item].title});
-				chart.drawLineChart(myData[item].id, myData[item]);
+		me.renderSuccess(destination, {sectionId: name, charts: charts});
+		for (item in data[name].data) {
+			if (data[name].data.hasOwnProperty(item)) {
+				if (item !== "dates") {
+					core.publish("draw-line-chart", item + "chart", data[name].data.dates, data[name].data[item], (item === "scrap"));
+				}
 			}
 		}
 	});

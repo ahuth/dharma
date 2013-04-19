@@ -3,12 +3,11 @@
 
 dharma.breakdown = dharma.breakdown || {};
 
-dharma.breakdown.karma = (function (name, Widget, chart, core) {
+dharma.breakdown.karma = (function (name, Widget, core) {
 	"use strict";
 	
 	var successTemplate = document.getElementById("breakdown-template").innerHTML,
 		failTemplate = document.getElementById("fail-template").innerHTML,
-		chartTemplate = document.getElementById("breakdown-chart-template").innerHTML,
 		destination = "content",
 		myType = "breakdown",
 		myWhat = "karma";
@@ -34,16 +33,9 @@ dharma.breakdown.karma = (function (name, Widget, chart, core) {
 		if (response.type !== myType || response.what !== myWhat) {
 			return;
 		}
-		var data = {
-			dates: chart.generateDates(response.data.dates),
-			data: chart.generateData(response.data.karma.values),
-			reference: chart.generateReference(response.data.karma.reference, response.data.dates.length),
-			tooltips: chart.generateTooltips(response.data.dates, response.data.karma.values, false)
-		};
-		me.renderSuccess(destination, {sectionId: name});
-		me.renderTemplate(chartTemplate, {chartId: myWhat + "chart", chartTitle: "Karma"});
-		chart.drawLineChart("karmachart", data, {show_y_labels: false});
-		core.publish("data-processed", name, data);
+		var charts = me.constructChartTemplateData(response.data);
+		me.renderSuccess(destination, {sectionId: name, charts: charts});
+		core.publish("draw-line-chart", "karmachart", response.data.dates, response.data.karma, false, {show_y_labels: false});
 	});
 	
 	// If the request doesn't return any data, render the fail template.
@@ -58,9 +50,9 @@ dharma.breakdown.karma = (function (name, Widget, chart, core) {
 		if (!data.hasOwnProperty(name)) {
 			return;
 		}
-		me.renderSuccess(destination, {sectionId: name});
-		me.renderTemplate(chartTemplate, {chartId: myWhat + "chart", chartTitle: "Karma"});
-		chart.drawLineChart("karmachart", data[name], {show_y_labels: false});
+		var charts = me.constructChartTemplateData(data[name].data);
+		me.renderSuccess(destination, {sectionId: name, charts: charts});
+		core.publish("draw-line-chart", "karmachart", data[name].data.dates, data[name].data.karma, false, {show_y_labels: false});
 	});
 	
-}("karma-breakdown", dharma.widget, dharma.chart, dharma.core));
+}("karma-breakdown", dharma.widget, dharma.core));

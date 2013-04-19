@@ -74,7 +74,9 @@ dharma.overview.production = (function (name, Widget, core) {
 			me.renderFail(destination);
 			return;
 		}
-		me.renderSuccess(destination, data[name]);
+		data[name].data = data[name].data || {results: {}};
+		var oldData = formatResults(data[name].data.results);
+		me.renderSuccess(destination, oldData);
 		me.addEvent("click", function () {
 			core.publish("widget-clicked", data.group, myWhat);
 		});

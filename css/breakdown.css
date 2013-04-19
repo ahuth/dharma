@@ -1,4 +1,4 @@
-.breakdown .chartwrap {
+.breakdown li {
 	box-sizing: border-box;
 	background-color: #fefefe;
 	border-width: 0.5em 1em;
@@ -6,11 +6,11 @@
 	border-color: #ccc;
 }
 
-.breakdown .chartwrap:first-child {
+.breakdown li:first-child {
 	border-top-width: 1em;
 }
 
-.breakdown .chartwrap:last-child {
+.breakdown li:last-child {
 	border-bottom-width: 1em;
 }
 
