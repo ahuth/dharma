@@ -1,6 +1,7 @@
 /*jslint vars: true, browser: true , plusplus: true*/
 /*global dharma */
 
+// ajax handles making Ajax requests to the server.
 dharma.ajax = (function (name, window, rsvp, core) {
 	"use strict";
 	
@@ -62,7 +63,7 @@ dharma.ajax = (function (name, window, rsvp, core) {
 		return promise;
 	}
 	
-	core.subscribe("request-data", name, function (args) {
+	core.subscribe("request-server-data", name, function (args) {
 		if (!args) {
 			return;
 		}
@@ -71,12 +72,12 @@ dharma.ajax = (function (name, window, rsvp, core) {
 		
 		request.then(function (value) {
 			if (!value) {
-				core.publish("no-data", args);
+				core.publish("no-server-data", args);
 				return;
 			}
-			core.publish("here's-data", JSON.parse(value));
+			core.publish("here's-server-data", JSON.parse(value));
 		}, function () {
-			core.publish("no-data", args);
+			core.publish("no-server-data", args);
 		});
 	});
 	
