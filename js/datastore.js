@@ -90,6 +90,10 @@ dharma.datastore = (function (name, core) {
 		});
 		// Store unfulfilled server responses in the cache as 'false.'
 		cache[key] = false;
+		// Remove the key from the pending list.
+		if (pending.hasOwnProperty(key)) {
+			delete pending[key];
+		}
 		core.publish("no-data", args);
 	});
 	

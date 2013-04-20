@@ -69,6 +69,10 @@
 	text-align: right;
 }
 
+.overview.fail {
+	cursor: default;
+}
+
 .overview.fail > h1 {
 	position: relative;
     text-align: center;
