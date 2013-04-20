@@ -11,7 +11,7 @@ dharma.history = (function (name, window, history, core) {
 	
 	// Modify the current history state with a url representing our group and
 	// category, and a data object that describes the basic attributes of our
-	// current page.
+	// current view.
 	function addHistory(group, category, type) {
 		var url = "/dharma/" + group;
 		if (category) {

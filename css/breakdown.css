@@ -4,6 +4,7 @@
 	border-width: 0.5em 1em;
 	border-style: solid;
 	border-color: #ccc;
+	position: relative;
 }
 
 .breakdown li:first-child {
@@ -15,19 +16,14 @@
 }
 
 .breakdown .chart {
-	/* Make position relative so that we can absolutly position child elements
-	with respect to this element.*/
-	position: relative;
 	margin: auto;
 }
 
-.breakdown .chart h2 {
+.breakdown h2 {
 	color: #242424;
 	font-size: 1.2em;
 	position: absolute;
 	top: 0.6em;
-	/* Making the width 100% and aligning the text to center lets us center this
-	element without knowing how long it is.*/
 	text-align: center;
 	width: 100%;
 }

@@ -35,7 +35,7 @@ dharma.breakdown.karma = (function (name, Widget, core) {
 		}
 		var charts = me.constructChartTemplateData(response.data);
 		me.renderSuccess(destination, {sectionId: name, charts: charts});
-		core.publish("draw-line-chart", "karmachart", response.data.dates, response.data.karma, false, {show_y_labels: false});
+		core.publish("draw-line-chart", "karmachart", response.data.dates, response.data.karma.values, response.data.karma.reference);
 	});
 	
 	// If the request doesn't return any data, render the fail template.
