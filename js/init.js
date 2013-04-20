@@ -14,7 +14,6 @@ dharma.init = (function (name, core) {
 	});
 	core.subscribe("reconstruct-previous-state", name, function (data) {
 		core.publish("clear-screen");
-		core.publish("update-breadcrumbs", data.group, data.what);
 		if (data.type === "overview") {
 			core.publish("reconstruct-overview", data);
 		} else {

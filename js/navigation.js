@@ -110,12 +110,11 @@ dharma.navigation = (function (name, document, core) {
 		core.publish("show-overview", group.toLowerCase());
 	});
 	
-	// update-breadcrumbs only gets activated if we're interacting with the
-	// browser history, and we need to reconstruct a previous state of the page.
-	core.subscribe("update-breadcrumbs", name, function (group, category) {
-		if (!group) {
-			return false;
-		}
+	// Update the breadcrumbs if we change whats on the screen.
+	core.subscribe("show-overview", name, function (group) {
+		updateBreadcrumbs(group, null);
+	});
+	core.subscribe("show-breakdown", name, function (group, category) {
 		updateBreadcrumbs(group, category);
 	});
 	
