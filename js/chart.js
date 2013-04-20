@@ -55,27 +55,32 @@ dharma.chart = (function (name, accounting, Chart, core) {
 			labels: makeDateLabel(dates),
 			datasets: [
 				{
-					fillColor: "rgba(220,220,220,0.5)",
-					strokeColor: "rgba(220,220,220,1)",
-					pointColor: "rgba(220,220,220,1)",
-					pointStrokeColor: "#fff",
-					data: makeCumulativeData(line)
+					fillColor: "rgba(151,187,205,0)",
+					strokeColor: "rgba(151,187,205,1)",
+					pointColor: "rgba(151,187,205,0)",
+					pointStrokeColor: "rgba(151,187,205,0)",
+					data: makeReferenceData(reference, dates.length)
 				},
 				{
-					fillColor: "rgba(151,187,205,0.5)",
-					strokeColor: "rgba(151,187,205,1)",
-					pointColor: "rgba(151,187,205,1)",
+					fillColor: "rgba(0,170,221,0.5)",
+					strokeColor: "rgba(0,170,221,1)",
+					pointColor: "rgba(0,170,221,1)",
 					pointStrokeColor: "#fff",
-					data: makeReferenceData(reference, dates.length)
+					data: makeCumulativeData(line)
 				}
 			]
+		};
+		var options = {
+			animation: false,
+			bezierCurve: false,
+			datasetStrokeWidth: 4
 		};
 		// Get the 2d context of the canvas we want to draw to.
 		var context = document.getElementById(destination).getContext("2d");
 		if (!context) {
 			return;
 		}
-		var chart = new Chart(context).Line(data);
+		var chart = new Chart(context).Line(data, options);
 	});
 	
 }("chart", parent.accounting, parent.Chart, dharma.core));

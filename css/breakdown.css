@@ -5,6 +5,7 @@
 	border-style: solid;
 	border-color: #ccc;
 	position: relative;
+	display: block;
 }
 
 .breakdown li:first-child {
@@ -15,7 +16,8 @@
 	border-bottom-width: 1em;
 }
 
-.breakdown .chart {
+.breakdown canvas {
+	display: block;
 	margin: auto;
 }
 

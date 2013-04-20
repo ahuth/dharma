@@ -39,7 +39,7 @@ dharma.breakdown.spending = (function (name, Widget, chart, core) {
 		for (item in response.data) {
 			if (response.data.hasOwnProperty(item)) {
 				if (item !== "dates") {
-					core.publish("draw-line-chart", item + "chart", response.data.dates, response.data[item], true);
+					core.publish("draw-line-chart", item + "chart", response.data.dates, response.data[item].values, response.data[item].reference);
 				}
 			}
 		}
