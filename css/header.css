@@ -10,6 +10,14 @@ header a {
     color: inherit;
 }
 
+header time {
+	position: relative;
+	font-size: 1.4em;
+	line-height: 1.2em;
+	float: right;
+	display: none;
+}
+
 #navicon {
 	/* The navicon character displays a little bit lower than its surrounding
 	text.  To fix that, we position it relatively and move it up by a little
