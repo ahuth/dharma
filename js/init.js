@@ -2,7 +2,8 @@
 /*global dharma */
 
 // init does some initial setup of the app, manages what happens when a widget or
-// group label get clicked, and starts the ball rolling.
+// group label get clicked, and starts the ball rolling by publishing an initial
+// "show-overview" message.
 dharma.init = (function (name, core) {
 	"use strict";
 	
@@ -20,13 +21,13 @@ dharma.init = (function (name, core) {
 	core.publish("show-overview", "jenkintown");
 	
 	// Insert today's date into the time#today element on the page.
-	var months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun",
-				  "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
-		today = new Date();
-	document.getElementById("today").innerHTML = months[today.getMonth()] +
-												 " " + today.getDate() +
-												 ", " + today.getFullYear();
-	months = null;
-	today = null;
+	var currentDate = (function () {
+		var months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun",
+					  "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
+			today = new Date(),
+			dateElement = document.getElementById("today");
+		dateElement.innerHTML = months[today.getMonth()] + " " + today.getDate() + ", " + today.getFullYear();
+	}());
+	currentDate = null;
 	
 }("init", dharma.core));
