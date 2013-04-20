@@ -42,9 +42,10 @@ dharma.history = (function (name, window, history, core) {
 	// If the user presses the back or forward browser button, we get a popstate
 	// event, from which we can read the data we stored earlier for the page.
 	window.addEventListener("popstate", function (event) {
-		if (!event.state.type) {
+		if (!event.state) {
 			return;
 		}
+		core.publish("clear-screen");
 		if (event.state.type === "overview") {
 			core.publish("show-overview", event.state.group, true);
 		} else if (event.state.type === "breakdown") {
