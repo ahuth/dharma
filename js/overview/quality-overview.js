@@ -52,22 +52,4 @@ dharma.overview.quality = (function (name, Widget, core) {
 		me.renderFail(destination);
 	});
 	
-	// If the user uses the backwards or forwards button, we'll get this message
-	// and some data we can use to reconstruct the page.  The data should already
-	// be processed into a form we can use directly.
-	core.subscribe("reconstruct-overview", name, function (data) {
-		if (!data.hasOwnProperty(name)) {
-			me.renderFail(destination);
-			return;
-		}
-		var oldData = {
-			turnbacks: data[name].data.turnbacks,
-			scrap: me.formatMoney(data[name].data.scrap)
-		};
-		me.renderSuccess(destination, oldData);
-		me.addEvent("click", function () {
-			core.publish("widget-clicked", data.group, myWhat);
-		});
-	});
-	
 }("quality-overview", dharma.widget, dharma.core));

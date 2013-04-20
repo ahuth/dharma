@@ -46,13 +46,4 @@ dharma.breakdown.karma = (function (name, Widget, core) {
 		me.renderFail(destination);
 	});
 	
-	core.subscribe("reconstruct-breakdown", name, function (data) {
-		if (!data.hasOwnProperty(name)) {
-			return;
-		}
-		var charts = me.constructChartTemplateData(data[name].data);
-		me.renderSuccess(destination, {sectionId: name, charts: charts});
-		core.publish("draw-line-chart", "karmachart", data[name].data.dates, data[name].data.karma, false, {show_y_labels: false});
-	});
-	
 }("karma-breakdown", dharma.widget, dharma.core));

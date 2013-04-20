@@ -48,18 +48,4 @@ dharma.overview.karma = (function (name, Widget, core) {
 		me.renderFail(destination);
 	});
 	
-	// If the user uses the backwards or forwards button, we'll get this message
-	// and some data we can use to reconstruct the page.  The data should already
-	// be processed into a form we can use directly.
-	core.subscribe("reconstruct-overview", name, function (data) {
-		if (!data.hasOwnProperty(name)) {
-			me.renderFail(destination);
-			return;
-		}
-		me.renderSuccess(destination, data[name].data);
-		me.addEvent("click", function () {
-			core.publish("widget-clicked", data.group, myWhat);
-		});
-	});
-	
 }("karma-overview", dharma.widget, dharma.core));

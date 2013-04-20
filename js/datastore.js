@@ -85,6 +85,7 @@ dharma.datastore = (function (name, core) {
 			group: args.group,
 			what: args.what
 		});
+		// Store unfulfilled server responses in the cache as 'false.'
 		cache[key] = false;
 		core.publish("no-data", args);
 	});

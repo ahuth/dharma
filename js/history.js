@@ -7,82 +7,50 @@
 dharma.history = (function (name, window, history, core) {
 	"use strict";
 	
-	var initial = true,
-		data = {},
-		currentGroup;
+	var initial = true;
 	
-	// updateContent recieves data from a popstate event and signals that we
-	// should reconstruct a page.
-	function updateContent(oldData) {
-		if (!oldData) {
-			return false;
-		}
-		core.publish("reconstruct-previous-state", oldData);
-	}
-	
-	// addHistory pushes a new history state to the history object, but without
-	// any data.  We'll add data later.
-	function addHistory(group, category) {
-		var url;
-		if (!group && !category) {
-			return false;
-		}
-		if (group) {
-			currentGroup = group;
-		}
-		url = "/dharma/" + currentGroup;
+	// Modify the current history state with a url representing our group and
+	// category, and a data object that describes the basic attributes of our
+	// current page.
+	function addHistory(group, category, type) {
+		var url = "/dharma/" + group;
 		if (category) {
 			url += "/" + category;
 		}
-		history.pushState({}, url, url);
+		history.pushState({group: group, type: type, what: category}, url, url);
 	}
 	
-	// Who says you can't change history?... changeHistory updates the data
-	// stored in the current history object.
-	function changeHistory(newData) {
-		if (!newData) {
-			return false;
-		}
-		history.replaceState(newData);
-	}
-	
-	// If we get notified that the page is going to update, push a new history
-	// state to the history object, but without any data.  Once we get data
-	// requests back, we'll update the data for this history state.
-	core.subscribe("show-overview", name, function (group) {
+	core.subscribe("show-overview", name, function (group, dontAdd) {
 		if (initial) {
-			currentGroup = group;
-			history.replaceState({}, "dharma-initial", group);
 			initial = false;
+			history.replaceState({group: group, type: "overview", what: null}, "dharma-initial", group);
 			return;
 		}
-		addHistory(group.toLowerCase(), null);
-		// Reset the data object so we can receive new data.
-		data = null;
-		data = {};
-	});
-	core.subscribe("show-breakdown", name, function (group, category) {
-		addHistory(null, category.toLowerCase());
-		// Reset the data object so we can receive new data.
-		data = null;
-		data = {};
+		if (dontAdd) {
+			return;
+		}
+		addHistory(group, null, "overview");
 	});
 	
-	// Store ajax responses in the browser history.
-	core.subscribe("here's-data", name, function (response) {
-		data[response.what + "-" + response.type] = response;
-		if (!data.type) {
-			data.group = currentGroup;
-			data.type = response.type;
-			data.what = data.type === "breakdown" ? response.what : null;
+	core.subscribe("show-breakdown", name, function (group, category, dontAdd) {
+		if (dontAdd) {
+			return;
 		}
-		changeHistory(data);
+		addHistory(group, category, "breakdown");
 	});
 	
 	// If the user presses the back or forward browser button, we get a popstate
 	// event, from which we can read the data we stored earlier for the page.
 	window.addEventListener("popstate", function (event) {
-		updateContent(event.state);
+		if (!event.state.type) {
+			return;
+		}
+		if (event.state.type === "overview") {
+			core.publish("show-overview", event.state.group, true);
+		} else if (event.state.type === "breakdown") {
+			core.publish("show-breakdown", event.state.group, event.state.what, true);
+		}
+		
 	}, false);
 	
 }("history", window, window.history, dharma.core));

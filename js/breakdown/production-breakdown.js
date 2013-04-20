@@ -53,20 +53,4 @@ dharma.breakdown.production = (function (name, Widget, chart, core) {
 		me.renderFail(destination);
 	});
 	
-	core.subscribe("reconstruct-breakdown", name, function (data) {
-		if (!data.hasOwnProperty(name)) {
-			return;
-		}
-		var charts = me.constructChartTemplateData(data[name].data),
-			item;
-		me.renderSuccess(destination, {sectionId: name, charts: charts});
-		for (item in data[name].data) {
-			if (data[name].data.hasOwnProperty(item)) {
-				if (item !== "dates") {
-					core.publish("draw-line-chart", item + "chart", data[name].data.dates, data[name].data[item], true);
-				}
-			}
-		}
-	});
-	
 }("production-breakdown", dharma.widget, dharma.chart, dharma.core));

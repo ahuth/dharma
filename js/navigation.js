@@ -85,20 +85,6 @@ dharma.navigation = (function (name, document, core) {
 		event.preventDefault();
 	}, false);
 	
-	// If we're updating the screen, update the breadcrumbs, too.
-	core.subscribe("show-overview", name, function (group) {
-		if (!group) {
-			return false;
-		}
-		updateBreadcrumbs(group, null);
-	});
-	core.subscribe("show-breakdown", name, function (group, category) {
-		if (!category) {
-			return false;
-		}
-		updateBreadcrumbs(null, category);
-	});
-	
 	// The breadcrumb-clicked message is separate from the "click" event on the
 	// breadcrumb just in case another module needs to handle this event before
 	// receiving the show-overview message.

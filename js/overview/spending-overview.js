@@ -57,27 +57,4 @@ dharma.overview.spending = (function (name, Widget, core) {
 		me.renderFail(destination);
 	});
 	
-	// If the user uses the backwards or forwards button, we'll get this message
-	// and some data we can use to reconstruct the page.  The data should already
-	// be processed into a form we can use directly.
-	core.subscribe("reconstruct-overview", name, function (data) {
-		if (!data.hasOwnProperty(name)) {
-			me.renderFail(destination);
-			return;
-		}
-		var oldData = {
-			yesterday: me.formatMoney(data[name].data.yesterday),
-			people: me.formatMoney(data[name].data.people),
-			supplies: me.formatMoney(data[name].data.supplies),
-			tools: me.formatMoney(data[name].data.tools),
-			utilities: me.formatMoney(data[name].data.utilities),
-			maintenance: me.formatMoney(data[name].data.maintenance),
-			other: me.formatMoney(data[name].data.other)
-		};
-		me.renderSuccess(destination, oldData);
-		me.addEvent("click", function () {
-			core.publish("widget-clicked", data.group, myWhat);
-		});
-	});
-	
 }("spending-overview", dharma.widget, dharma.core));
