@@ -65,6 +65,7 @@ dharma.datastore = (function (name, core) {
 			cacheSize++;
 		}
 		core.publish("request-server-data", args);
+		pending[key] = true;
 	});
 	
 	core.subscribe("here's-server-data", name, function (response) {
@@ -73,8 +74,10 @@ dharma.datastore = (function (name, core) {
 			group: response.group,
 			what: response.what
 		});
-		// Add the server response to the cache.
+		// Add the server response to the cache, and remove it from the pending
+		// list.
 		cache[key] = response;
+		delete pending[key];
 		// Send out the response.
 		core.publish("here's-data", response);
 	});
