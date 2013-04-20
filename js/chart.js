@@ -55,10 +55,10 @@ dharma.chart = (function (name, accounting, Chart, core) {
 			labels: makeDateLabel(dates),
 			datasets: [
 				{
-					fillColor: "rgba(151,187,205,0)",
+					fillColor: "rgba(0,0,0,0)",
 					strokeColor: "rgba(151,187,205,1)",
-					pointColor: "rgba(151,187,205,0)",
-					pointStrokeColor: "rgba(151,187,205,0)",
+					pointColor: "rgba(0,0,0,0)",
+					pointStrokeColor: "rgba(0,0,0,0)",
 					data: makeReferenceData(reference, dates.length)
 				},
 				{

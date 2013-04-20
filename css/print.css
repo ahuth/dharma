@@ -90,10 +90,6 @@ h2, h3 {
 	border-style: none;
 }
 
-.breakdown .chart h2 {
+.breakdown h2 {
 	text-decoration: underline;
-}
-
-.breakdown .chart svg path {
-	fill: none !important;;
 }
