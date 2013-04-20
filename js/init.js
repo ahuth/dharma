@@ -17,4 +17,14 @@ dharma.init = (function (name, core) {
 	// overview.
 	core.publish("show-overview", "jenkintown");
 	
+	// Insert today's date into the time#today element on the page.
+	var months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun",
+				  "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
+		today = new Date();
+	document.getElementById("today").innerHTML = months[today.getMonth()] +
+												 " " + today.getDate() +
+												 ", " + today.getFullYear();
+	months = null;
+	today = null;
+	
 }("init", dharma.core));
