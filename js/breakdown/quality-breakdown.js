@@ -3,7 +3,7 @@
 
 dharma.breakdown = dharma.breakdown || {};
 
-dharma.breakdown.quality = (function (name, Widget, chart, core) {
+dharma.breakdown.quality = (function (name, Widget, core) {
 	"use strict";
 	
 	var successTemplate = document.getElementById("breakdown-template").innerHTML,
@@ -53,4 +53,4 @@ dharma.breakdown.quality = (function (name, Widget, chart, core) {
 		me.renderFail(destination);
 	});
 	
-}("quality-breakdown", dharma.widget, dharma.chart, dharma.core));
+}("quality-breakdown", dharma.widget, dharma.core));

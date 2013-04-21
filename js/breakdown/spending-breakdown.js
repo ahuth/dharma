@@ -3,7 +3,7 @@
 
 dharma.breakdown = dharma.breakdown || {};
 
-dharma.breakdown.spending = (function (name, Widget, chart, core) {
+dharma.breakdown.spending = (function (name, Widget, core) {
 	"use strict";
 	
 	var successTemplate = document.getElementById("breakdown-template").innerHTML,
@@ -53,4 +53,4 @@ dharma.breakdown.spending = (function (name, Widget, chart, core) {
 		me.renderFail(destination);
 	});
 	
-}("spending-breakdown", dharma.widget, dharma.chart, dharma.core));
+}("spending-breakdown", dharma.widget, dharma.core));
