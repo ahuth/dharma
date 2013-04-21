@@ -23,12 +23,9 @@ dharma.ajax = (function (name, window, rsvp, core) {
 	
 	// Send a get request and return a promise object.  This promise object will
 	// **eventually** hold the response text.
-	function get(url, parameters, timeoutIn) {
+	function get(url, parameters, timeoutTime) {
 		
 		var done = 4, ok = 200;
-		
-		// If a timeout wasn't specified, set it to 4000 milliseconds.
-		timeoutIn = timeoutIn || 4000;
 		
 		if (typeof parameters === "string") {
 			url += "?" + parameters;
@@ -43,7 +40,9 @@ dharma.ajax = (function (name, window, rsvp, core) {
 		XHR.setRequestHeader("X-Requested-With", "XMLHttpRequest");
 		XHR.onreadystatechange = function () {
 			if (XHR.readyState === done) {
-				window.clearTimeout(timeout);
+				if (timeout) {
+					window.clearTimeout(timeout);
+				}
 				if (XHR.status === ok && XHR.response !== null) {
 					promise.resolve(XHR.responseText);
 				} else {
@@ -52,11 +51,14 @@ dharma.ajax = (function (name, window, rsvp, core) {
 			}
 		};
 		
-		// If the response times out, reject the promise.
-		timeout = setTimeout(function () {
-			XHR.abort();
-			promise.reject(XHR);
-		}, timeoutIn);
+		// If we specified a timeoutTime, and the request takes longer than that
+		// time, reject the promise.
+		if (timeoutTime) {
+			timeout = setTimeout(function () {
+				XHR.abort();
+				promise.reject(XHR);
+			}, timeoutTime);
+		}
 		
 		XHR.send();
 		
@@ -69,7 +71,6 @@ dharma.ajax = (function (name, window, rsvp, core) {
 		}
 		var params = constructParamsString(args),
 			request = get("/dharma/php/dharmaservice.php", params, 4000);
-		
 		request.then(function (value) {
 			if (!value) {
 				core.publish("no-server-data", args);
