@@ -7,11 +7,16 @@
 dharma.init = (function (name, core) {
 	"use strict";
 	
+	// Manage what happens when we click on a widget, group-link, or breadcrumb.
 	core.subscribe("widget-clicked", name, function (group, widget) {
 		core.publish("clear-screen");
 		core.publish("show-breakdown", group.toLowerCase(), widget.toLowerCase());
 	});
 	core.subscribe("group-clicked", name, function (group) {
+		core.publish("clear-screen");
+		core.publish("show-overview", group.toLowerCase());
+	});
+	core.subscribe("breadcrumb-clicked", name, function (group) {
 		core.publish("clear-screen");
 		core.publish("show-overview", group.toLowerCase());
 	});
