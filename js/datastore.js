@@ -7,17 +7,24 @@
 dharma.datastore = (function (name, core) {
 	"use strict";
 	
-	var cache = {}, pending = {}, cacheSize = 0, maxCacheSize = 50;
+	var cache = {}, pending = {}, pendingNoBroadcast = {},
+		cacheSize = 0, maxCacheSize = 50;
 	
 	// isCached determines if the cache contains the given key.
 	function isCached(key) {
 		return cache.hasOwnProperty(key);
 	}
 	
-	// isPending determines if we have made a request for the given ke but have
+	// isPending determines if we have made a request for the given key but have
 	// not received the response, yet.
 	function isPending(key) {
 		return pending.hasOwnProperty(key);
+	}
+	
+	// isPendingNoBroadcast determines if we have made a request for the given key,
+	// have not received the response, and don't want to broadcast its completion.
+	function isPendingNoBroadcast(key) {
+		return pendingNoBroadcast.hasOwnProperty(key);
 	}
 	
 	// makeKey constructs a string key from an args object that we can use to
@@ -39,6 +46,7 @@ dharma.datastore = (function (name, core) {
 		}
 	}
 	
+	// Retrieve data from the cache or the server, and then broadcast the data.
 	core.subscribe("request-data", name, function (args) {
 		var key = makeKey(args),
 			value;
@@ -68,6 +76,25 @@ dharma.datastore = (function (name, core) {
 		pending[key] = true;
 	});
 	
+	// Download data from the server (if it's not in the cache).  Do NOT broadcast
+	// the data.
+	core.subscribe("cache-data", name, function (args) {
+		var key = makeKey(args),
+			value;
+		if (isCached(key) || isPending(key) || isPendingNoBroadcast(key)) {
+			return;
+		}
+		// Make an ajax request for the data.  If we're over our max cache size,
+		// delete something from the cache.
+		if (cacheSize >= maxCacheSize) {
+			reduceCachedObjects();
+		} else {
+			cacheSize++;
+		}
+		core.publish("request-server-data", args);
+		pendingNoBroadcast[key] = true;
+	});
+	
 	core.subscribe("here's-server-data", name, function (response) {
 		var key = makeKey({
 			type: response.type,
@@ -77,6 +104,10 @@ dharma.datastore = (function (name, core) {
 		// Add the server response to the cache, and remove it from the pending
 		// list.
 		cache[key] = response;
+		if (isPendingNoBroadcast(key)) {
+			delete pendingNoBroadcast[key];
+			return;
+		}
 		delete pending[key];
 		// Send out the response.
 		core.publish("here's-data", response);
@@ -88,12 +119,15 @@ dharma.datastore = (function (name, core) {
 			group: args.group,
 			what: args.what
 		});
-		// Store unfulfilled server responses in the cache as 'false.'
-		cache[key] = false;
-		// Remove the key from the pending list.
-		if (pending.hasOwnProperty(key)) {
-			delete pending[key];
+		// Store unfulfilled server responses in the cache as 'false' and remove
+		// it from the pending list.
+		if (isPendingNoBroadcast(key)) {
+			delete pendingNoBroadcast[key];
+			return;
 		}
+		cache[key] = false;
+		delete pending[key];
+		// Send a notification that no data was retrieved.
 		core.publish("no-data", args);
 	});
 	

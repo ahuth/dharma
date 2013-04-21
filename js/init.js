@@ -1,4 +1,4 @@
-/*jslint vars: true, browser: true */
+/*jslint vars: true, browser: true, plusplus: true */
 /*global dharma */
 
 // init does some initial setup of the app, manages what happens when a widget or
@@ -19,6 +19,20 @@ dharma.init = (function (name, core) {
 	core.subscribe("breadcrumb-clicked", name, function (group) {
 		core.publish("clear-screen");
 		core.publish("show-overview", group.toLowerCase());
+	});
+	
+	// When we show an overview, cheat by starting to download the data we might
+	// need if the user clicks on one of the widgets.
+	core.subscribe("show-overview", name, function (group) {
+		var categories = ["karma", "quality", "spending", "production"],
+			item;
+		for (item = 0; item < categories.length; item++) {
+			core.publish("cache-data", {
+				type: "breakdown",
+				group: group,
+				what: categories[item]
+			});
+		}
 	});
 	
 	// Main entry point for the program.  Start off by showing the Jenkintown

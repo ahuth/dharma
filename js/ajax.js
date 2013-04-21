@@ -71,6 +71,7 @@ dharma.ajax = (function (name, window, rsvp, core) {
 		}
 		var params = constructParamsString(args),
 			request = get("/dharma/php/dharmaservice.php", params, 4000);
+		
 		request.then(function (value) {
 			if (!value || value === "") {
 				core.publish("no-server-data", args);
