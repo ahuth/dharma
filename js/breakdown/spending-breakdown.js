@@ -21,10 +21,15 @@ dharma.breakdown.spending = (function (name, Widget, core) {
 	
 	// Request the data we need.  We'll handle this data later.
 	core.subscribe("show-breakdown", name, function (group, widget) {
+		me.remove();
 		if (widget !== myWhat) {
 			return;
 		}
 		core.publish("request-data", {type: myType, what: myWhat, group: group});
+	});
+	
+	core.subscribe("show-overview", name, function (group) {
+		me.remove();
 	});
 	
 	// When we get data back, process it into a format that the chart module can

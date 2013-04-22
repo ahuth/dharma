@@ -15,14 +15,15 @@ dharma.overview.spending = (function (name, Widget, core) {
 	// Me is the actual instance of our widget object.
 	var me = new Widget(name, successTemplate, failTemplate, myType);
 	
-	core.subscribe("clear-screen", name, function () {
-		me.remove();
-	});
-	
 	// If we need to show the overview, request the data but don't handle the
 	// response.  We'll take care of that later.
 	core.subscribe("show-overview", name, function (group) {
+		me.remove();
 		core.publish("request-data", {type: myType, what: myWhat, group: group});
+	});
+	
+	core.subscribe("show-breakdown", name, function (group, widget) {
+		me.remove();
 	});
 	
 	// Verify that data is for the request we made.  Then process it into a

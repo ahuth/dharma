@@ -45,7 +45,6 @@ dharma.history = (function (name, window, history, core) {
 		if (!event.state) {
 			return;
 		}
-		core.publish("clear-screen");
 		if (event.state.type === "overview") {
 			core.publish("show-overview", event.state.group, true);
 		} else if (event.state.type === "breakdown") {

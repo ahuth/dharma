@@ -115,6 +115,14 @@ dharma.widget = (function (document, accounting, hogan) {
 			}
 			return output;
 		};
+		// expand applies the 'expanding' class to our element and a height of
+		// num times the height of each chart.
+		this.expand = function (num) {
+			if (!reference) {
+				return;
+			}
+			reference.className += " expanding";
+		};
 	};
 	
 }(parent.document, parent.accounting, parent.Hogan));
