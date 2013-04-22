@@ -3,6 +3,7 @@
 .overview {
     cursor: pointer;
     position: absolute;
+	transition: width 0.3s, height 0.3s, left 0.3s, top 0.3s, background-color 0.5s;
 }
 
 #karma-overview {
