@@ -19,6 +19,14 @@ namespace breakdown {
 		}
 	*/
 	
+	function makeDateRange($from, $to) {
+		return new DatePeriod(
+			new DateTime($from),
+			new DateInterval('P1D'),
+			new DateTime($to)
+		);
+	}
+	
 	function getBreakdownData($what, $group) {
 		switch ($what) {
 			case 'karma':
@@ -38,11 +46,7 @@ namespace breakdown {
 	}
 	
 	function getKarmaData($group) {
-		$period = new DatePeriod(
-            new DateTime('2013-04-01'),
-            new DateInterval('P1D'),
-            new DateTime(NULL)
-        );
+		$period = makeDateRange('2013-04-01', NULL);
         foreach($period as $dt) {
             $dates[] = date_format($dt, 'Y-m-d \E\S\T');
             $karma[] = mt_rand(0, 100);
@@ -52,11 +56,7 @@ namespace breakdown {
 	}
     
 	function getQualityData($group) {
-        $period = new DatePeriod(
-            new DateTime('2013-04-01'),
-            new DateInterval('P1D'),
-            new DateTime(NULL)
-        );
+        $period = makeDateRange('2013-04-01', NULL);
         foreach($period as $dt) {
             $dates[] = date_format($dt, 'Y-m-d \E\S\T');
             $turnbacks[] = mt_rand(0, 4);
@@ -68,11 +68,7 @@ namespace breakdown {
 	}
 	
 	function getSpendingData($group) {
-		$period = new DatePeriod(
-			new DateTime('2013-04-01'),
-			new DateInterval('P1D'),
-			new DateTime(NULL)
-		);
+		$period = makeDateRange('2013-04-01', NULL);
 		foreach($period as $dt) {
 			$dates[] 	   = date_format($dt, 'Y-m-d \E\S\T');
 			$people[]      = mt_rand(20000, 60000);
@@ -129,11 +125,9 @@ namespace breakdown {
 					   '6850' => ['heat treat'],
 					   '6855' => ['heat treat', 'plate'],
 					   '6860' => ['plate', 'pre-form', 'pre-ndt']];
-		$period = new DatePeriod(
-			new DateTime('2013-04-01'),
-			new DateInterval('P1D'),
-			new DateTime(NULL)
-		);
+		
+		$period = makeDateRange('2013-04-01', NULL);
+		
 		foreach($period as $dt) {
 			$output['dates'][] = date_format($dt, 'Y-m-d \E\S\T');
 			foreach($milestones[$group] as $ms) {

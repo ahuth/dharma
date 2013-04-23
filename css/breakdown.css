@@ -16,12 +16,12 @@
 	border-bottom-width: 1em;
 }
 
-.breakdown canvas {
+.breakdown li canvas {
 	display: block;
 	margin: auto;
 }
 
-.breakdown h2 {
+.breakdown li h2 {
 	color: #242424;
 	font-size: 1.2em;
 	position: absolute;

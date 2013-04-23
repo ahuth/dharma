@@ -9,4 +9,5 @@
 	border-style: solid;
 	z-index: 9999;
 	box-sizing: border-box;
+	opacity: 0;
 }

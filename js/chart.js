@@ -14,14 +14,19 @@ dharma.chart = (function (name, Chart, core) {
 		return (dateObject.getMonth() + 1) + "/" + dateObject.getDate();
 	}
 	
+	// getStep determines how many x-axis values we plot on our chart.  We will
+	// have 1-63 values, but can only show 24 or so at a time.  If we have more
+	// items than that, increase the step.
+	function getStep(len) {
+		return Math.ceil(len / 24);
+	}
+	
 	// makeDateLabel formats an array of date-strings into the format we want
 	// for our charts.
-	function makeDateLabel(dates) {
-		var output = [], item;
-		for (item in dates) {
-			if (dates.hasOwnProperty(item)) {
-				output.push(getDateString(dates[item]));
-			}
+	function makeDateLabels(dates) {
+		var output = [], step = getStep(dates.length), item;
+		for (item = 0; item < dates.length; item += step) {
+			output.push(getDateString(dates[item]));
 		}
 		return output;
 	}
@@ -29,10 +34,10 @@ dharma.chart = (function (name, Chart, core) {
 	// makeCumulativeData takes a raw array of data and returns a new array with
 	// cumulative data.
 	function makeCumulativeData(data) {
-		var output = [], total = 0, item;
-		for (item in data) {
-			if (data.hasOwnProperty(item)) {
-				total += data[item];
+		var output = [], total = 0, step = getStep(data.length), item;
+		for (item = 0; item < data.length; item++) {
+			total += data[item];
+			if (item % step === 0) {
 				output.push(total);
 			}
 		}
@@ -42,17 +47,19 @@ dharma.chart = (function (name, Chart, core) {
 	// makeReferenceData takes a single value, and makes a cumulative array of
 	// data by summing that value a specified number of times.
 	function makeReferenceData(reference, times) {
-		var output = [], total = 0, item;
+		var output = [], total = 0, step = getStep(times), item;
 		for (item = 0; item < times; item++) {
 			total += reference;
-			output.push(total);
+			if (item % step === 0) {
+				output.push(total);
+			}
 		}
 		return output;
 	}
 	
 	core.subscribe("draw-line-chart", name, function (destination, dates, line, reference) {
 		var data = {
-			labels: makeDateLabel(dates),
+			labels: makeDateLabels(dates),
 			datasets: [
 				{
 					fillColor: "rgba(0,0,0,0)",

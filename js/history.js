@@ -20,6 +20,9 @@ dharma.history = (function (name, window, history, core) {
 		history.pushState({group: group, type: type, what: category}, url, url);
 	}
 	
+	// The dontAdd parameter of 'show-overview' and 'show-breakdown' is only
+	// used in this module.  It ensures that as we're going backward and forward
+	// through the browser history, we're not adding new history state.
 	core.subscribe("show-overview", name, function (group, dontAdd) {
 		if (initial) {
 			initial = false;
@@ -31,7 +34,6 @@ dharma.history = (function (name, window, history, core) {
 		}
 		addHistory(group, null, "overview");
 	});
-	
 	core.subscribe("show-breakdown", name, function (group, category, dontAdd) {
 		if (dontAdd) {
 			return;

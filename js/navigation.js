@@ -78,7 +78,7 @@ dharma.navigation = (function (name, document, core) {
 	// If the currentGroup gets clicked, determine if we're already looking at
 	// overview.  If so, we don't need to update anything.  If we aren't, then
 	// fire off a message so we can update.
-	currentGroup.addEventListener("click", function () {
+	currentGroup.addEventListener("click", function (event) {
 		if (breadcrumbs.children.length > 1) {
 			core.publish("breadcrumb-clicked", currentGroup.innerText);
 		}

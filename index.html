@@ -94,16 +94,14 @@
         </script>
 		
 		<script type="template/mustache" id="breakdown-template">
-			<section class="breakdown" id="{{sectionId}}">
-				<ol>
-					{{#charts}}
-						<li>
-							<h2>{{chartTitle}}</h2>
-							<canvas id="{{chartId}}" width="960px" height="300px"></canvas>
-						</li>
-					{{/charts}}
-				</ol>
-			</section>
+			<ol class="breakdown" id="{{sectionId}}">
+				{{#charts}}
+					<li>
+						<h2>{{chartTitle}}</h2>
+						<canvas id="{{chartId}}" width="960px" height="300px"></canvas>
+					</li>
+				{{/charts}}
+			</ol>
 		</script>
 		
 		<script type="template/mustache" id="fail-template">
