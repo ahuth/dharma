@@ -43,7 +43,6 @@ dharma.overview.spending = (function (name, Widget, core) {
 			other: me.formatMoney(response.data.other)
 		};
 		me.renderSuccess(destination, data);
-		core.publish("data-processed", name, data);
 		me.addEvent("click", function () {
 			core.publish("widget-clicked", response.group, myWhat);
 		});

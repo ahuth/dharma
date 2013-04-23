@@ -52,7 +52,6 @@ dharma.overview.production = (function (name, Widget, core) {
 		response.data = response.data || {results: {}};
 		var data = formatResults(response.data.results);
 		me.renderSuccess(destination, data);
-		core.publish("data-processed", name, data);
 		me.addEvent("click", function () {
 			core.publish("widget-clicked", response.group, myWhat);
 		});

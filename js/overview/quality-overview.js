@@ -41,7 +41,6 @@ dharma.overview.quality = (function (name, Widget, core) {
 			scrap: me.formatMoney(response.data.scrap)
 		};
 		me.renderSuccess(destination, data);
-		core.publish("data-processed", name, data);
 		me.addEvent("click", function () {
 			core.publish("widget-clicked", response.group, myWhat);
 		});

@@ -37,7 +37,6 @@ dharma.overview.karma = (function (name, Widget, core) {
 			return;
 		}
 		me.renderSuccess(destination, response.data);
-		core.publish("data-processed", name, response.data);
 		me.addEvent("click", function () {
 			core.publish("widget-clicked", response.group, myWhat);
 		});
