@@ -115,8 +115,8 @@ dharma.widget = (function (document, accounting, hogan) {
 			}
 			return output;
 		};
-		// expand applies the 'expanding' class to our element and a height of
-		// num times the height of each chart.
+		// expand applies the 'expanding' class to our element, which causes some
+		// css animations to happen.
 		this.expand = function (num) {
 			if (!reference) {
 				return;

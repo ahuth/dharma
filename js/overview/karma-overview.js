@@ -23,7 +23,6 @@ dharma.overview.karma = (function (name, Widget, core) {
 	});
 	
 	core.subscribe("show-breakdown", name, function (group, widget) {
-		me.remove();
 		/*if (widget === myWhat) {
 			me.expandToContent();
 		}*/
