@@ -4,7 +4,7 @@
 // init does some initial setup of the app, manages what happens when a widget or
 // group label get clicked, and starts the ball rolling by publishing an initial
 // "show-overview" message.
-dharma.init = (function (name, core) {
+dharma.init = (function (name, document, core) {
 	"use strict";
 	
 	// Manage what happens when we click on a widget, group-link, or breadcrumb.
@@ -46,4 +46,4 @@ dharma.init = (function (name, core) {
 	}());
 	currentDate = null;
 	
-}("init", dharma.core));
+}("init", parent.document, dharma.core));

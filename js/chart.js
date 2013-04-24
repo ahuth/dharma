@@ -3,7 +3,7 @@
 
 // chart contains everything specific to whatever charting library we've chosen
 // to use.
-dharma.chart = (function (name, Chart, core) {
+dharma.chart = (function (name, document, Chart, core) {
 	"use strict";
 	
 	// getDateString returns a string from a date in the format that we want.
@@ -90,4 +90,4 @@ dharma.chart = (function (name, Chart, core) {
 		var chart = new Chart(context).Line(data, options);
 	});
 	
-}("chart", parent.Chart, dharma.core));
+}("chart", parent.document, parent.Chart, dharma.core));
