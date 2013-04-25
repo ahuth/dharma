@@ -23,8 +23,7 @@ namespace overview {
 	function getKarmaData($group) {
         $value  = mt_rand(22, 96);
         $change = mt_rand(-10, 10);
-        $change = $change < 0 ? (string)$change : '+' . (string)$change;
-        return ['value'  => $value, 'change' => $change . '%'];
+        return ['value'  => $value, 'change' => $change];
 	}
 
 	function getQualityData($group) {
@@ -35,13 +34,17 @@ namespace overview {
 	}
 
 	function getSpendingData($group) {
-        $people      = mt_rand(20000, 60000);
-        $supplies    = mt_rand(5000, 20000);
-        $tools       = mt_rand(0, 5000);
-        $utilities   = 10000;
-        $maintenance = mt_rand(0, 10000);
-        $other       = mt_rand(5000, 10000);
+		// We want to generate decimal numbers here.  mt_rand() gives us integers,
+		// so call it with our min and max multiplied by 100, then divide the
+		// result by 100.
+        $people      = mt_rand(-2000, 2000) / 100;
+        $supplies    = mt_rand(-900, 900) / 100;
+        $tools       = mt_rand(-100, 100) / 100;
+        $utilities   = mt_rand(-250, 250) / 100;
+        $maintenance = mt_rand(-700, 700) / 100;
+        $other       = mt_rand(-300, 300) / 100;
         $yesterday   = $people + $supplies + $tools + $utilities + $maintenance + $other;
+			
         return ['yesterday'   => $yesterday,
                 'people'      => $people,
                 'supplies'    => $supplies,

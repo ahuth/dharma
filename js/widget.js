@@ -99,8 +99,18 @@ dharma.widget = (function (document, accounting, hogan) {
 			return input.slice(0, 1).toUpperCase() + input.slice(1).toLowerCase();
 		};
 		// formatMoney puts a dollar ammount into the format we want.
-		this.formatMoney = function (num) {
-			return accounting.formatMoney(num, "$", 0);
+		this.formatMoney = function (num, digits) {
+			var options = {
+				symbol: "$",
+				precision: digits || 0,
+				thousand: ",",
+				format: {
+					pos: "%s %v",
+					neg: "%s (%v)",
+					zero: "%s --"
+				}
+			};
+			return accounting.formatMoney(num, options);
 		};
 		// constructChartTemplateData takes a request-data response and pulls out
 		// the data we need to render a template for it.
@@ -114,14 +124,6 @@ dharma.widget = (function (document, accounting, hogan) {
 				}
 			}
 			return output;
-		};
-		// expand applies the 'expanding' class to our element, which causes some
-		// css animations to happen.
-		this.expand = function (num) {
-			if (!reference) {
-				return;
-			}
-			reference.className += " expanding";
 		};
 	};
 	
