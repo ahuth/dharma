@@ -21,15 +21,11 @@ dharma.init = (function (name, document, core) {
 	// When we show an overview, cheat by starting to download the data we might
 	// need if the user clicks on one of the widgets.
 	core.subscribe("show-overview", name, function (group) {
-		var categories = ["karma", "quality", "spending", "production"],
-			item;
-		for (item = 0; item < categories.length; item++) {
-			core.publish("cache-data", {
-				type: "breakdown",
-				group: group,
-				what: categories[item]
-			});
-		}
+		var type = "breakdown";
+		core.publish("cache-data", {type: type, group: group, what: "karma"});
+		core.publish("cache-data", {type: type, group: group, what: "quality"});
+		core.publish("cache-data", {type: type, group: group, what: "spending"});
+		core.publish("cache-data", {type: type, group: group, what: "production"});
 	});
 	
 	// Main entry point for the program.  Start off by showing the Jenkintown
