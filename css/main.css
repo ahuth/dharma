@@ -13,8 +13,6 @@ body {
 	width: 96%;
 }
 
-/* General Dharma sections */
-
 #content {
     /* Putting min-dimensions here ensures that the window getting really small
     won't mess up our layout.*/

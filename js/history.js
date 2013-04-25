@@ -17,6 +17,9 @@ dharma.history = (function (name, window, history, core) {
 		if (category) {
 			url += "/" + category;
 		}
+		// The second parameter to pushState() is an ID, and the third is the URL
+		// we want to display.  The ID isn't currently used, but I set it to the
+		// URL anyway, which uniquely identifies our browser state.
 		history.pushState({group: group, type: type, what: category}, url, url);
 	}
 	
