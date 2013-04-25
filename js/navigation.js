@@ -12,6 +12,13 @@ dharma.navigation = (function (name, document, core) {
 		currentGroup = breadcrumbs.getElementsByTagName("li")[0].getElementsByTagName("a")[0],
 		groupAnchors = header.getElementsByTagName("nav")[0].getElementsByTagName("table")[0].getElementsByTagName("a");
 	
+	// Upon initialization of this module, we'll insert the current date into the
+	// header.
+	var months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun",
+				  "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
+		today = new Date(),
+		dateElement = document.getElementById("today");
+	
 	// formatString puts a string in the format we want to display as part of
 	// our navigaion.
 	function formatString(input) {
@@ -74,6 +81,12 @@ dharma.navigation = (function (name, document, core) {
 	for (item = 0; item < groupAnchors.length; item += 1) {
 		groupAnchors[item].addEventListener("click", makeGroupCallback(groupAnchors[item].innerText), false);
 	}
+	
+	// Insert today's date into the time#today element on the page.
+	dateElement.innerHTML = months[today.getMonth()] + " " + today.getDate() + ", " + today.getFullYear();
+	months = null;
+	today = null;
+	dateElement = null;
 	
 	// If the currentGroup gets clicked, determine if we're already looking at
 	// overview.  If so, we don't need to update anything.  If we aren't, then
