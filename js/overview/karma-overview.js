@@ -23,9 +23,6 @@ dharma.overview.karma = (function (name, Widget, core) {
 	});
 	
 	core.subscribe("show-breakdown", name, function (group, widget) {
-		/*if (widget === myWhat) {
-			me.expand();
-		}*/
 		me.remove();
 	});
 	
@@ -36,7 +33,13 @@ dharma.overview.karma = (function (name, Widget, core) {
 		if (response.type !== myType || response.what !== myWhat) {
 			return;
 		}
-		me.renderSuccess(destination, response.data);
+		var data = {
+			value: response.data.value,
+			change: (response.data.change < 0 ?
+					 response.data.change + "%" :
+					 "+" + response.data.change + "%")
+		};
+		me.renderSuccess(destination, data);
 		me.addEvent("click", function () {
 			core.publish("widget-clicked", response.group, myWhat);
 		});

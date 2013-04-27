@@ -23,9 +23,6 @@ dharma.overview.quality = (function (name, Widget, core) {
 	});
 	
 	core.subscribe("show-breakdown", name, function (group, widget) {
-		/*if (widget === myWhat) {
-			me.expand();
-		}*/
 		me.remove();
 	});
 	

@@ -34,13 +34,13 @@ dharma.overview.spending = (function (name, Widget, core) {
 			return;
 		}
 		var data = {
-			yesterday: me.formatMoney(response.data.yesterday),
-			people: me.formatMoney(response.data.people),
-			supplies: me.formatMoney(response.data.supplies),
-			tools: me.formatMoney(response.data.tools),
-			utilities: me.formatMoney(response.data.utilities),
-			maintenance: me.formatMoney(response.data.maintenance),
-			other: me.formatMoney(response.data.other)
+			yesterday: me.formatMoney(response.data.yesterday, 2),
+			people: me.formatMoney(response.data.people, 2),
+			supplies: me.formatMoney(response.data.supplies, 2),
+			tools: me.formatMoney(response.data.tools, 2),
+			utilities: me.formatMoney(response.data.utilities, 2),
+			maintenance: me.formatMoney(response.data.maintenance, 2),
+			other: me.formatMoney(response.data.other, 2)
 		};
 		me.renderSuccess(destination, data);
 		me.addEvent("click", function () {
