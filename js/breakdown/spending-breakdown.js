@@ -15,10 +15,6 @@ dharma.breakdown.spending = (function (name, Widget, core) {
 	// Me is the actual instance of our widget object.
 	var me = new Widget(name, successTemplate, failTemplate, myType);
 	
-	core.subscribe("clear-screen", name, function () {
-		me.remove();
-	});
-	
 	// Request the data we need.  We'll handle this data later.
 	core.subscribe("show-breakdown", name, function (group, widget) {
 		me.remove();
