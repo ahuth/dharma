@@ -1,4 +1,4 @@
-dharma
+Dharma
 ======
 
 >that which maintains the stability and harmony of the universe.  
