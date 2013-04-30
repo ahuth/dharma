@@ -7,7 +7,7 @@ dharma
 __Dharma__ is a single page webapp/dashboard for a manufacturing environment.  Its purpose is to bring together key information about the previous day to one place.
 
 I built this to learn about single page web applications, web design, and javascript patterns.
-- - -
+
 ## Concepts
 
 * Javascript module pattern
@@ -15,6 +15,7 @@ I built this to learn about single page web applications, web design, and javasc
 * Modifying the browser history so we can use the back/forwards buttons
 * Caching server data
 * Cheating... once we display a "page", we start downloading any data we're likely to need next
+* Client-side [Mustache templates](http://mustache.github.io/) to generate our webapp "pages"
 
 ## Installation
 
