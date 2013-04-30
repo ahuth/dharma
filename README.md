@@ -19,7 +19,14 @@ I built this to learn about single page web applications, web design, and javasc
 
 ## Installation
 
-Dharma is a simple web application, so all you need to do to run it is serve it up with your favorite server that supports PHP 5.4+.  I use [Wampserver](http://www.wampserver.com/en/) and [MAMP](http://www.mamp.info/en/index.html).
+__Dharma__ is a simple web application, so all you need to do to run it is serve it up with your favorite server that supports PHP 5.4+.  I use [Wampserver](http://www.wampserver.com/en/) and [MAMP](http://www.mamp.info/en/index.html).
+
+## Credits
+This project is made possible with the help of
+* [Chart.js](http://www.chartjs.org/) for *__very__* quickly and easily drawing `<canvas>` charts
+* [accounting.js](http://josscrowcroft.github.io/accounting.js/) to bring some sanity to number formatting with javascript
+* [Hogan.js](http://twitter.github.io/hogan.js/) for client-side [mustache](http://mustache.github.io/) templating
+* [RSVP.js](https://github.com/tildeio/rsvp.js?utm_source=javascriptweekly) for __powerful__ asynchronous code organization
 
 ## License
 
