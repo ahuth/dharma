@@ -16,7 +16,7 @@ dharma.breakdown.production = (function (name, Widget, core) {
 	var me = new Widget(name, successTemplate, failTemplate, myType);
 	
 	// Request the data we need.  We'll handle this data later.
-	core.subscribe("show-breakdown", name, function (group, widget) {
+	core.subscribe("show-breakdown", function (group, widget) {
 		me.remove();
 		if (widget !== myWhat) {
 			return;
@@ -24,13 +24,13 @@ dharma.breakdown.production = (function (name, Widget, core) {
 		core.publish("request-data", {type: myType, what: myWhat, group: group});
 	});
 	
-	core.subscribe("show-overview", name, function (group) {
+	core.subscribe("show-overview", function (group) {
 		me.remove();
 	});
 	
 	// When we get data back, process it into a format that the chart module can
 	// understand.  Then, send of the processed data to be stored.
-	core.subscribe("here's-data", name, function (response) {
+	core.subscribe("here's-data", function (response) {
 		if (response.type !== myType || response.what !== myWhat) {
 			return;
 		}
@@ -47,7 +47,7 @@ dharma.breakdown.production = (function (name, Widget, core) {
 	});
 	
 	// If the request doesn't return any data, render the fail template.
-	core.subscribe("no-data", name, function (args) {
+	core.subscribe("no-data", function (args) {
 		if (args.type !== myType || args.what !== myWhat) {
 			return;
 		}

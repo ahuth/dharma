@@ -8,19 +8,19 @@ dharma.init = (function (name, core) {
 	"use strict";
 	
 	// Manage what happens when we click on a widget, group-link, or breadcrumb.
-	core.subscribe("widget-clicked", name, function (group, widget) {
+	core.subscribe("widget-clicked", function (group, widget) {
 		core.publish("show-breakdown", group.toLowerCase(), widget.toLowerCase());
 	});
-	core.subscribe("group-clicked", name, function (group) {
+	core.subscribe("group-clicked", function (group) {
 		core.publish("show-overview", group.toLowerCase());
 	});
-	core.subscribe("breadcrumb-clicked", name, function (group) {
+	core.subscribe("breadcrumb-clicked", function (group) {
 		core.publish("show-overview", group.toLowerCase());
 	});
 	
 	// When we show an overview, cheat by starting to download the data we might
 	// need if the user clicks on one of the widgets.
-	core.subscribe("show-overview", name, function (group) {
+	core.subscribe("show-overview", function (group) {
 		var type = "breakdown";
 		core.publish("cache-data", {type: type, group: group, what: "karma"});
 		core.publish("cache-data", {type: type, group: group, what: "quality"});

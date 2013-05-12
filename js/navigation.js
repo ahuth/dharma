@@ -99,10 +99,10 @@ dharma.navigation = (function (name, document, core) {
 	}, false);
 	
 	// Update the breadcrumbs if we change whats on the screen.
-	core.subscribe("show-overview", name, function (group) {
+	core.subscribe("show-overview", function (group) {
 		updateBreadcrumbs(group, null);
 	});
-	core.subscribe("show-breakdown", name, function (group, category) {
+	core.subscribe("show-breakdown", function (group, category) {
 		updateBreadcrumbs(group, category);
 	});
 	

@@ -47,7 +47,7 @@ dharma.datastore = (function (name, core) {
 	}
 	
 	// Retrieve data from the cache or the server, and then broadcast the data.
-	core.subscribe("request-data", name, function (args) {
+	core.subscribe("request-data", function (args) {
 		var key = makeKey(args),
 			value;
 		if (isCached(key)) {
@@ -78,7 +78,7 @@ dharma.datastore = (function (name, core) {
 	
 	// Download data from the server (if it's not in the cache).  Do NOT broadcast
 	// the data.
-	core.subscribe("cache-data", name, function (args) {
+	core.subscribe("cache-data", function (args) {
 		var key = makeKey(args),
 			value;
 		if (isCached(key) || isPending(key) || isPendingNoBroadcast(key)) {
@@ -95,7 +95,7 @@ dharma.datastore = (function (name, core) {
 		pendingNoBroadcast[key] = true;
 	});
 	
-	core.subscribe("here's-server-data", name, function (response) {
+	core.subscribe("here's-server-data", function (response) {
 		var key = makeKey({
 			type: response.type,
 			group: response.group,
@@ -113,7 +113,7 @@ dharma.datastore = (function (name, core) {
 		core.publish("here's-data", response);
 	});
 	
-	core.subscribe("no-server-data", name, function (args) {
+	core.subscribe("no-server-data", function (args) {
 		var key = makeKey({
 			type: args.type,
 			group: args.group,

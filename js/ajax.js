@@ -65,7 +65,7 @@ dharma.ajax = (function (name, window, rsvp, core) {
 		return promise;
 	}
 	
-	core.subscribe("request-server-data", name, function (args) {
+	core.subscribe("request-server-data", function (args) {
 		if (!args) {
 			return;
 		}

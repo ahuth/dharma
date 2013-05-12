@@ -30,19 +30,19 @@ dharma.overview.production = (function (name, Widget, core) {
 	
 	// If we need to show the overview, request the data but don't handle the
 	// response.  We'll take care of that later.
-	core.subscribe("show-overview", name, function (group) {
+	core.subscribe("show-overview", function (group) {
 		me.remove();
 		core.publish("request-data", {type: myType, what: myWhat, group: group});
 	});
 	
-	core.subscribe("show-breakdown", name, function (group, widget) {
+	core.subscribe("show-breakdown", function (group, widget) {
 		me.remove();
 	});
 	
 	// Verify that data is for the request we made.  Then process it into a
 	// format we can use.  We send back out this processed data so that we can
 	// capture it as part of the browser history.
-	core.subscribe("here's-data", name, function (response) {
+	core.subscribe("here's-data", function (response) {
 		if (response.type !== myType || response.what !== myWhat) {
 			return;
 		}
@@ -59,7 +59,7 @@ dharma.overview.production = (function (name, Widget, core) {
 	
 	// Verify that our request hasn't returned any data, and then render the
 	// failure template.
-	core.subscribe("no-data", name, function (args) {
+	core.subscribe("no-data", function (args) {
 		if (args.type !== myType || args.what !== myWhat) {
 			return;
 		}

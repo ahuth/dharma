@@ -57,7 +57,7 @@ dharma.chart = (function (name, document, Chart, core) {
 		return output;
 	}
 	
-	core.subscribe("draw-line-chart", name, function (destination, dates, line, reference) {
+	core.subscribe("draw-line-chart", function (destination, dates, line, reference) {
 		var data = {
 			labels: makeDateLabels(dates),
 			datasets: [
