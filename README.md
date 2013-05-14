@@ -28,6 +28,8 @@ This project is made possible with the help of
 * [Hogan.js](http://twitter.github.io/hogan.js/) for client-side [mustache](http://mustache.github.io/) templating
 * [RSVP.js](https://github.com/tildeio/rsvp.js?utm_source=javascriptweekly) for __powerful__ asynchronous code organization
 
+Also, the look and feel of the app was greatly inspired by [Dashing by Shopify](http://shopify.github.io/dashing/).
+
 ## License
 
 The MIT License (MIT)
