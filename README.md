@@ -8,6 +8,8 @@ __Dharma__ is a single page webapp/dashboard for a manufacturing environment.  I
 
 I built this to learn about single page web applications, web design, and javascript patterns.
 
+![Dharma screenshot](https://raw.github.com/ahuth/dharma/master/screenshots/DharmaScreenshot6860.png)
+
 ## Concepts
 
 * Javascript module pattern
@@ -16,6 +18,7 @@ I built this to learn about single page web applications, web design, and javasc
 * Caching server data
 * Cheating... once we display a "page", we start downloading any data we're likely to need next
 * Client-side [Mustache templates](http://mustache.github.io/) to generate our webapp "pages"
+* CSS [calc](https://developer.mozilla.org/en-US/docs/Web/CSS/calc) achieves a "masonry" style layout that is response but has fixed gutters in between elements
 
 ## Installation
 
